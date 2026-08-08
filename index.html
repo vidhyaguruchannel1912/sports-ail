@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SportX Physics | Games & Technology</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        color: #fff;
+        background:
+            radial-gradient(circle at 10% 10%, #173c63 0, transparent 35%),
+            radial-gradient(circle at 90% 20%, #24164f 0, transparent 35%),
+            linear-gradient(135deg, #060b14, #0b1220 55%, #080c16);
+        overflow-x: hidden;
+    }
+
+    /* Background glow */
+    body::before {
+        content: "";
+        position: fixed;
+        width: 350px;
+        height: 350px;
+        background: #00d9ff;
+        filter: blur(180px);
+        opacity: .12;
+        top: 25%;
+        left: -100px;
+        z-index: -1;
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        width: 350px;
+        height: 350px;
+        background: #7c3cff;
+        filter: blur(180px);
+        opacity: .13;
+        bottom: -100px;
+        right: -80px;
+        z-index: -1;
+    }
+
+    /* NAVBAR */
+    nav {
+        width: 100%;
+        padding: 20px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        backdrop-filter: blur(15px);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(5,10,18,.72);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: .5px;
+    }
+
+    .logo-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg,#00d9ff,#5965ff);
+        box-shadow: 0 0 25px rgba(0,217,255,.25);
+        font-size: 21px;
+    }
+
+    .badge {
+        font-size: 11px;
+        padding: 6px 10px;
+        border-radius: 20px;
+        background: rgba(0,217,255,.1);
+        border: 1px solid rgba(0,217,255,.25);
+        color: #6eeaff;
+    }
+
+    /* HERO */
+    .hero {
+        max-width: 1150px;
+        margin: auto;
+        padding: 70px 25px 35px;
+        text-align: center;
+    }
+
+    .eyebrow {
+        display: inline-block;
+        color: #62e8ff;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+    }
+
+    h1 {
+        font-size: clamp(40px, 7vw, 72px);
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: -3px;
+    }
+
+    h1 span {
+        background: linear-gradient(90deg,#fff,#65eaff,#8f7cff);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .hero p {
+        max-width: 650px;
+        margin: 22px auto;
+        color: #9daabd;
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
+    /* MAIN */
+    .container {
+        max-width: 1150px;
+        margin: auto;
+        padding: 20px 25px 70px;
+    }
+
+    .calculator {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+    }
+
+    .card {
+        background: rgba(16,24,38,.72);
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 24px;
+        padding: 28px;
+        backdrop-filter: blur(18px);
+        box-shadow: 0 20px 60px rgba(0,0,0,.22);
+    }
+
+    .card h2 {
+        font-size: 21px;
+        margin-bottom: 7px;
+    }
+
+    .card-subtitle {
+        color: #8190a6;
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+
+    /* INPUTS */
+    .input-group {
+        margin-bottom: 17px;
+    }
+
+    label {
+        display: flex;
+        justify-content: space-between;
+        color: #cbd5e1;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .unit {
+        color: #68778c;
+    }
+
+    input {
+        width: 100%;
+        padding: 14px 15px;
+        border-radius: 13px;
+        border: 1px solid #26354a;
+        outline: none;
+        background: #0b1320;
+        color: white;
+        font-size: 15px;
+        transition: .2s;
+    }
+
+    input:focus {
+        border-color: #00d9ff;
+        box-shadow: 0 0 0 3px rgba(0,217,255,.08);
+    }
+
+    /* BUTTON */
+    .calculate-btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 14px;
+        color: #031018;
+        font-weight: 800;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 5px;
+        background: linear-gradient(90deg,#49e6ff,#7482ff);
+        box-shadow: 0 10px 30px rgba(0,217,255,.16);
+        transition: .2s;
+    }
+
+    .calculate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 35px rgba(0,217,255,.25);
+    }
+
+    /* RESULTS */
+    .results {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+    }
+
+    .result {
+        padding: 20px;
+        border-radius: 17px;
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .result-icon {
+        font-size: 22px;
+        margin-bottom: 13px;
+    }
+
+    .result-name {
+        color: #8493a8;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .result-value {
+        margin-top: 6px;
+        font-size: 25px;
+        font-weight: 800;
+    }
+
+    .result-unit {
+        font-size: 12px;
+        color: #6d7c91;
+    }
+
+    /* FORMULA */
+    .formula {
+        margin-top: 18px;
+        padding: 17px;
+        border-radius: 15px;
+        background: rgba(0,217,255,.055);
+        border: 1px solid rgba(0,217,255,.12);
+    }
+
+    .formula-title {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #62e8ff;
+        letter-spacing: 1px;
+        margin-bottom: 7px;
+    }
+
+    .formula-text {
+        font-family: monospace;
+        color: #dce7f4;
+        font-size: 14px;
+    }
+
+    /* INFO */
+    .info-grid {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 15px;
+    }
+
+    .info {
+        padding: 18px;
+        border-radius: 17px;
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .info strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #fff;
+    }
+
+    .info p {
+        color: #7f8da1;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        color: #536175;
+        font-size: 12px;
+        border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    @media(max-width: 800px) {
+        .calculator {
+            grid-template-columns: 1fr;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        h1 {
+            letter-spacing: -2px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">
+        <div class="logo-icon">⚡</div>
+        SportX Physics
+    </div>
+
+    <div class="badge">AIL • Games & Technology</div>
+</nav>
+
+<section class="hero">
+    <div class="eyebrow">SPORTS × PHYSICS × MATHEMATICS</div>
+
+    <h1>
+        Understand the <span>Motion.</span>
+    </h1>
+
+    <p>
+        Enter basic sports data and calculate important physical quantities
+        such as speed, velocity and acceleration.
+    </p>
+</section>
+
+<main class="container">
+
+    <div class="calculator">
+
+        <!-- INPUT CARD -->
+        <div class="card">
+
+            <h2>⚙️ Enter Your Data</h2>
+
+            <div class="card-subtitle">
+                Enter the values you know. Leave the others empty.
+            </div>
+
+            <div class="input-group">
+                <label>
+                    Distance
+                    <span class="unit">metres (m)</span>
+                </label>
+                <input id="distance" type="number" placeholder="e.g. 100">
+            </div>
+
+            <div class="input-group">
+                <label>
+                    Time
+                    <span class="unit">seconds (s)</span>
+                </label>
+                <input id="time" type="number" placeholder="e.g. 10">
+            </div>
+
+            <div class="input-group">
+                <label>
+                    Initial Velocity
+                    <span class="unit">m/s</span>
+                </label>
+                <input id="initialVelocity" type="number" placeholder="e.g. 5">
+            </div>
+
+            <div class="input-group">
+                <label>
+                    Final Velocity
+                    <span class="unit">m/s</span>
+                </label>
+                <input id="finalVelocity" type="number" placeholder="e.g. 15">
+            </div>
+
+            <button class="calculate-btn" onclick="calculate()">
+                ⚡ Calculate Physics
+            </button>
+
+        </div>
+
+
+        <!-- RESULT CARD -->
+        <div class="card">
+
+            <h2>📊 Results</h2>
+
+            <div class="card-subtitle">
+                Your calculated sports physics values
+            </div>
+
+            <div class="results">
+
+                <div class="result">
+                    <div class="result-icon">🏃</div>
+                    <div class="result-name">Speed</div>
+                    <div class="result-value" id="speed">—</div>
+                    <div class="result-unit">m/s</div>
+                </div>
+
+                <div class="result">
+                    <div class="result-icon">🚀</div>
+                    <div class="result-name">Velocity</div>
+                    <div class="result-value" id="velocity">—</div>
+                    <div class="result-unit">m/s</div>
+                </div>
+
+                <div class="result">
+                    <div class="result-icon">⚡</div>
+                    <div class="result-name">Acceleration</div>
+                    <div class="result-value" id="acceleration">—</div>
+                    <div class="result-unit">m/s²</div>
+                </div>
+
+                <div class="result">
+                    <div class="result-icon">📏</div>
+                    <div class="result-name">Distance</div>
+                    <div class="result-value" id="resultDistance">—</div>
+                    <div class="result-unit">m</div>
+                </div>
+
+                <div class="result">
+                    <div class="result-icon">⏱️</div>
+                    <div class="result-name">Time</div>
+                    <div class="result-value" id="resultTime">—</div>
+                    <div class="result-unit">s</div>
+                </div>
+
+            </div>
+
+            <div class="formula">
+                <div class="formula-title">Formula Used</div>
+                <div class="formula-text" id="formula">
+                    Enter values to calculate.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BASIC CONCEPTS -->
+    <div class="info-grid">
+
+        <div class="info">
+            <strong>🏃 Speed</strong>
+            <p>
+                Distance travelled per unit time.
+            </p>
+        </div>
+
+        <div class="info">
+            <strong>🚀 Velocity</strong>
+            <p>
+                Rate of change of displacement with time.
+            </p>
+        </div>
+
+        <div class="info">
+            <strong>⚡ Acceleration</strong>
+            <p>
+                Rate of change of velocity with time.
+            </p>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    Games & Technology • Art Integrated Learning Project
+</footer>
+
+
+<script>
+
+function round(value) {
+    return Number(value.toFixed(3));
+}
+
+function calculate() {
+
+    const distance = parseFloat(
+        document.getElementById("distance").value
+    );
+
+    const time = parseFloat(
+        document.getElementById("time").value
+    );
+
+    const initialVelocity = parseFloat(
+        document.getElementById("initialVelocity").value
+    );
+
+    const finalVelocity = parseFloat(
+        document.getElementById("finalVelocity").value
+    );
+
+
+    /* SPEED */
+
+    if (!isNaN(distance) && !isNaN(time) && time > 0) {
+
+        const speed = distance / time;
+
+        document.getElementById("speed").textContent =
+            round(speed);
+
+        document.getElementById("formula").textContent =
+            "Speed = Distance ÷ Time";
+    }
+
+
+    /* VELOCITY */
+
+    if (!isNaN(finalVelocity)) {
+
+        document.getElementById("velocity").textContent =
+            round(finalVelocity);
+
+    } else if (!isNaN(initialVelocity)) {
+
+        document.getElementById("velocity").textContent =
+            round(initialVelocity);
+    }
+
+
+    /* ACCELERATION */
+
+    if (
+        !isNaN(initialVelocity) &&
+        !isNaN(finalVelocity) &&
+        !isNaN(time) &&
+        time > 0
+    ) {
+
+        const acceleration =
+            (finalVelocity - initialVelocity) / time;
+
+        document.getElementById("acceleration").textContent =
+            round(acceleration);
+
+        document.getElementById("formula").textContent =
+            "Acceleration = (Final Velocity − Initial Velocity) ÷ Time";
+    }
+
+
+    /* DISTANCE */
+
+    if (!isNaN(distance)) {
+
+        document.getElementById("resultDistance").textContent =
+            round(distance);
+
+    } else if (
+        !isNaN(initialVelocity) &&
+        !isNaN(time)
+    ) {
+
+        const calculatedDistance =
+            initialVelocity * time;
+
+        document.getElementById("resultDistance").textContent =
+            round(calculatedDistance);
+    }
+
+
+    /* TIME */
+
+    if (!isNaN(time)) {
+
+        document.getElementById("resultTime").textContent =
+            round(time);
+
+    } else if (
+        !isNaN(distance) &&
+        !isNaN(initialVelocity) &&
+        initialVelocity > 0
+    ) {
+
+        const calculatedTime =
+            distance / initialVelocity;
+
+        document.getElementById("resultTime").textContent =
+            round(calculatedTime);
+    }
+
+}
+
+</script>
+
+</body>
+</html>
