@@ -3,1308 +3,875 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Sports Motion Lab | Games & Technology</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-    --bg:#060a10;
-    --panel:#0d151f;
-    --panel2:#101c28;
-    --border:#243546;
-    --cyan:#42e8ff;
-    --blue:#7280ff;
-    --yellow:#ffd84a;
-    --orange:#ff8b4d;
-    --green:#5cff9d;
-    --white:#f4f8ff;
-    --muted:#8291a4;
-}
-
-html{
-    scroll-behavior:smooth;
+  --bg:#060b12;
+  --panel:#0d1621;
+  --panel2:#111e2b;
+  --border:#26394b;
+  --text:#f4f8ff;
+  --muted:#8292a5;
+  --cyan:#35e5ff;
+  --yellow:#ffd447;
+  --orange:#ff8a4c;
+  --green:#57f5a0;
+  --purple:#7e7cff;
 }
 
 body{
-    min-height:100vh;
-    background:
-        radial-gradient(
-            circle at 10% 5%,
-            rgba(66,232,255,.09),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 90% 15%,
-            rgba(114,128,255,.10),
-            transparent 30%
-        ),
-        var(--bg);
-    color:var(--white);
-    font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%,rgba(53,229,255,.10),transparent 28%),
+    radial-gradient(circle at 90% 20%,rgba(126,124,255,.10),transparent 30%),
+    var(--bg);
+  font-family:Arial,Helvetica,sans-serif;
 }
 
-button,
-input,
-select{
-    font:inherit;
-}
+button,input,select{font:inherit}
 
-button{
-    cursor:pointer;
-}
+button{cursor:pointer}
 
-.hidden{
-    display:none !important;
-}
-
-/* ================= NAV ================= */
+.hidden{display:none!important}
 
 nav{
-    height:68px;
-    padding:0 5%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(6,10,16,.94);
-    border-bottom:1px solid rgba(255,255,255,.07);
-    position:sticky;
-    top:0;
-    z-index:100;
-    backdrop-filter:blur(15px);
+  height:68px;
+  padding:0 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(6,11,18,.94);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  backdrop-filter:blur(15px);
 }
 
 .logo{
-    font-size:20px;
-    font-weight:900;
+  font-weight:900;
+  font-size:20px;
 }
 
-.logo span{
-    color:var(--cyan);
-}
+.logo span{color:var(--cyan)}
 
 .badge{
-    color:var(--cyan);
-    border:1px solid rgba(66,232,255,.25);
-    background:rgba(66,232,255,.05);
-    padding:8px 13px;
-    border-radius:30px;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:1px;
+  color:var(--cyan);
+  border:1px solid rgba(53,229,255,.25);
+  padding:8px 13px;
+  border-radius:30px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
 }
-
-/* ================= COMMON ================= */
 
 .container{
-    width:min(1180px,92%);
-    margin:auto;
-    padding:38px 0;
+  width:min(1180px,92%);
+  margin:auto;
+  padding:38px 0;
 }
 
-.center{
-    text-align:center;
-}
+.center{text-align:center}
 
 .eyebrow{
-    color:var(--cyan);
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:3px;
-    margin-bottom:13px;
+  color:var(--cyan);
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:900;
+  margin-bottom:14px;
 }
 
 .gradient{
-    background:linear-gradient(
-        90deg,
-        #ffffff,
-        var(--cyan),
-        #8b7cff
-    );
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+  background:linear-gradient(90deg,#fff,var(--cyan),#8a7cff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 h1{
-    font-size:clamp(42px,7vw,76px);
-    line-height:1;
-    letter-spacing:-3px;
-    margin-bottom:18px;
+  font-size:clamp(42px,7vw,76px);
+  line-height:1;
+  letter-spacing:-3px;
+  margin-bottom:18px;
 }
 
-h2{
-    font-size:30px;
-    margin-bottom:7px;
-}
+h2{font-size:30px}
 
 .subtitle{
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.7;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
 }
 
 .back{
-    background:#0d1620;
-    color:#b9c6d4;
-    border:1px solid var(--border);
-    padding:9px 14px;
-    border-radius:10px;
-    margin-bottom:25px;
+  border:1px solid var(--border);
+  background:#0c1520;
+  color:#c3cfdb;
+  padding:9px 14px;
+  border-radius:10px;
+  margin-bottom:24px;
 }
 
 .back:hover{
-    color:white;
-    border-color:var(--cyan);
+  border-color:var(--cyan);
+  color:#fff;
 }
 
-/* ================= WELCOME ================= */
+/* WELCOME */
 
 #welcome{
-    min-height:calc(100vh - 68px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+  min-height:calc(100vh - 68px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.hero{
-    width:min(650px,100%);
-}
+.hero{width:min(680px,100%)}
 
 .trophy{
-    width:86px;
-    height:86px;
-    display:grid;
-    place-items:center;
-    margin:0 auto 25px;
-    border-radius:25px;
-    font-size:43px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(66,232,255,.13),
-            rgba(114,128,255,.13)
-        );
-    border:1px solid rgba(66,232,255,.2);
-    box-shadow:0 0 70px rgba(66,232,255,.08);
+  width:85px;
+  height:85px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 25px;
+  border-radius:24px;
+  font-size:42px;
+  background:rgba(53,229,255,.08);
+  border:1px solid rgba(53,229,255,.2);
 }
 
 .name-card{
-    width:min(430px,100%);
-    margin:30px auto 0;
-    padding:20px;
-    background:rgba(13,21,31,.94);
-    border:1px solid var(--border);
-    border-radius:18px;
-    box-shadow:0 20px 70px rgba(0,0,0,.3);
+  width:min(430px,100%);
+  margin:30px auto 0;
+  padding:20px;
+  background:rgba(13,22,33,.96);
+  border:1px solid var(--border);
+  border-radius:18px;
 }
 
 label{
-    display:block;
-    text-align:left;
-    color:#b9c6d4;
-    font-size:10px;
-    font-weight:900;
-    margin-bottom:7px;
+  display:block;
+  color:#b5c2d0;
+  font-size:10px;
+  font-weight:900;
+  margin-bottom:7px;
 }
 
-input,
-select{
-    width:100%;
-    color:#fff;
-    background:#09111a;
-    border:1px solid #293b4d;
-    border-radius:10px;
-    padding:12px;
-    outline:none;
+input,select{
+  width:100%;
+  padding:12px;
+  color:#fff;
+  background:#09111a;
+  border:1px solid #293d50;
+  border-radius:10px;
+  outline:none;
 }
 
-input:focus,
-select:focus{
-    border-color:var(--cyan);
-    box-shadow:0 0 0 3px rgba(66,232,255,.06);
+input:focus,select:focus{
+  border-color:var(--cyan);
+  box-shadow:0 0 0 3px rgba(53,229,255,.06);
 }
 
 .primary{
-    width:100%;
-    margin-top:10px;
-    padding:14px;
-    border:0;
-    border-radius:11px;
-    color:#041016;
-    font-weight:900;
-    background:
-        linear-gradient(
-            90deg,
-            var(--cyan),
-            var(--blue)
-        );
+  width:100%;
+  border:0;
+  margin-top:10px;
+  padding:14px;
+  border-radius:11px;
+  font-weight:900;
+  color:#041016;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
 }
 
-.primary:hover{
-    filter:brightness(1.08);
-}
-
-/* ================= MENU ================= */
+/* MENU */
 
 .page-title{
-    text-align:center;
-    margin-bottom:32px;
+  text-align:center;
+  margin-bottom:32px;
 }
 
 .menu-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
 .menu-card{
-    min-height:170px;
-    padding:25px;
-    border-radius:20px;
-    background:
-        linear-gradient(
-            145deg,
-            #111d2a,
-            #0a131c
-        );
-    border:1px solid var(--border);
-    transition:.22s;
+  min-height:170px;
+  padding:25px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#111e2b,#0a131c);
+  border:1px solid var(--border);
+  transition:.2s;
 }
 
 .menu-card:hover{
-    transform:translateY(-5px);
-    border-color:var(--cyan);
-    box-shadow:0 18px 50px rgba(0,0,0,.3);
+  transform:translateY(-5px);
+  border-color:var(--cyan);
 }
 
 .menu-icon{
-    font-size:34px;
-    margin-bottom:15px;
+  font-size:34px;
+  margin-bottom:15px;
 }
 
-.menu-card h3{
-    margin-bottom:8px;
-}
+.menu-card h3{margin-bottom:8px}
 
 .menu-card p{
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.55;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
 }
 
-/* ================= PATH MENU ================= */
+/* PATH MENU */
 
 .path-grid{
-    max-width:950px;
-    margin:30px auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:17px;
+  max-width:950px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
 }
 
 .path-card{
-    padding:25px;
-    text-align:center;
-    border-radius:18px;
-    background:#0e1722;
-    border:1px solid var(--border);
-    transition:.22s;
+  padding:25px;
+  text-align:center;
+  border-radius:18px;
+  background:#0e1823;
+  border:1px solid var(--border);
+  transition:.2s;
 }
 
 .path-card:hover{
-    transform:translateY(-4px);
-    border-color:var(--cyan);
+  transform:translateY(-4px);
+  border-color:var(--cyan);
 }
 
 .path-icon{
-    font-size:35px;
-    margin-bottom:13px;
-}
-
-.path-card h3{
-    margin-bottom:7px;
+  font-size:35px;
+  margin-bottom:13px;
 }
 
 .path-card p{
-    color:var(--muted);
-    font-size:11px;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:7px;
 }
 
-/* ================= LAB ================= */
+/* LAB */
 
 .lab{
-    overflow:hidden;
-    border-radius:22px;
-    background:#0b141e;
-    border:1px solid var(--border);
-    box-shadow:0 25px 90px rgba(0,0,0,.3);
+  overflow:hidden;
+  border-radius:22px;
+  background:#0b141e;
+  border:1px solid var(--border);
+  box-shadow:0 25px 90px rgba(0,0,0,.3);
 }
 
 .lab-header{
-    padding:21px 24px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
+  padding:21px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid var(--border);
 }
 
 .lab-header p{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:5px;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
 }
 
 .live{
-    white-space:nowrap;
-    color:var(--green);
-    border:1px solid rgba(92,255,157,.2);
-    background:rgba(92,255,157,.05);
-    padding:8px 12px;
-    border-radius:30px;
-    font-size:9px;
-    font-weight:900;
+  white-space:nowrap;
+  color:var(--green);
+  border:1px solid rgba(87,245,160,.2);
+  padding:8px 12px;
+  border-radius:30px;
+  font-size:9px;
+  font-weight:900;
 }
-
-/* ================= WORK ================= */
 
 .work{
-    display:grid;
-    grid-template-columns:minmax(0,1.5fr) 370px;
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) 370px;
 }
 
-/* ================= SVG ================= */
-
 .visual-area{
-    padding:17px;
-    border-right:1px solid var(--border);
+  padding:17px;
+  border-right:1px solid var(--border);
 }
 
 .visual{
-    width:100%;
-    height:530px;
-    overflow:hidden;
-    border-radius:17px;
-    border:1px solid #1d2a37;
-    background:#080d13;
+  height:530px;
+  overflow:hidden;
+  border-radius:17px;
+  background:#080d13;
+  border:1px solid #1d2b39;
 }
 
 svg{
-    width:100%;
-    height:100%;
-    display:block;
-    touch-action:none;
-    user-select:none;
+  display:block;
+  width:100%;
+  height:100%;
+  touch-action:none;
+  user-select:none;
 }
 
 .grid-line{
-    stroke:#263441;
-    stroke-width:1;
-    opacity:.35;
+  stroke:#273643;
+  stroke-width:1;
+  opacity:.4;
 }
 
 .path{
-    fill:none;
-    stroke:var(--yellow);
-    stroke-width:8;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-}
-
-.displacement{
-    fill:none;
-    stroke:var(--orange);
-    stroke-width:4;
-    stroke-dasharray:10 8;
-    marker-end:url(#orangeArrow);
+  fill:none;
+  stroke:var(--yellow);
+  stroke-width:8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
 .circle-guide{
-    fill:none;
-    stroke:#566474;
-    stroke-width:2;
-    stroke-dasharray:8 8;
+  fill:none;
+  stroke:#58697a;
+  stroke-width:2;
+  stroke-dasharray:8 8;
+}
+
+.displacement{
+  stroke:var(--orange);
+  stroke-width:4;
+  stroke-dasharray:10 8;
 }
 
 .start-point{
-    fill:white;
-    stroke:#111;
-    stroke-width:4;
+  fill:#fff;
+  stroke:#111;
+  stroke-width:4;
 }
 
 .finish-point{
-    fill:var(--cyan);
-    stroke:white;
-    stroke-width:4;
-    cursor:grab;
-    filter:
-        drop-shadow(
-            0 0 12px
-            rgba(66,232,255,.9)
-        );
+  fill:var(--cyan);
+  stroke:#fff;
+  stroke-width:4;
+  cursor:grab;
+  filter:drop-shadow(0 0 12px rgba(53,229,255,.9));
 }
 
-.finish-point:active{
-    cursor:grabbing;
-}
+.finish-point:active{cursor:grabbing}
 
 .svg-label{
-    fill:white;
-    font-size:14px;
-    font-weight:900;
-    paint-order:stroke;
-    stroke:#080d13;
-    stroke-width:5px;
+  fill:#fff;
+  font-size:14px;
+  font-weight:900;
+  paint-order:stroke;
+  stroke:#080d13;
+  stroke-width:5px;
 }
 
 .svg-yellow{
-    fill:var(--yellow);
-    font-size:13px;
-    font-weight:900;
-    paint-order:stroke;
-    stroke:#080d13;
-    stroke-width:5px;
+  fill:var(--yellow);
+  font-size:13px;
+  font-weight:900;
+  paint-order:stroke;
+  stroke:#080d13;
+  stroke-width:5px;
 }
 
 .svg-orange{
-    fill:var(--orange);
-    font-size:13px;
-    font-weight:900;
-    paint-order:stroke;
-    stroke:#080d13;
-    stroke-width:5px;
+  fill:var(--orange);
+  font-size:13px;
+  font-weight:900;
+  paint-order:stroke;
+  stroke:#080d13;
+  stroke-width:5px;
 }
-
-.svg-cyan{
-    fill:var(--cyan);
-    font-size:13px;
-    font-weight:900;
-    paint-order:stroke;
-    stroke:#080d13;
-    stroke-width:5px;
-}
-
-.svg-muted{
-    fill:#8d9baa;
-    font-size:12px;
-    font-weight:700;
-}
-
-/* ================= LEGEND ================= */
 
 .legend{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-    padding:11px 3px 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  padding:12px 3px 0;
 }
 
 .legend-item{
-    color:#8290a0;
-    font-size:10px;
-    display:flex;
-    align-items:center;
-    gap:6px;
+  color:#8290a0;
+  font-size:10px;
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
 
 .dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
+  width:9px;
+  height:9px;
+  border-radius:50%;
 }
 
-.dot-yellow{
-    background:var(--yellow);
-}
+.yellow{background:var(--yellow)}
+.orange{background:var(--orange)}
+.cyan{background:var(--cyan)}
 
-.dot-orange{
-    background:var(--orange);
-}
-
-.dot-cyan{
-    background:var(--cyan);
-}
-
-/* ================= CONTROLS ================= */
-
-.controls{
-    padding:23px;
-}
+.controls{padding:23px}
 
 .section-title{
-    color:#728196;
-    font-size:9px;
-    letter-spacing:2px;
-    font-weight:900;
-    margin-bottom:17px;
+  color:#718196;
+  font-size:9px;
+  letter-spacing:2px;
+  font-weight:900;
+  margin-bottom:17px;
 }
 
-.field{
-    margin-bottom:15px;
-}
+.field{margin-bottom:15px}
 
 .row{
-    display:grid;
-    grid-template-columns:1fr 115px;
-    gap:7px;
+  display:grid;
+  grid-template-columns:1fr 120px;
+  gap:7px;
 }
 
 .calculate{
-    width:100%;
-    border:0;
-    padding:14px;
-    border-radius:11px;
-    color:#171208;
-    font-weight:950;
-    background:
-        linear-gradient(
-            90deg,
-            var(--yellow),
-            #ffb42d
-        );
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:11px;
+  color:#171208;
+  font-weight:950;
+  background:linear-gradient(90deg,var(--yellow),#ffb52d);
 }
-
-.calculate:hover{
-    filter:brightness(1.07);
-}
-
-/* ================= ANSWER ================= */
 
 .answer-box{
-    margin-top:18px;
-    padding:20px;
-    text-align:center;
-    border-radius:16px;
-    background:#101c28;
-    border:1px solid #294153;
+  margin-top:18px;
+  padding:20px;
+  text-align:center;
+  border-radius:16px;
+  background:#101c28;
+  border:1px solid #294153;
 }
 
 .answer-label{
-    color:#718196;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:2px;
+  color:#718196;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 .answer-value{
-    color:var(--cyan);
-    font-size:38px;
-    line-height:1.2;
-    font-weight:950;
-    margin:7px 0 3px;
+  color:var(--cyan);
+  font-size:38px;
+  font-weight:950;
+  margin:7px 0 3px;
 }
 
 .answer-unit{
-    color:#aab7c6;
-    font-size:12px;
+  color:#aab7c6;
+  font-size:12px;
 }
 
 .formula{
-    margin-top:13px;
-    padding:13px;
-    border-radius:11px;
-    background:#09111a;
-    border:1px solid #203140;
-    color:#b9c7d5;
-    font:11px Consolas,monospace;
-    line-height:1.7;
+  margin-top:13px;
+  padding:13px;
+  border-radius:11px;
+  background:#09111a;
+  border:1px solid #203140;
+  color:#b9c7d5;
+  font:11px Consolas,monospace;
+  line-height:1.7;
 }
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 
 @media(max-width:1000px){
-
-    .work{
-        grid-template-columns:1fr;
-    }
-
-    .visual-area{
-        border-right:0;
-        border-bottom:1px solid var(--border);
-    }
-
-    .menu-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .path-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .work{grid-template-columns:1fr}
+  .visual-area{
+    border-right:0;
+    border-bottom:1px solid var(--border);
+  }
+  .menu-grid{grid-template-columns:repeat(2,1fr)}
+  .path-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:600px){
-
-    .badge{
-        display:none;
-    }
-
-    .menu-grid,
-    .path-grid{
-        grid-template-columns:1fr;
-    }
-
-    .lab-header{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .visual-area{
-        padding:9px;
-    }
-
-    .visual{
-        height:390px;
-    }
-
-    .row{
-        grid-template-columns:1fr;
-    }
-
-    h1{
-        letter-spacing:-2px;
-    }
+  .badge{display:none}
+  .menu-grid,.path-grid{grid-template-columns:1fr}
+  .lab-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .visual{
+    height:390px;
+  }
+  .row{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ==================================================
-     NAVBAR
-================================================== -->
-
 <nav>
-
-    <div class="logo">
-        ⚡ Sports <span>Motion Lab</span>
-    </div>
-
-    <div class="badge">
-        AIL • GAMES & TECHNOLOGY
-    </div>
-
+  <div class="logo">⚡ Sports <span>Motion Lab</span></div>
+  <div class="badge">AIL • GAMES & TECHNOLOGY</div>
 </nav>
 
 
-<!-- ==================================================
-     WELCOME
-================================================== -->
+<!-- WELCOME -->
 
 <section id="welcome">
 
-    <div class="hero center">
+  <div class="hero center">
 
-        <div class="trophy">
-            🏆
-        </div>
+    <div class="trophy">🏆</div>
 
-        <div class="eyebrow">
-            SPORTS × PHYSICS × MATHEMATICS
-        </div>
+    <div class="eyebrow">
+      SPORTS × PHYSICS × MATHEMATICS
+    </div>
 
-        <h1>
-            Sports <span class="gradient">Motion Lab</span>
-        </h1>
+    <h1>
+      Sports <span class="gradient">Motion Lab</span>
+    </h1>
 
-        <p class="subtitle">
-            An interactive Physics & Mathematics laboratory
-            for understanding motion in sports.
-        </p>
+    <p class="subtitle">
+      An interactive Physics & Mathematics laboratory
+      for understanding motion in sports.
+    </p>
 
-        <div class="name-card">
+    <div class="name-card">
 
-            <label>
-                ENTER YOUR NAME
-            </label>
+      <label>ENTER YOUR NAME</label>
 
-            <input
-                id="userName"
-                type="text"
-                placeholder="Enter your name"
-                autocomplete="off"
-            >
+      <input
+        id="userName"
+        type="text"
+        placeholder="Enter your name"
+      >
 
-            <button
-                class="primary"
-                onclick="enterLab()"
-            >
-                ENTER THE LAB →
-            </button>
-
-        </div>
+      <button
+        class="primary"
+        id="enterBtn"
+      >
+        ENTER THE LAB →
+      </button>
 
     </div>
+
+  </div>
 
 </section>
 
 
-<!-- ==================================================
-     MAIN MENU
-================================================== -->
+<!-- MENU -->
 
-<section
-    id="menu"
-    class="container hidden"
->
+<section id="menu" class="container hidden">
 
-    <div class="page-title">
+  <div class="page-title">
 
-        <div class="eyebrow">
-            MOTION CALCULATOR
-        </div>
+    <div class="eyebrow">MOTION CALCULATOR</div>
 
-        <h2>
-            Hello,
-            <span
-                id="helloName"
-                class="gradient"
-            ></span>
-            👋
-        </h2>
+    <h2>
+      Hello,
+      <span id="helloName" class="gradient"></span> 👋
+    </h2>
 
-        <p class="subtitle">
-            Select exactly what you want to find.
-        </p>
+    <p class="subtitle">
+      Select exactly what you want to find.
+    </p>
 
+  </div>
+
+
+  <div class="menu-grid">
+
+    <div class="menu-card" data-find="speed">
+      <div class="menu-icon">🏃</div>
+      <h3>Find Speed</h3>
+      <p>Distance ÷ Time</p>
     </div>
 
-
-    <div class="menu-grid">
-
-        <div
-            class="menu-card"
-            onclick="openNormal('speed')"
-        >
-            <div class="menu-icon">🏃</div>
-            <h3>Find Speed</h3>
-            <p>
-                Distance ÷ Time
-            </p>
-        </div>
-
-
-        <div
-            class="menu-card"
-            onclick="openPathMenu('velocity')"
-        >
-            <div class="menu-icon">🚀</div>
-            <h3>Find Velocity</h3>
-            <p>
-                Displacement ÷ Time
-            </p>
-        </div>
-
-
-        <div
-            class="menu-card"
-            onclick="openNormal('distance')"
-        >
-            <div class="menu-icon">📏</div>
-            <h3>Find Distance</h3>
-            <p>
-                Speed × Time
-            </p>
-        </div>
-
-
-        <div
-            class="menu-card"
-            onclick="openPathMenu('displacement')"
-        >
-            <div class="menu-icon">📐</div>
-            <h3>Find Displacement</h3>
-            <p>
-                Straight-line distance
-                from Start to Finish
-            </p>
-        </div>
-
-
-        <div
-            class="menu-card"
-            onclick="openNormal('time')"
-        >
-            <div class="menu-icon">⏱️</div>
-            <h3>Find Time</h3>
-            <p>
-                Distance ÷ Speed
-            </p>
-        </div>
-
-
-        <div
-            class="menu-card"
-            onclick="openNormal('acceleration')"
-        >
-            <div class="menu-icon">⚡</div>
-            <h3>Find Acceleration</h3>
-            <p>
-                (Final Velocity − Initial Velocity)
-                ÷ Time
-            </p>
-        </div>
-
+    <div class="menu-card" data-find="velocity">
+      <div class="menu-icon">🚀</div>
+      <h3>Find Velocity</h3>
+      <p>Displacement ÷ Time</p>
     </div>
+
+    <div class="menu-card" data-find="distance">
+      <div class="menu-icon">📏</div>
+      <h3>Find Distance</h3>
+      <p>Speed × Time</p>
+    </div>
+
+    <div class="menu-card" data-find="displacement">
+      <div class="menu-icon">📐</div>
+      <h3>Find Displacement</h3>
+      <p>Straight-line distance from Start to Finish</p>
+    </div>
+
+    <div class="menu-card" data-find="time">
+      <div class="menu-icon">⏱️</div>
+      <h3>Find Time</h3>
+      <p>Distance ÷ Speed</p>
+    </div>
+
+    <div class="menu-card" data-find="acceleration">
+      <div class="menu-icon">⚡</div>
+      <h3>Find Acceleration</h3>
+      <p>(Final Velocity − Initial Velocity) ÷ Time</p>
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ==================================================
-     PATH SELECT
-================================================== -->
+<!-- PATH MENU -->
 
-<section
-    id="paths"
-    class="container hidden"
->
+<section id="paths" class="container hidden">
 
-    <button
-        class="back"
-        onclick="showScreen('menu')"
-    >
-        ← Back
-    </button>
+  <button class="back" id="pathBack">
+    ← Back
+  </button>
 
-    <div class="page-title">
+  <div class="page-title">
 
-        <div class="eyebrow">
-            2D MOTION MODEL
-        </div>
+    <div class="eyebrow">2D MOTION MODEL</div>
 
-        <h2>
-            Choose Your
-            <span class="gradient">Path</span>
-        </h2>
+    <h2>
+      Choose Your <span class="gradient">Path</span>
+    </h2>
 
-        <p class="subtitle">
-            Select the shape of motion.
-        </p>
+    <p class="subtitle">
+      Select the shape of motion.
+    </p>
 
+  </div>
+
+
+  <div class="path-grid">
+
+    <div class="path-card" data-path="straight">
+      <div class="path-icon">➡️</div>
+      <h3>Straight Line</h3>
+      <p>Direct movement</p>
     </div>
 
-
-    <div class="path-grid">
-
-        <div
-            class="path-card"
-            onclick="openPath('straight')"
-        >
-            <div class="path-icon">➡️</div>
-            <h3>Straight Line</h3>
-            <p>
-                Direct movement
-            </p>
-        </div>
-
-
-        <div
-            class="path-card"
-            onclick="openPath('detour')"
-        >
-            <div class="path-icon">↗️</div>
-            <h3>Detour</h3>
-            <p>
-                Two-part movement
-            </p>
-        </div>
-
-
-        <div
-            class="path-card"
-            onclick="openPath('circle')"
-        >
-            <div class="path-icon">⭕</div>
-            <h3>Circle</h3>
-            <p>
-                Circular movement
-            </p>
-        </div>
-
-
-        <div
-            class="path-card"
-            onclick="openPath('square')"
-        >
-            <div class="path-icon">⬜</div>
-            <h3>Square</h3>
-            <p>
-                Four-sided movement
-            </p>
-        </div>
-
-
-        <div
-            class="path-card"
-            onclick="openPath('rectangle')"
-        >
-            <div class="path-icon">▭</div>
-            <h3>Rectangle</h3>
-            <p>
-                Length + Width
-            </p>
-        </div>
-
+    <div class="path-card" data-path="detour">
+      <div class="path-icon">↗️</div>
+      <h3>Detour</h3>
+      <p>Two-part movement</p>
     </div>
+
+    <div class="path-card" data-path="circle">
+      <div class="path-icon">⭕</div>
+      <h3>Circle</h3>
+      <p>Circular movement</p>
+    </div>
+
+    <div class="path-card" data-path="square">
+      <div class="path-icon">⬜</div>
+      <h3>Square</h3>
+      <p>Four-sided movement</p>
+    </div>
+
+    <div class="path-card" data-path="rectangle">
+      <div class="path-icon">▭</div>
+      <h3>Rectangle</h3>
+      <p>Length + Width</p>
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ==================================================
-     CALCULATOR
-================================================== -->
+<!-- CALCULATOR -->
 
-<section
-    id="calculator"
-    class="container hidden"
->
+<section id="calculator" class="container hidden">
 
-    <button
-        class="back"
-        onclick="goBack()"
-    >
-        ← Back
-    </button>
+  <button class="back" id="calcBack">
+    ← Back
+  </button>
 
+  <div class="lab">
 
-    <div class="lab">
+    <div class="lab-header">
 
-        <div class="lab-header">
+      <div>
+        <h2 id="labTitle">Motion Calculator</h2>
+        <p id="labSubtitle"></p>
+      </div>
 
-            <div>
-
-                <h2 id="labTitle">
-                    Motion Calculator
-                </h2>
-
-                <p id="labSubtitle">
-                </p>
-
-            </div>
-
-            <div
-                id="liveBadge"
-                class="live hidden"
-            >
-                ● LIVE MODEL
-            </div>
-
-        </div>
-
-
-        <div class="work">
-
-            <!-- ==================================================
-                 SVG VISUAL
-            ================================================== -->
-
-            <div class="visual-area">
-
-                <div class="visual">
-
-                    <svg
-                        id="motionSVG"
-                        viewBox="0 0 700 530"
-                        preserveAspectRatio="xMidYMid meet"
-                    >
-
-                        <defs>
-
-                            <marker
-                                id="orangeArrow"
-                                markerWidth="11"
-                                markerHeight="11"
-                                refX="9"
-                                refY="4"
-                                orient="auto"
-                            >
-
-                                <path
-                                    d="M0,0 L0,8 L10,4 Z"
-                                    fill="#ff8b4d"
-                                ></path>
-
-                            </marker>
-
-                        </defs>
-
-
-                        <!-- GRID -->
-
-                        <g>
-
-                            <line
-                                class="grid-line"
-                                x1="70"
-                                y1="100"
-                                x2="630"
-                                y2="100"
-                            ></line>
-
-                            <line
-                                class="grid-line"
-                                x1="70"
-                                y1="200"
-                                x2="630"
-                                y2="200"
-                            ></line>
-
-                            <line
-                                class="grid-line"
-                                x1="70"
-                                y1="300"
-                                x2="630"
-                                y2="300"
-                            ></line>
-
-                            <line
-                                class="grid-line"
-                                x1="70"
-                                y1="400"
-                                x2="630"
-                                y2="400"
-                            ></line>
-
-                            <line
-                                class="grid-line"
-                                x1="100"
-                                y1="60"
-                                x2="100"
-                                y2="470"
-                            ></line>
-
-                            <line
-                                class="grid-line"
-                                x1="250"
-                                y1="60"
-                                x2="250"
-                                y2="470"
-                            ></line>
-
-                            <line
-                                class="grid-line"
-                                x1="400"
-                                y1="60"
-                                x2="400"
-                                y2="470"
-                            ></line>
-
-                            <line
-                                class="grid-line"
-                                x1="550"
-                                y1="60"
-                                x2="550"
-                                y2="470"
-                            ></line>
-
-                        </g>
-
-
-                        <!-- CIRCLE GUIDE -->
-
-                        <circle
-                            id="circleGuide"
-                            class="circle-guide"
-                            cx="350"
-                            cy="265"
-                            r="180"
-                            style="display:none"
-                        ></circle>
-
-
-                        <!-- ACTUAL PATH -->
-
-                        <polyline
-                            id="motionPath"
-                            class="path"
-                            points=""
-                        ></polyline>
-
-
-                        <!-- DISPLACEMENT -->
-
-                        <line
-                            id="displacementLine"
-                            class="displacement"
-                            style="display:none"
-                        ></line>
-
-
-                        <!-- START -->
-
-                        <circle
-                            id="startPoint"
-                            class="start-point"
-                            cx="100"
-                            cy="370"
-                            r="10"
-                        ></circle>
-
-
-                        <!-- FINISH / DRAG -->
-
-                        <circle
-                            id="finishPoint"
-                            class="finish-point"
-                            cx="590"
-                            cy="150"
-                            r="14"
-                            style="display:none"
-                        ></circle>
-
-
-                        <!-- LABELS -->
-
-                        <text
-                            id="startLabel"
-                            class="svg-label"
-                        >
-                            START
-                        </text>
-
-                        <text
-                            id="finishLabel"
-                            class="svg-label"
-                        >
-                            FINISH
-                        </text>
-
-                        <text
-                            id="pathText"
-                            class="svg-yellow"
-                        ></text>
-
-                        <text
-                            id="dispText"
-                            class="svg-orange"
-                        ></text>
-
-                        <text
-                            id="shapeText"
-                            class="svg-cyan"
-                        ></text>
-
-                        <text
-                            id="infoText"
-                            class="svg-muted"
-                        ></text>
-
-                    </svg>
-
-                </div>
-
-
-                <div class="legend">
-
-                    <div class="legend-item">
-
-                        <span class="dot dot-yellow"></span>
-
-                        Actual Path
-
-                    </div>
-
-
-                    <div class="legend-item">
-
-                        <span class="dot dot-orange"></span>
-
-                        Displacement
-
-                    </div>
-
-
-                    <div class="legend-item">
-
-                        <span class="dot dot-cyan"></span>
-
-                        Drag Point
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ==================================================
-                 CONTROLS
-            ================================================== -->
-
-            <div class="controls">
-
-                <div class="section-title">
-                    INPUT VALUES
-                </div>
-
-                <div id="inputArea"></div>
-
-
-                <button
-                    class="calculate"
-                    onclick="calculateAnswer()"
-                >
-                    ⚡ CALCULATE ANSWER
-                </button>
-
-
-                <div class="answer-box">
-
-                    <div class="answer-label">
-                        ANSWER
-                    </div>
-
-                    <div
-                        id="answerValue"
-                        class="answer-value"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="answerUnit"
-                        class="answer-unit"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="formula"
-                    class="formula"
-                >
-                    Enter values and click
-                    Calculate Answer.
-                </div>
-
-            </div>
-
-        </div>
+      <div id="liveBadge" class="live hidden">
+        ● LIVE MODEL
+      </div>
 
     </div>
+
+
+    <div class="work">
+
+      <!-- VISUAL -->
+
+      <div class="visual-area">
+
+        <div class="visual">
+
+          <svg
+            id="motionSVG"
+            viewBox="0 0 700 530"
+            preserveAspectRatio="xMidYMid meet"
+          >
+
+            <defs>
+              <marker
+                id="arrow"
+                markerWidth="10"
+                markerHeight="10"
+                refX="9"
+                refY="4"
+                orient="auto"
+              >
+                <path
+                  d="M0,0 L0,8 L10,4 Z"
+                  fill="#ff8a4c"
+                />
+              </marker>
+            </defs>
+
+
+            <g id="grid"></g>
+
+            <circle
+              id="circleGuide"
+              class="circle-guide"
+              cx="350"
+              cy="265"
+              r="180"
+              style="display:none"
+            />
+
+            <polyline
+              id="motionPath"
+              class="path"
+              points=""
+            />
+
+            <line
+              id="displacementLine"
+              class="displacement"
+              marker-end="url(#arrow)"
+              style="display:none"
+            />
+
+            <circle
+              id="startPoint"
+              class="start-point"
+              cx="100"
+              cy="370"
+              r="10"
+            />
+
+            <circle
+              id="finishPoint"
+              class="finish-point"
+              cx="590"
+              cy="150"
+              r="14"
+              style="display:none"
+            />
+
+            <text id="startLabel" class="svg-label">START</text>
+            <text id="finishLabel" class="svg-label">FINISH</text>
+            <text id="pathText" class="svg-yellow"></text>
+            <text id="dispText" class="svg-orange"></text>
+            <text id="shapeText" class="svg-yellow"></text>
+
+          </svg>
+
+        </div>
+
+
+        <div class="legend">
+
+          <div class="legend-item">
+            <span class="dot yellow"></span>
+            Actual Path
+          </div>
+
+          <div class="legend-item">
+            <span class="dot orange"></span>
+            Displacement
+          </div>
+
+          <div class="legend-item">
+            <span class="dot cyan"></span>
+            Drag Point
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONTROLS -->
+
+      <div class="controls">
+
+        <div class="section-title">
+          INPUT VALUES
+        </div>
+
+        <div id="inputArea"></div>
+
+        <button class="calculate" id="calculateBtn">
+          ⚡ CALCULATE ANSWER
+        </button>
+
+        <div class="answer-box">
+
+          <div class="answer-label">
+            ANSWER
+          </div>
+
+          <div id="answerValue" class="answer-value">
+            —
+          </div>
+
+          <div id="answerUnit" class="answer-unit">
+            —
+          </div>
+
+        </div>
+
+        <div id="formula" class="formula">
+          Enter values and calculate.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
 <script>
+"use strict";
 
-/* =========================================================
-   GLOBAL VARIABLES
-========================================================= */
+/* =====================================================
+   STATE
+===================================================== */
 
 let finding = "";
 let currentPath = "";
 
-let progress = 1;
-
-let circleAngle = 0;
+let progress = 0.5;
+let circleAngle = Math.PI / 2;
 
 let dragging = false;
 
@@ -1312,2919 +879,1643 @@ const CX = 350;
 const CY = 265;
 const R = 180;
 
-const START_ANGLE = -Math.PI / 2;
+
+/* =====================================================
+   SHORTCUT
+===================================================== */
 
 function $(id){
-    return document.getElementById(id);
+  return document.getElementById(id);
 }
 
 
-/* =========================================================
-   SCREEN MANAGEMENT
-========================================================= */
+/* =====================================================
+   SCREEN
+===================================================== */
 
 function showScreen(id){
 
-    const screens = [
-        "welcome",
-        "menu",
-        "paths",
-        "calculator"
-    ];
+  ["welcome","menu","paths","calculator"].forEach(function(x){
+    $(x).classList.add("hidden");
+  });
 
-    screens.forEach(function(screen){
+  $(id).classList.remove("hidden");
 
-        $(screen).classList.add("hidden");
-
-    });
-
-    $(id).classList.remove("hidden");
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 
-/* =========================================================
-   ENTER LAB
-========================================================= */
+/* =====================================================
+   ENTER
+===================================================== */
 
-function enterLab(){
+$("enterBtn").addEventListener("click",function(){
 
-    const name =
-        $("userName").value.trim();
+  const name=$("userName").value.trim();
 
-    if(name === ""){
+  if(!name){
+    alert("Please enter your name first.");
+    $("userName").focus();
+    return;
+  }
 
-        alert(
-            "Please enter your name first."
-        );
+  $("helloName").textContent=name;
 
-        $("userName").focus();
+  showScreen("menu");
+});
 
-        return;
+
+$("userName").addEventListener("keydown",function(e){
+  if(e.key==="Enter"){
+    $("enterBtn").click();
+  }
+});
+
+
+/* =====================================================
+   MENU BUTTONS
+===================================================== */
+
+document.querySelectorAll(".menu-card").forEach(function(card){
+
+  card.addEventListener("click",function(){
+
+    finding=card.dataset.find;
+
+    if(
+      finding==="velocity" ||
+      finding==="displacement"
+    ){
+      showScreen("paths");
+    }else{
+      openNormal();
     }
 
-    $("helloName").textContent = name;
+  });
 
+});
+
+
+/* =====================================================
+   PATH BUTTONS
+===================================================== */
+
+document.querySelectorAll(".path-card").forEach(function(card){
+
+  card.addEventListener("click",function(){
+
+    currentPath=card.dataset.path;
+
+    openPath();
+
+  });
+
+});
+
+
+$("pathBack").addEventListener("click",function(){
+  showScreen("menu");
+});
+
+
+$("calcBack").addEventListener("click",function(){
+
+  if(
+    finding==="velocity" ||
+    finding==="displacement"
+  ){
+    showScreen("paths");
+  }else{
     showScreen("menu");
-}
+  }
+
+});
 
 
-/* =========================================================
+/* =====================================================
    FORMAT
-========================================================= */
+===================================================== */
 
-function fmt(value){
+function fmt(n){
 
-    if(!Number.isFinite(value)){
-        return "0";
-    }
+  if(!Number.isFinite(n)){
+    return "0";
+  }
 
-    return Number(
-        value.toFixed(4)
-    ).toLocaleString();
+  return Number(n.toFixed(4)).toLocaleString();
 }
 
 
-/* =========================================================
-   UNIT CONVERSION
-========================================================= */
+/* =====================================================
+   UNITS
+===================================================== */
 
-function toMetres(value,unit){
+function metres(value,unit){
 
-    if(unit === "mm"){
-        return value / 1000;
-    }
+  if(unit==="mm") return value/1000;
+  if(unit==="cm") return value/100;
+  if(unit==="km") return value*1000;
 
-    if(unit === "cm"){
-        return value / 100;
-    }
-
-    if(unit === "km"){
-        return value * 1000;
-    }
-
-    return value;
+  return value;
 }
 
 
-function toSeconds(value,unit){
+function seconds(value,unit){
 
-    if(unit === "millisecond"){
-        return value / 1000;
-    }
+  if(unit==="ms") return value/1000;
+  if(unit==="min") return value*60;
+  if(unit==="hour") return value*3600;
 
-    if(unit === "minute"){
-        return value * 60;
-    }
-
-    if(unit === "hour"){
-        return value * 3600;
-    }
-
-    return value;
+  return value;
 }
 
 
-function toMS(value,unit){
+function ms(value,unit){
 
-    if(unit === "km/h"){
-        return value / 3.6;
-    }
+  if(unit==="kmh") return value/3.6;
 
-    return value;
+  return value;
 }
 
 
-/* =========================================================
-   SET ANSWER
-========================================================= */
+/* =====================================================
+   HTML INPUTS
+===================================================== */
 
-function setAnswer(
-    value,
-    unit,
-    formula
-){
+function distanceInput(id,value=10){
 
-    $("answerValue").textContent =
-        fmt(value);
+  return `
+  <div class="field">
 
-    $("answerUnit").textContent =
-        unit;
+    <label>DISTANCE</label>
 
-    $("formula").innerHTML =
-        formula;
+    <div class="row">
+
+      <input
+        id="${id}"
+        type="number"
+        step="any"
+        value="${value}"
+      >
+
+      <select id="${id}Unit">
+
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="m" selected>metre</option>
+        <option value="km">kilometre</option>
+
+      </select>
+
+    </div>
+
+  </div>
+  `;
 }
 
 
-/* =========================================================
-   INPUT BUILDERS
-========================================================= */
+function timeInput(id,value=2){
 
-function distanceField(id){
+  return `
+  <div class="field">
 
-    return `
+    <label>TIME</label>
 
-        <div class="field">
+    <div class="row">
 
-            <label>
-                DISTANCE
-            </label>
+      <input
+        id="${id}"
+        type="number"
+        step="any"
+        value="${value}"
+      >
 
-            <div class="row">
+      <select id="${id}Unit">
 
-                <input
-                    id="${id}"
-                    type="number"
-                    value="10"
-                    step="any"
-                >
+        <option value="ms">millisecond</option>
+        <option value="s" selected>second</option>
+        <option value="min">minute</option>
+        <option value="hour">hour</option>
 
-                <select id="${id}Unit">
+      </select>
 
-                    <option value="mm">
-                        mm
-                    </option>
+    </div>
 
-                    <option value="cm">
-                        cm
-                    </option>
-
-                    <option value="m" selected>
-                        metre
-                    </option>
-
-                    <option value="km">
-                        kilometre
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-    `;
+  </div>
+  `;
 }
 
 
-function timeField(id){
+function speedInput(id,value=5){
 
-    return `
+  return `
+  <div class="field">
 
-        <div class="field">
+    <label>SPEED</label>
 
-            <label>
-                TIME
-            </label>
+    <div class="row">
 
-            <div class="row">
+      <input
+        id="${id}"
+        type="number"
+        step="any"
+        value="${value}"
+      >
 
-                <input
-                    id="${id}"
-                    type="number"
-                    value="2"
-                    step="any"
-                >
+      <select id="${id}Unit">
 
-                <select id="${id}Unit">
+        <option value="mps" selected>m/s</option>
+        <option value="kmh">km/h</option>
 
-                    <option value="millisecond">
-                        millisecond
-                    </option>
+      </select>
 
-                    <option value="second" selected>
-                        second
-                    </option>
+    </div>
 
-                    <option value="minute">
-                        minute
-                    </option>
-
-                    <option value="hour">
-                        hour
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-    `;
+  </div>
+  `;
 }
 
 
-function speedField(id){
+function velocityInput(id,label,value){
 
-    return `
+  return `
+  <div class="field">
 
-        <div class="field">
+    <label>${label}</label>
 
-            <label>
-                SPEED
-            </label>
+    <div class="row">
 
-            <div class="row">
+      <input
+        id="${id}"
+        type="number"
+        step="any"
+        value="${value}"
+      >
 
-                <input
-                    id="${id}"
-                    type="number"
-                    value="5"
-                    step="any"
-                >
+      <select id="${id}Unit">
 
-                <select id="${id}Unit">
+        <option value="mps" selected>m/s</option>
+        <option value="kmh">km/h</option>
 
-                    <option value="m/s" selected>
-                        m/s
-                    </option>
+      </select>
 
-                    <option value="km/h">
-                        km/h
-                    </option>
+    </div>
 
-                </select>
-
-            </div>
-
-        </div>
-
-    `;
+  </div>
+  `;
 }
 
 
-function velocityField(
-    id,
-    label,
-    value
-){
+/* =====================================================
+   ANSWER
+===================================================== */
 
-    return `
+function answer(value,unit,formula){
 
-        <div class="field">
-
-            <label>
-                ${label}
-            </label>
-
-            <div class="row">
-
-                <input
-                    id="${id}"
-                    type="number"
-                    value="${value}"
-                    step="any"
-                >
-
-                <select id="${id}Unit">
-
-                    <option value="m/s" selected>
-                        m/s
-                    </option>
-
-                    <option value="km/h">
-                        km/h
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-    `;
+  $("answerValue").textContent=fmt(value);
+  $("answerUnit").textContent=unit;
+  $("formula").innerHTML=formula;
 }
 
 
-/* =========================================================
-   NORMAL CALCULATORS
-========================================================= */
+/* =====================================================
+   NORMAL CALCULATOR
+===================================================== */
 
-function openNormal(type){
+function openNormal(){
 
-    finding = type;
+  $("liveBadge").classList.add("hidden");
 
-    currentPath = "";
-
-    $("liveBadge")
-        .classList
-        .add("hidden");
-
-    showScreen("calculator");
+  showScreen("calculator");
 
 
-    if(type === "speed"){
+  if(finding==="speed"){
 
-        $("labTitle").textContent =
-            "Find Speed";
+    $("labTitle").textContent="Find Speed";
+    $("labSubtitle").textContent="Speed = Distance ÷ Time";
 
-        $("labSubtitle").textContent =
-            "Distance ÷ Time";
+    $("inputArea").innerHTML=
+      distanceInput("distance")+
+      timeInput("time");
 
-        $("inputArea").innerHTML =
-            distanceField("distance") +
-            timeField("time");
-
-        drawNormal();
-
-    }
+  }
 
 
-    if(type === "distance"){
+  if(finding==="distance"){
 
-        $("labTitle").textContent =
-            "Find Distance";
+    $("labTitle").textContent="Find Distance";
+    $("labSubtitle").textContent="Distance = Speed × Time";
 
-        $("labSubtitle").textContent =
-            "Speed × Time";
+    $("inputArea").innerHTML=
+      speedInput("speed")+
+      timeInput("time");
 
-        $("inputArea").innerHTML =
-            speedField("speed") +
-            timeField("time");
-
-        drawNormal();
-
-    }
+  }
 
 
-    if(type === "time"){
+  if(finding==="time"){
 
-        $("labTitle").textContent =
-            "Find Time";
+    $("labTitle").textContent="Find Time";
+    $("labSubtitle").textContent="Time = Distance ÷ Speed";
 
-        $("labSubtitle").textContent =
-            "Distance ÷ Speed";
+    $("inputArea").innerHTML=
+      distanceInput("distance")+
+      speedInput("speed");
 
-        $("inputArea").innerHTML =
-            distanceField("distance") +
-            speedField("speed");
-
-        drawNormal();
-
-    }
+  }
 
 
-    if(type === "acceleration"){
+  if(finding==="acceleration"){
 
-        $("labTitle").textContent =
-            "Find Acceleration";
+    $("labTitle").textContent="Find Acceleration";
+    $("labSubtitle").textContent="Acceleration = (Vf − Vi) ÷ Time";
 
-        $("labSubtitle").textContent =
-            "(Vf − Vi) ÷ Time";
+    $("inputArea").innerHTML=
+      velocityInput("vi","INITIAL VELOCITY (Vi)",10)+
+      velocityInput("vf","FINAL VELOCITY (Vf)",20)+
+      timeInput("atime",2);
 
-        $("inputArea").innerHTML =
-            velocityField(
-                "initialVelocity",
-                "INITIAL VELOCITY (Vi)",
-                10
-            ) +
-            velocityField(
-                "finalVelocity",
-                "FINAL VELOCITY (Vf)",
-                20
-            ) +
-            timeField("accelTime");
-
-        drawNormal();
-
-    }
+  }
 
 
-    attachNormalInputs();
+  drawNormal();
+
+  attachInputs();
+
+  calculate();
+
 }
 
 
-/* =========================================================
-   NORMAL SVG
-========================================================= */
+/* =====================================================
+   NORMAL INPUT EVENTS
+===================================================== */
+
+function attachInputs(){
+
+  document
+  .querySelectorAll("#inputArea input,#inputArea select")
+  .forEach(function(el){
+
+    el.addEventListener("input",calculate);
+
+  });
+
+}
+
+
+/* =====================================================
+   NORMAL DRAW
+===================================================== */
 
 function drawNormal(){
 
-    hideCircle();
+  hideCircle();
 
-    $("motionPath")
-        .setAttribute(
-            "points",
-            "100,370 600,150"
-        );
+  $("motionPath").setAttribute(
+    "points",
+    "100,370 600,150"
+  );
 
-    $("startPoint")
-        .setAttribute("cx",100);
+  $("finishPoint").style.display="none";
 
-    $("startPoint")
-        .setAttribute("cy",370);
+  $("displacementLine").style.display="none";
 
-    $("finishPoint").style.display =
-        "none";
+  $("pathText").textContent="";
+  $("dispText").textContent="";
+  $("shapeText").textContent="";
 
-    $("displacementLine").style.display =
-        "none";
-
-    $("startLabel")
-        .setAttribute("x",75);
-
-    $("startLabel")
-        .setAttribute("y",410);
-
-    $("finishLabel")
-        .setAttribute("x",565);
-
-    $("finishLabel")
-        .setAttribute("y",125);
-
-    $("pathText").textContent = "";
-    $("dispText").textContent = "";
-    $("shapeText").textContent = "";
-    $("infoText").textContent = "";
 }
 
 
-/* =========================================================
-   NORMAL INPUT LISTENER
-========================================================= */
+/* =====================================================
+   NORMAL CALCULATE
+===================================================== */
 
-function attachNormalInputs(){
+function calculate(){
 
-    document
-        .querySelectorAll(
-            "#inputArea input, #inputArea select"
-        )
-        .forEach(function(el){
+  if(finding==="speed"){
 
-            el.addEventListener(
-                "input",
-                function(){
+    const d=metres(
+      Number($("distance").value),
+      $("distanceUnit").value
+    );
 
-                    if(finding === "speed"){
-                        calculateAnswer();
-                    }
+    const t=seconds(
+      Number($("time").value),
+      $("timeUnit").value
+    );
 
-                    if(finding === "distance"){
-                        calculateAnswer();
-                    }
+    if(t<=0){
+      answer(0,"Invalid","Time must be greater than zero.");
+      return;
+    }
 
-                    if(finding === "time"){
-                        calculateAnswer();
-                    }
+    const result=d/t;
 
-                    if(finding === "acceleration"){
-                        calculateAnswer();
-                    }
+    answer(
+      result,
+      "m/s",
+      `<b>Speed = Distance ÷ Time</b>
+       <br><br>
+       ${fmt(d)} ÷ ${fmt(t)}
+       =
+       <b>${fmt(result)} m/s</b>`
+    );
 
-                }
-            );
+    return;
+  }
 
-        });
+
+  if(finding==="distance"){
+
+    const v=ms(
+      Number($("speed").value),
+      $("speedUnit").value
+    );
+
+    const t=seconds(
+      Number($("time").value),
+      $("timeUnit").value
+    );
+
+    const result=v*t;
+
+    answer(
+      result,
+      "m",
+      `<b>Distance = Speed × Time</b>
+       <br><br>
+       ${fmt(v)} × ${fmt(t)}
+       =
+       <b>${fmt(result)} m</b>`
+    );
+
+    return;
+  }
+
+
+  if(finding==="time"){
+
+    const d=metres(
+      Number($("distance").value),
+      $("distanceUnit").value
+    );
+
+    const v=ms(
+      Number($("speed").value),
+      $("speedUnit").value
+    );
+
+    if(v<=0){
+      answer(0,"Invalid","Speed must be greater than zero.");
+      return;
+    }
+
+    const result=d/v;
+
+    answer(
+      result,
+      "seconds",
+      `<b>Time = Distance ÷ Speed</b>
+       <br><br>
+       ${fmt(d)} ÷ ${fmt(v)}
+       =
+       <b>${fmt(result)} s</b>`
+    );
+
+    return;
+  }
+
+
+  if(finding==="acceleration"){
+
+    const vi=ms(
+      Number($("vi").value),
+      $("viUnit").value
+    );
+
+    const vf=ms(
+      Number($("vf").value),
+      $("vfUnit").value
+    );
+
+    const t=seconds(
+      Number($("atime").value),
+      $("atimeUnit").value
+    );
+
+    if(t<=0){
+      answer(0,"Invalid","Time must be greater than zero.");
+      return;
+    }
+
+    const result=(vf-vi)/t;
+
+    answer(
+      result,
+      "m/s²",
+      `<b>Acceleration = (Vf − Vi) ÷ Time</b>
+       <br><br>
+       (${fmt(vf)} − ${fmt(vi)}) ÷ ${fmt(t)}
+       =
+       <b>${fmt(result)} m/s²</b>`
+    );
+
+  }
+
 }
 
 
-/* =========================================================
-   PATH MENU
-========================================================= */
+/* =====================================================
+   PATH OPEN
+===================================================== */
 
-function openPathMenu(type){
+function openPath(){
 
-    finding = type;
+  $("liveBadge").classList.remove("hidden");
 
-    showScreen("paths");
+  showScreen("calculator");
+
+  if(currentPath==="straight") setupStraight();
+  if(currentPath==="detour") setupDetour();
+  if(currentPath==="circle") setupCircle();
+  if(currentPath==="square") setupSquare();
+  if(currentPath==="rectangle") setupRectangle();
+
 }
 
 
-/* =========================================================
-   OPEN PATH
-========================================================= */
-
-function openPath(type){
-
-    currentPath = type;
-
-    $("liveBadge")
-        .classList
-        .remove("hidden");
-
-    showScreen("calculator");
-
-
-    if(type === "straight"){
-        setupStraight();
-    }
-
-    if(type === "detour"){
-        setupDetour();
-    }
-
-    if(type === "circle"){
-        setupCircle();
-    }
-
-    if(type === "square"){
-        setupSquare();
-    }
-
-    if(type === "rectangle"){
-        setupRectangle();
-}
-
-
-/* =========================================================
-   STRAIGHT
-========================================================= */
+/* =====================================================
+   PATH SETUPS
+===================================================== */
 
 function setupStraight(){
 
-    $("labTitle").textContent =
-        "Straight Line";
+  $("labTitle").textContent="Straight Line";
+  $("labSubtitle").textContent="Drag the blue point to change position.";
 
-    $("labSubtitle").textContent =
-        "Drag the blue point to change the position.";
+  $("inputArea").innerHTML=
+    distanceInput("pathDistance",10)+
+    timeInput("pathTime",2);
 
-    $("inputArea").innerHTML =
-        distanceField("pathDistance") +
-        timeField("pathTime");
+  progress=.5;
 
-    progress = 1;
+  drawStraight();
+  attachPathInputs();
+  updatePathAnswer();
 
-    drawStraight();
-
-    attachPathInputs();
-
-    updatePathAnswer();
 }
 
-
-/* =========================================================
-   DETOUR
-========================================================= */
 
 function setupDetour(){
 
-    $("labTitle").textContent =
-        "Detour Path";
+  $("labTitle").textContent="Detour Path";
+  $("labSubtitle").textContent="Drag the blue point along the route.";
 
-    $("labSubtitle").textContent =
-        "Yellow = actual path • Orange = displacement";
+  $("inputArea").innerHTML=`
 
-    $("inputArea").innerHTML = `
+  <div class="field">
+    <label>HORIZONTAL DISTANCE (m)</label>
+    <input id="horizontal" type="number" step="any" value="8">
+  </div>
 
-        <div class="field">
+  <div class="field">
+    <label>VERTICAL DISTANCE (m)</label>
+    <input id="vertical" type="number" step="any" value="6">
+  </div>
 
-            <label>
-                HORIZONTAL DISTANCE (m)
-            </label>
+  ${timeInput("detourTime",2)}
+  `;
 
-            <input
-                id="horizontal"
-                type="number"
-                value="8"
-                step="any"
-            >
+  progress=.5;
 
-        </div>
+  drawDetour();
+  attachPathInputs();
+  updatePathAnswer();
 
-        <div class="field">
-
-            <label>
-                VERTICAL DISTANCE (m)
-            </label>
-
-            <input
-                id="vertical"
-                type="number"
-                value="6"
-                step="any"
-            >
-
-        </div>
-
-        ${timeField("detourTime")}
-
-    `;
-
-    progress = 1;
-
-    drawDetour();
-
-    attachPathInputs();
-
-    updatePathAnswer();
 }
 
-
-/* =========================================================
-   CIRCLE
-========================================================= */
 
 function setupCircle(){
 
-    $("labTitle").textContent =
-        "Circle Path";
+  $("labTitle").textContent="Circle Path";
+  $("labSubtitle").textContent="Drag the blue point around the circle.";
 
-    $("labSubtitle").textContent =
-        "Drag the blue point around the circle.";
+  $("inputArea").innerHTML=`
 
-    $("inputArea").innerHTML = `
+  <div class="field">
 
-        <div class="field">
+    <label>RADIUS</label>
 
-            <label>
-                RADIUS
-            </label>
+    <div class="row">
 
-            <div class="row">
+      <input
+        id="radius"
+        type="number"
+        step="any"
+        value="10"
+      >
 
-                <input
-                    id="radius"
-                    type="number"
-                    value="10"
-                    step="any"
-                >
+      <select id="radiusUnit">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="m" selected>metre</option>
+        <option value="km">kilometre</option>
+      </select>
 
-                <select id="radiusUnit">
+    </div>
 
-                    <option value="mm">
-                        mm
-                    </option>
+  </div>
 
-                    <option value="cm">
-                        cm
-                    </option>
+  ${timeInput("circleTime",2)}
 
-                    <option value="m" selected>
-                        metre
-                    </option>
+  `;
 
-                    <option value="km">
-                        kilometre
-                    </option>
+  circleAngle=Math.PI;
 
-                </select>
+  drawCircle();
+  attachPathInputs();
+  updatePathAnswer();
 
-            </div>
-
-        </div>
-
-        ${timeField("circleTime")}
-
-    `;
-
-    circleAngle = Math.PI / 2;
-
-    drawCircle();
-
-    attachPathInputs();
-
-    updatePathAnswer();
 }
 
-
-/* =========================================================
-   SQUARE
-========================================================= */
 
 function setupSquare(){
 
-    $("labTitle").textContent =
-        "Square Path";
+  $("labTitle").textContent="Square Path";
+  $("labSubtitle").textContent="Drag the blue point around the square.";
 
-    $("labSubtitle").textContent =
-        "Drag the blue point around the square.";
+  $("inputArea").innerHTML=`
 
-    $("inputArea").innerHTML = `
+  <div class="field">
+    <label>SIDE (m)</label>
+    <input id="side" type="number" step="any" value="10">
+  </div>
 
-        <div class="field">
+  ${timeInput("squareTime",2)}
 
-            <label>
-                SIDE (m)
-            </label>
+  `;
 
-            <input
-                id="side"
-                type="number"
-                value="10"
-                step="any"
-            >
+  progress=.5;
 
-        </div>
+  drawSquare();
+  attachPathInputs();
+  updatePathAnswer();
 
-        ${timeField("squareTime")}
-
-    `;
-
-    progress = .25;
-
-    drawSquare();
-
-    attachPathInputs();
-
-    updatePathAnswer();
 }
 
-
-/* =========================================================
-   RECTANGLE
-========================================================= */
 
 function setupRectangle(){
 
-    $("labTitle").textContent =
-        "Rectangle Path";
+  $("labTitle").textContent="Rectangle Path";
+  $("labSubtitle").textContent="Drag the blue point around the rectangle.";
 
-    $("labSubtitle").textContent =
-        "Drag the blue point around the rectangle.";
+  $("inputArea").innerHTML=`
 
-    $("inputArea").innerHTML = `
+  <div class="field">
+    <label>LENGTH (m)</label>
+    <input id="length" type="number" step="any" value="12">
+  </div>
 
-        <div class="field">
+  <div class="field">
+    <label>WIDTH (m)</label>
+    <input id="width" type="number" step="any" value="6">
+  </div>
 
-            <label>
-                LENGTH (m)
-            </label>
+  ${timeInput("rectangleTime",2)}
 
-            <input
-                id="length"
-                type="number"
-                value="12"
-                step="any"
-            >
+  `;
 
-        </div>
+  progress=.5;
 
-        <div class="field">
+  drawRectangle();
+  attachPathInputs();
+  updatePathAnswer();
 
-            <label>
-                WIDTH (m)
-            </label>
-
-            <input
-                id="width"
-                type="number"
-                value="6"
-                step="any"
-            >
-
-        </div>
-
-        ${timeField("rectangleTime")}
-
-    `;
-
-    progress = .25;
-
-    drawRectangle();
-
-    attachPathInputs();
-
-    updatePathAnswer();
 }
 
 
-/* =========================================================
-   PATH INPUT LISTENER
-========================================================= */
+/* =====================================================
+   PATH INPUT EVENTS
+===================================================== */
 
 function attachPathInputs(){
 
-    document
-        .querySelectorAll(
-            "#inputArea input, #inputArea select"
-        )
-        .forEach(function(el){
+  document
+  .querySelectorAll("#inputArea input,#inputArea select")
+  .forEach(function(el){
 
-            el.addEventListener(
-                "input",
-                function(){
+    el.addEventListener("input",function(){
 
-                    updateModel();
+      updateModel();
 
-                }
-            );
+    });
 
-        });
+  });
+
 }
 
-
-/* =========================================================
-   UPDATE MODEL
-========================================================= */
 
 function updateModel(){
 
-    if(currentPath === "straight"){
-        drawStraight();
-    }
+  if(currentPath==="straight") drawStraight();
+  if(currentPath==="detour") drawDetour();
+  if(currentPath==="circle") drawCircle();
+  if(currentPath==="square") drawSquare();
+  if(currentPath==="rectangle") drawRectangle();
 
-    if(currentPath === "detour"){
-        drawDetour();
-    }
+  updatePathAnswer();
 
-    if(currentPath === "circle"){
-        drawCircle();
-    }
-
-    if(currentPath === "square"){
-        drawSquare();
-    }
-
-    if(currentPath === "rectangle"){
-        drawRectangle();
-    }
-
-    updatePathAnswer();
 }
 
 
-/* =========================================================
+/* =====================================================
    STRAIGHT DRAW
-========================================================= */
+===================================================== */
 
 function drawStraight(){
 
-    hideCircle();
+  hideCircle();
 
-    const sx = 100;
-    const sy = 370;
+  const sx=100,sy=370;
+  const ex=600,ey=150;
 
-    const ex = 600;
-    const ey = 150;
+  const x=sx+(ex-sx)*progress;
+  const y=sy+(ey-sy)*progress;
 
-    const fx =
-        sx + (ex-sx)*progress;
+  $("motionPath").setAttribute(
+    "points",
+    `${sx},${sy} ${x},${y}`
+  );
 
-    const fy =
-        sy + (ey-sy)*progress;
+  placePoint(sx,sy,x,y);
 
+  $("pathText").setAttribute("x",300);
+  $("pathText").setAttribute("y",270);
+  $("pathText").textContent="DISTANCE";
 
-    $("motionPath")
-        .setAttribute(
-            "points",
-            `${sx},${sy} ${fx},${fy}`
-        );
-
-
-    $("startPoint")
-        .setAttribute("cx",sx);
-
-    $("startPoint")
-        .setAttribute("cy",sy);
-
-
-    $("finishPoint")
-        .setAttribute("cx",fx);
-
-    $("finishPoint")
-        .setAttribute("cy",fy);
-
-    $("finishPoint").style.display =
-        "block";
-
-
-    $("displacementLine")
-        .setAttribute("x1",sx);
-
-    $("displacementLine")
-        .setAttribute("y1",sy);
-
-    $("displacementLine")
-        .setAttribute("x2",fx);
-
-    $("displacementLine")
-        .setAttribute("y2",fy);
-
-    $("displacementLine").style.display =
-        "block";
-
-
-    $("startLabel")
-        .setAttribute("x",75);
-
-    $("startLabel")
-        .setAttribute("y",410);
-
-
-    $("finishLabel")
-        .setAttribute("x",fx-25);
-
-    $("finishLabel")
-        .setAttribute("y",fy-20);
-
-
-    $("pathText")
-        .setAttribute("x",300);
-
-    $("pathText")
-        .setAttribute("y",285);
-
-    $("pathText").textContent =
-        "DISTANCE";
-
-
-    $("dispText")
-        .setAttribute("x",325);
-
-    $("dispText")
-        .setAttribute("y",330);
-
-    $("dispText").textContent =
-        "DISPLACEMENT";
+  $("dispText").textContent="";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    DETOUR DRAW
-========================================================= */
+===================================================== */
 
 function drawDetour(){
 
-    hideCircle();
+  hideCircle();
 
-    const sx = 100;
-    const sy = 370;
+  const sx=100,sy=370;
+  const mx=350,my=370;
+  const ex=600,ey=150;
 
-    const mx = 350;
-    const my = 370;
+  let x,y;
 
-    const ex = 600;
-    const ey = 150;
+  if(progress<=.5){
 
-    let fx;
-    let fy;
+    const p=progress*2;
 
+    x=sx+(mx-sx)*p;
+    y=sy;
 
-    if(progress <= .5){
+  }else{
 
-        const p = progress * 2;
+    const p=(progress-.5)*2;
 
-        fx =
-            sx + (mx-sx)*p;
+    x=mx+(ex-mx)*p;
+    y=my+(ey-my)*p;
 
-        fy = sy;
+  }
 
-    }else{
+  $("motionPath").setAttribute(
+    "points",
+    `${sx},${sy} ${mx},${my} ${x},${y}`
+  );
 
-        const p =
-            (progress-.5)*2;
+  placePoint(sx,sy,x,y);
 
-        fx =
-            mx + (ex-mx)*p;
+  $("pathText").setAttribute("x",220);
+  $("pathText").setAttribute("y",350);
+  $("pathText").textContent="ACTUAL PATH";
 
-        fy =
-            my + (ey-my)*p;
-
-    }
-
-
-    $("motionPath")
-        .setAttribute(
-            "points",
-            `${sx},${sy} ${mx},${my} ${fx},${fy}`
-        );
-
-
-    $("startPoint")
-        .setAttribute("cx",sx);
-
-    $("startPoint")
-        .setAttribute("cy",sy);
-
-
-    $("finishPoint")
-        .setAttribute("cx",fx);
-
-    $("finishPoint")
-        .setAttribute("cy",fy);
-
-    $("finishPoint").style.display =
-        "block";
-
-
-    $("displacementLine")
-        .setAttribute("x1",sx);
-
-    $("displacementLine")
-        .setAttribute("y1",sy);
-
-    $("displacementLine")
-        .setAttribute("x2",fx);
-
-    $("displacementLine")
-        .setAttribute("y2",fy);
-
-    $("displacementLine").style.display =
-        "block";
-
-
-    $("startLabel")
-        .setAttribute("x",75);
-
-    $("startLabel")
-        .setAttribute("y",410);
-
-
-    $("finishLabel")
-        .setAttribute("x",fx-25);
-
-    $("finishLabel")
-        .setAttribute("y",fy-20);
-
-
-    $("pathText")
-        .setAttribute("x",235);
-
-    $("pathText")
-        .setAttribute("y",355);
-
-    $("pathText").textContent =
-        "ACTUAL PATH";
-
-
-    $("dispText")
-        .setAttribute("x",325);
-
-    $("dispText")
-        .setAttribute("y",255);
-
-    $("dispText").textContent =
-        "DISPLACEMENT";
+  $("dispText").setAttribute("x",315);
+  $("dispText").setAttribute("y",250);
+  $("dispText").textContent="DISPLACEMENT";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CIRCLE DRAW
-========================================================= */
+===================================================== */
 
 function drawCircle(){
 
-    $("circleGuide").style.display =
-        "block";
+  $("circleGuide").style.display="block";
 
+  const startAngle=-Math.PI/2;
+  const endAngle=startAngle+circleAngle;
 
-    const radius = 180;
+  const points=[];
 
-    const startX = CX;
-    const startY = CY - radius;
+  const steps=Math.max(
+    20,
+    Math.ceil(circleAngle*40)
+  );
 
+  for(let i=0;i<=steps;i++){
 
-    const endAngle =
-        START_ANGLE + circleAngle;
+    const a=startAngle+
+      circleAngle*(i/steps);
 
+    const x=CX+R*Math.cos(a);
+    const y=CY+R*Math.sin(a);
 
-    const endX =
-        CX +
-        radius *
-        Math.cos(endAngle);
+    points.push(`${x},${y}`);
 
-    const endY =
-        CY +
-        radius *
-        Math.sin(endAngle);
+  }
 
+  $("motionPath").setAttribute(
+    "points",
+    points.join(" ")
+  );
 
-    /*
-       We use many points instead of one SVG arc.
-       This makes the circle path reliable
-       while dragging.
-    */
+  const sx=CX;
+  const sy=CY-R;
 
-    const points = [];
+  const ex=CX+R*Math.cos(endAngle);
+  const ey=CY+R*Math.sin(endAngle);
 
-    const steps =
-        Math.max(
-            2,
-            Math.ceil(circleAngle * 35)
-        );
+  placePoint(sx,sy,ex,ey);
 
+  $("pathText").setAttribute("x",455);
+  $("pathText").setAttribute("y",100);
+  $("pathText").textContent="DISTANCE TRAVELLED";
 
-    for(
-        let i=0;
-        i<=steps;
-        i++
-    ){
-
-        const a =
-            START_ANGLE +
-            circleAngle *
-            (i/steps);
-
-
-        const x =
-            CX +
-            radius *
-            Math.cos(a);
-
-
-        const y =
-            CY +
-            radius *
-            Math.sin(a);
-
-
-        points.push(
-            `${x},${y}`
-        );
-
-    }
-
-
-    $("motionPath")
-        .setAttribute(
-            "points",
-            points.join(" ")
-        );
-
-
-    $("startPoint")
-        .setAttribute(
-            "cx",
-            startX
-        );
-
-    $("startPoint")
-        .setAttribute(
-            "cy",
-            startY
-        );
-
-
-    $("finishPoint")
-        .setAttribute(
-            "cx",
-            endX
-        );
-
-    $("finishPoint")
-        .setAttribute(
-            "cy",
-            endY
-        );
-
-    $("finishPoint").style.display =
-        "block";
-
-
-    $("displacementLine")
-        .setAttribute(
-            "x1",
-            startX
-        );
-
-    $("displacementLine")
-        .setAttribute(
-            "y1",
-            startY
-        );
-
-    $("displacementLine")
-        .setAttribute(
-            "x2",
-            endX
-        );
-
-    $("displacementLine")
-        .setAttribute(
-            "y2",
-            endY
-        );
-
-    $("displacementLine").style.display =
-        "block";
-
-
-    $("startLabel")
-        .setAttribute(
-            "x",
-            startX-25
-        );
-
-    $("startLabel")
-        .setAttribute(
-            "y",
-            startY-20
-        );
-
-
-    $("finishLabel")
-        .setAttribute(
-            "x",
-            endX-25
-        );
-
-    $("finishLabel")
-        .setAttribute(
-            "y",
-            endY-20
-        );
-
-
-    $("pathText")
-        .setAttribute(
-            "x",
-            425
-        );
-
-    $("pathText")
-        .setAttribute(
-            "y",
-            115
-        );
-
-    $("pathText").textContent =
-        "DISTANCE TRAVELLED";
-
-
-    $("dispText")
-        .setAttribute(
-            "x",
-            315
-        );
-
-    $("dispText")
-        .setAttribute(
-            "y",
-            250
-        );
-
-    $("dispText").textContent =
-        "DISPLACEMENT";
-
-
-    $("shapeText")
-        .setAttribute(
-            "x",
-            CX-45
-        );
-
-    $("shapeText")
-        .setAttribute(
-            "y",
-            CY+10
-        );
-
-    $("shapeText").textContent =
-        "RADIUS";
+  $("dispText").setAttribute("x",300);
+  $("dispText").setAttribute("y",250);
+  $("dispText").textContent="DISPLACEMENT";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SQUARE DRAW
-========================================================= */
+===================================================== */
 
 function drawSquare(){
 
-    hideCircle();
+  hideCircle();
 
-    const left = 140;
-    const top = 100;
-    const size = 330;
+  const left=130;
+  const top=100;
+  const size=330;
 
-    const total =
-        4 * size;
+  const total=4*size;
+  const d=total*progress;
 
-    let travelled =
-        total * progress;
+  let x,y;
 
+  if(d<=size){
 
-    travelled =
-        Math.max(
-            0,
-            Math.min(total,travelled)
-        );
+    x=left+d;
+    y=top;
 
+  }else if(d<=2*size){
 
-    let x;
-    let y;
+    x=left+size;
+    y=top+(d-size);
 
+  }else if(d<=3*size){
 
-    if(travelled <= size){
+    x=left+size-(d-2*size);
+    y=top+size;
 
-        x =
-            left + travelled;
+  }else{
 
-        y = top;
+    x=left;
+    y=top+size-(d-3*size);
 
-    }
+  }
 
-    else if(
-        travelled <= size*2
-    ){
+  $("motionPath").setAttribute(
+    "points",
+    `
+    ${left},${top}
+    ${left+size},${top}
+    ${left+size},${top+size}
+    ${left},${top+size}
+    ${left},${top}
+    `
+  );
 
-        x =
-            left + size;
+  placePoint(left,top,x,y);
 
-        y =
-            top +
-            (travelled-size);
-
-    }
-
-    else if(
-        travelled <= size*3
-    ){
-
-        x =
-            left +
-            size -
-            (travelled-size*2);
-
-        y =
-            top + size;
-
-    }
-
-    else{
-
-        x = left;
-
-        y =
-            top +
-            size -
-            (travelled-size*3);
-
-    }
-
-
-    $("motionPath")
-        .setAttribute(
-            "points",
-            `
-            ${left},${top}
-            ${left+size},${top}
-            ${left+size},${top+size}
-            ${left},${top+size}
-            ${left},${top}
-            `
-        );
-
-
-    $("startPoint")
-        .setAttribute("cx",left);
-
-    $("startPoint")
-        .setAttribute("cy",top);
-
-
-    $("finishPoint")
-        .setAttribute("cx",x);
-
-    $("finishPoint")
-        .setAttribute("cy",y);
-
-    $("finishPoint").style.display =
-        "block";
-
-
-    $("displacementLine")
-        .setAttribute("x1",left);
-
-    $("displacementLine")
-        .setAttribute("y1",top);
-
-    $("displacementLine")
-        .setAttribute("x2",x);
-
-    $("displacementLine")
-        .setAttribute("y2",y);
-
-    $("displacementLine").style.display =
-        "block";
-
-
-    $("startLabel")
-        .setAttribute(
-            "x",
-            left-25
-        );
-
-    $("startLabel")
-        .setAttribute(
-            "y",
-            top-15
-        );
-
-
-    $("finishLabel")
-        .setAttribute(
-            "x",
-            x-25
-        );
-
-    $("finishLabel")
-        .setAttribute(
-            "y",
-            y-20
-        );
-
-
-    $("pathText")
-        .setAttribute(
-            "x",
-            270
-        );
-
-    $("pathText")
-        .setAttribute(
-            "y",
-            75
-        );
-
-    $("pathText").textContent =
-        "SQUARE PATH";
-
-
-    $("shapeText")
-        .setAttribute(
-            "x",
-            270
-        );
-
-    $("shapeText")
-        .setAttribute(
-            "y",
-            265
-        );
-
-    $("shapeText").textContent =
-        "SIDE";
+  $("pathText").setAttribute("x",285);
+  $("pathText").setAttribute("y",75);
+  $("pathText").textContent="SQUARE PATH";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RECTANGLE DRAW
-========================================================= */
+===================================================== */
 
 function drawRectangle(){
 
-    hideCircle();
+  hideCircle();
 
-    const left = 100;
-    const top = 120;
+  const left=100;
+  const top=120;
+  const width=500;
+  const height=260;
 
-    const width = 500;
-    const height = 260;
+  const total=2*(width+height);
+  const d=total*progress;
 
-    const total =
-        2*(width+height);
+  let x,y;
 
-    let travelled =
-        total*progress;
+  if(d<=width){
 
+    x=left+d;
+    y=top;
 
-    travelled =
-        Math.max(
-            0,
-            Math.min(total,travelled)
-        );
+  }else if(d<=width+height){
 
+    x=left+width;
+    y=top+(d-width);
 
-    let x;
-    let y;
+  }else if(d<=2*width+height){
 
+    x=left+width-(d-width-height);
+    y=top+height;
 
-    if(travelled <= width){
+  }else{
 
-        x =
-            left+travelled;
+    x=left;
+    y=top+height-(d-2*width-height);
 
-        y=top;
+  }
 
-    }
+  $("motionPath").setAttribute(
+    "points",
+    `
+    ${left},${top}
+    ${left+width},${top}
+    ${left+width},${top+height}
+    ${left},${top+height}
+    ${left},${top}
+    `
+  );
 
-    else if(
-        travelled <= width+height
-    ){
+  placePoint(left,top,x,y);
 
-        x =
-            left+width;
-
-        y =
-            top+
-            (travelled-width);
-
-    }
-
-    else if(
-        travelled <=
-        2*width+height
-    ){
-
-        x =
-            left+
-            width-
-            (
-                travelled-
-                (width+height)
-            );
-
-        y =
-            top+height;
-
-    }
-
-    else{
-
-        x=left;
-
-        y =
-            top+
-            height-
-            (
-                travelled-
-                (2*width+height)
-            );
-
-    }
-
-
-    $("motionPath")
-        .setAttribute(
-            "points",
-            `
-            ${left},${top}
-            ${left+width},${top}
-            ${left+width},${top+height}
-            ${left},${top+height}
-            ${left},${top}
-            `
-        );
-
-
-    $("startPoint")
-        .setAttribute("cx",left);
-
-    $("startPoint")
-        .setAttribute("cy",top);
-
-
-    $("finishPoint")
-        .setAttribute("cx",x);
-
-    $("finishPoint")
-        .setAttribute("cy",y);
-
-    $("finishPoint").style.display =
-        "block";
-
-
-    $("displacementLine")
-        .setAttribute("x1",left);
-
-    $("displacementLine")
-        .setAttribute("y1",top);
-
-    $("displacementLine")
-        .setAttribute("x2",x);
-
-    $("displacementLine")
-        .setAttribute("y2",y);
-
-    $("displacementLine").style.display =
-        "block";
-
-
-    $("startLabel")
-        .setAttribute(
-            "x",
-            left-25
-        );
-
-    $("startLabel")
-        .setAttribute(
-            "y",
-            top-15
-        );
-
-
-    $("finishLabel")
-        .setAttribute(
-            "x",
-            x-25
-        );
-
-    $("finishLabel")
-        .setAttribute(
-            "y",
-            y-20
-        );
-
-
-    $("pathText")
-        .setAttribute(
-            "x",
-            285
-        );
-
-    $("pathText")
-        .setAttribute(
-            "y",
-            95
-        );
-
-    $("pathText").textContent =
-        "RECTANGLE PATH";
-
-
-    $("shapeText")
-        .setAttribute(
-            "x",
-            300
-        );
-
-    $("shapeText")
-        .setAttribute(
-            "y",
-            255
-        );
-
-    $("shapeText").textContent =
-        "LENGTH × WIDTH";
+  $("pathText").setAttribute("x",285);
+  $("pathText").setAttribute("y",95);
+  $("pathText").textContent="RECTANGLE PATH";
 
 }
 
 
-/* =========================================================
-   HIDE CIRCLE
-========================================================= */
+/* =====================================================
+   PLACE POINT
+===================================================== */
 
-function hideCircle(){
+function placePoint(sx,sy,ex,ey){
 
-    $("circleGuide").style.display =
-        "none";
+  $("startPoint").setAttribute("cx",sx);
+  $("startPoint").setAttribute("cy",sy);
+
+  $("finishPoint").setAttribute("cx",ex);
+  $("finishPoint").setAttribute("cy",ey);
+
+  $("finishPoint").style.display="block";
+
+  $("displacementLine").setAttribute("x1",sx);
+  $("displacementLine").setAttribute("y1",sy);
+  $("displacementLine").setAttribute("x2",ex);
+  $("displacementLine").setAttribute("y2",ey);
+
+  $("displacementLine").style.display="block";
+
+  $("startLabel").setAttribute("x",sx-25);
+  $("startLabel").setAttribute("y",sy-20);
+
+  $("finishLabel").setAttribute("x",ex-25);
+  $("finishLabel").setAttribute("y",ey-20);
+
 }
 
 
-/* =========================================================
-   GET PATH VALUES
-========================================================= */
+/* =====================================================
+   PATH DATA
+===================================================== */
 
-function getPathValues(){
+function pathData(){
 
-    let distance = 0;
-    let displacement = 0;
-    let time = 0;
+  let distance=0;
+  let displacement=0;
+  let time=0;
+
+
+  if(currentPath==="straight"){
+
+    const d=metres(
+      Number($("pathDistance").value),
+      $("pathDistanceUnit").value
+    );
+
+    distance=d*progress;
+
+    displacement=distance;
+
+    time=seconds(
+      Number($("pathTime").value),
+      $("pathTimeUnit").value
+    );
+
+  }
+
+
+  if(currentPath==="detour"){
+
+    const h=Number($("horizontal").value);
+    const v=Number($("vertical").value);
+
+    const full=h+v;
+
+    distance=full*progress;
+
+    let dx=0;
+    let dy=0;
+
+    if(distance<=h){
+
+      dx=distance;
+
+    }else{
+
+      dx=h;
+      dy=distance-h;
+
+    }
+
+    displacement=Math.sqrt(dx*dx+dy*dy);
+
+    time=seconds(
+      Number($("detourTime").value),
+      $("detourTimeUnit").value
+    );
+
+  }
+
+
+  if(currentPath==="circle"){
+
+    const r=metres(
+      Number($("radius").value),
+      $("radiusUnit").value
+    );
+
+    distance=r*circleAngle;
+
+    displacement=
+      2*r*Math.sin(circleAngle/2);
+
+    time=seconds(
+      Number($("circleTime").value),
+      $("circleTimeUnit").value
+    );
+
+  }
+
+
+  if(currentPath==="square"){
+
+    const side=Number($("side").value);
+
+    distance=4*side*progress;
+
+    let d=distance;
+
+    let x=0;
+    let y=0;
+
+    if(d<=side){
+
+      x=d;
+
+    }else if(d<=2*side){
+
+      x=side;
+      y=d-side;
+
+    }else if(d<=3*side){
+
+      x=side-(d-2*side);
+      y=side;
+
+    }else{
+
+      y=side-(d-3*side);
+
+    }
+
+    displacement=Math.sqrt(x*x+y*y);
+
+    time=seconds(
+      Number($("squareTime").value),
+      $("squareTimeUnit").value
+    );
+
+  }
+
+
+  if(currentPath==="rectangle"){
+
+    const l=Number($("length").value);
+    const w=Number($("width").value);
+
+    distance=2*(l+w)*progress;
+
+    let d=distance;
+
+    let x=0;
+    let y=0;
+
+    if(d<=l){
+
+      x=d;
+
+    }else if(d<=l+w){
+
+      x=l;
+      y=d-l;
+
+    }else if(d<=2*l+w){
+
+      x=l-(d-l-w);
+      y=w;
+
+    }else{
+
+      y=w-(d-2*l-w);
+
+    }
+
+    displacement=Math.sqrt(x*x+y*y);
+
+    time=seconds(
+      Number($("rectangleTime").value),
+      $("rectangleTimeUnit").value
+    );
+
+  }
+
+
+  return {
+    distance:distance,
+    displacement:displacement,
+    time:time
+  };
+
+}
+
+
+/* =====================================================
+   PATH ANSWER
+===================================================== */
+
+function updatePathAnswer(){
+
+  const data=pathData();
+
+  if(!Number.isFinite(data.time)||data.time<=0){
+
+    answer(
+      0,
+      "Invalid",
+      "Time must be greater than zero."
+    );
+
+    return;
+  }
+
+
+  if(finding==="velocity"){
+
+    const v=data.displacement/data.time;
+
+    answer(
+      v,
+      "m/s",
+      `
+      <b>Velocity = Displacement ÷ Time</b>
+      <br><br>
+      ${fmt(data.displacement)}
+      ÷
+      ${fmt(data.time)}
+      =
+      <b>${fmt(v)} m/s</b>
+      `
+    );
+
+    return;
+  }
+
+
+  if(finding==="displacement"){
+
+    answer(
+      data.displacement,
+      "m",
+      `
+      <b>Displacement = Straight-line distance</b>
+      <br><br>
+      Start → Finish
+      <br>
+      <b>${fmt(data.displacement)} m</b>
+      `
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CIRCLE / DRAG
+===================================================== */
+
+const point=$("finishPoint");
+
+
+point.addEventListener(
+  "pointerdown",
+  function(e){
+
+    dragging=true;
+
+    point.setPointerCapture(
+      e.pointerId
+    );
+
+    e.preventDefault();
+
+  }
+);
+
+
+point.addEventListener(
+  "pointermove",
+  function(e){
+
+    if(!dragging)return;
+
+    const svg=$("motionSVG");
+    const rect=svg.getBoundingClientRect();
+
+    const x=
+      (e.clientX-rect.left)*
+      700/
+      rect.width;
+
+    const y=
+      (e.clientY-rect.top)*
+      530/
+      rect.height;
+
+
+    /* CIRCLE */
+
+    if(currentPath==="circle"){
+
+      let a=
+        Math.atan2(
+          y-CY,
+          x-CX
+        )+
+        Math.PI/2;
+
+      if(a<0){
+        a+=Math.PI*2;
+      }
+
+      circleAngle=a;
+
+      drawCircle();
+      updatePathAnswer();
+
+      return;
+    }
 
 
     /* STRAIGHT */
 
-    if(currentPath === "straight"){
+    if(currentPath==="straight"){
 
-        const fullDistance =
-            toMetres(
-                Number(
-                    $("pathDistance").value
-                ),
-                $("pathDistanceUnit").value
-            );
+      const sx=100;
+      const sy=370;
 
+      const ex=600;
+      const ey=150;
 
-        distance =
-            fullDistance *
-            progress;
+      const dx=ex-sx;
+      const dy=ey-sy;
 
+      progress=
+        (
+          (x-sx)*dx+
+          (y-sy)*dy
+        )/
+        (dx*dx+dy*dy);
 
-        displacement =
-            distance;
+      progress=
+        Math.max(
+          .001,
+          Math.min(1,progress)
+        );
 
+      drawStraight();
+      updatePathAnswer();
 
-        time =
-            toSeconds(
-                Number(
-                    $("pathTime").value
-                ),
-                $("pathTimeUnit").value
-            );
-
+      return;
     }
 
 
     /* DETOUR */
 
-    if(currentPath === "detour"){
+    if(currentPath==="detour"){
 
-        const h =
-            Number(
-                $("horizontal").value
-            );
+      const sx=100;
+      const sy=370;
+      const mx=350;
+      const my=370;
+      const ex=600;
+      const ey=150;
 
-        const v =
-            Number(
-                $("vertical").value
-            );
+      const firstDx=mx-sx;
+      const firstDy=my-sy;
 
+      const secondDx=ex-mx;
+      const secondDy=ey-my;
 
-        const fullPath =
-            h+v;
+      const firstLen2=
+        firstDx*firstDx+
+        firstDy*firstDy;
 
+      const secondLen2=
+        secondDx*secondDx+
+        secondDy*secondDy;
 
-        distance =
-            fullPath*
-            progress;
+      let t1=
+        ((x-sx)*firstDx+
+         (y-sy)*firstDy)/
+        firstLen2;
 
+      t1=Math.max(0,Math.min(1,t1));
 
-        let dx=0;
-        let dy=0;
+      const px1=sx+t1*firstDx;
+      const py1=sy+t1*firstDy;
 
+      let t2=
+        ((x-mx)*secondDx+
+         (y-my)*secondDy)/
+        secondLen2;
 
-        if(distance <= h){
+      t2=Math.max(0,Math.min(1,t2));
 
-            dx=distance;
+      const px2=mx+t2*secondDx;
+      const py2=my+t2*secondDy;
 
-        }else{
+      const dist1=
+        (x-px1)**2+
+        (y-py1)**2;
 
-            dx=h;
+      const dist2=
+        (x-px2)**2+
+        (y-py2)**2;
 
-            dy=
-                distance-h;
+      if(dist1<dist2){
+        progress=.5*t1;
+      }else{
+        progress=.5+.5*t2;
+      }
 
-        }
+      drawDetour();
+      updatePathAnswer();
 
-
-        displacement =
-            Math.sqrt(
-                dx*dx+
-                dy*dy
-            );
-
-
-        time =
-            toSeconds(
-                Number(
-                    $("detourTime").value
-                ),
-                $("detourTimeUnit").value
-            );
-
-    }
-
-
-    /* CIRCLE */
-
-    if(currentPath === "circle"){
-
-        const radius =
-            toMetres(
-                Number(
-                    $("radius").value
-                ),
-                $("radiusUnit").value
-            );
-
-
-        distance =
-            radius*
-            circleAngle;
-
-
-        displacement =
-            2*
-            radius*
-            Math.sin(
-                circleAngle/2
-            );
-
-
-        time =
-            toSeconds(
-                Number(
-                    $("circleTime").value
-                ),
-                $("circleTimeUnit").value
-            );
-
+      return;
     }
 
 
     /* SQUARE */
 
-    if(currentPath === "square"){
+    if(currentPath==="square"){
 
-        const side =
-            Number(
-                $("side").value
-            );
+      const left=130;
+      const top=100;
+      const size=330;
 
-
-        distance =
-            4*
-            side*
-            progress;
-
-
-        const travelled =
-            distance;
-
-
-        let x=0;
-        let y=0;
-
-
-        if(travelled <= side){
-
-            x=travelled;
-
+      const candidates=[
+        {
+          d:Math.abs(y-top),
+          p:(x-left)/size
+        },
+        {
+          d:Math.abs(x-(left+size)),
+          p:1+(y-top)/size
+        },
+        {
+          d:Math.abs(y-(top+size)),
+          p:2+(left+size-x)/size
+        },
+        {
+          d:Math.abs(x-left),
+          p:3+(top+size-y)/size
         }
+      ];
 
-        else if(
-            travelled <= side*2
-        ){
+      candidates.sort(
+        (a,b)=>a.d-b.d
+      );
 
-            x=side;
+      progress=
+        Math.max(
+          .001,
+          Math.min(
+            .999,
+            candidates[0].p/4
+          )
+        );
 
-            y=
-                travelled-side;
+      drawSquare();
+      updatePathAnswer();
 
-        }
-
-        else if(
-            travelled <= side*3
-        ){
-
-            x=
-                side-
-                (
-                    travelled-
-                    side*2
-                );
-
-            y=side;
-
-        }
-
-        else{
-
-            y=
-                side-
-                (
-                    travelled-
-                    side*3
-                );
-
-        }
-
-
-        displacement =
-            Math.sqrt(
-                x*x+
-                y*y
-            );
-
-
-        time =
-            toSeconds(
-                Number(
-                    $("squareTime").value
-                ),
-                $("squareTimeUnit").value
-            );
-
+      return;
     }
 
 
     /* RECTANGLE */
 
-    if(currentPath === "rectangle"){
+    if(currentPath==="rectangle"){
 
-        const length =
-            Number(
-                $("length").value
-            );
+      const left=100;
+      const top=120;
+      const width=500;
+      const height=260;
 
-        const width =
-            Number(
-                $("width").value
-            );
-
-
-        const perimeter =
-            2*(length+width);
-
-
-        distance =
-            perimeter*
-            progress;
-
-
-        const travelled =
-            distance;
-
-
-        let x=0;
-        let y=0;
-
-
-        if(travelled <= length){
-
-            x=travelled;
-
+      const candidates=[
+        {
+          d:Math.abs(y-top),
+          p:(x-left)/width
+        },
+        {
+          d:Math.abs(x-(left+width)),
+          p:1+(y-top)/height
+        },
+        {
+          d:Math.abs(y-(top+height)),
+          p:2+(left+width-x)/width
+        },
+        {
+          d:Math.abs(x-left),
+          p:3+(top+height-y)/height
         }
+      ];
 
-        else if(
-            travelled <= length+width
-        ){
+      candidates.sort(
+        (a,b)=>a.d-b.d
+      );
 
-            x=length;
+      progress=
+        Math.max(
+          .001,
+          Math.min(
+            .999,
+            candidates[0].p/4
+          )
+        );
 
-            y=
-                travelled-length;
-
-        }
-
-        else if(
-            travelled <=
-            2*length+width
-        ){
-
-            x=
-                length-
-                (
-                    travelled-
-                    (length+width)
-                );
-
-            y=width;
-
-        }
-
-        else{
-
-            y=
-                width-
-                (
-                    travelled-
-                    (2*length+width)
-                );
-
-        }
-
-
-        displacement =
-            Math.sqrt(
-                x*x+
-                y*y
-            );
-
-
-        time =
-            toSeconds(
-                Number(
-                    $("rectangleTime").value
-                ),
-                $("rectangleTimeUnit").value
-            );
+      drawRectangle();
+      updatePathAnswer();
 
     }
 
-
-    return{
-        distance:distance,
-        displacement:displacement,
-        time:time
-    };
-}
+  }
+);
 
 
-/* =========================================================
-   UPDATE PATH ANSWER
-========================================================= */
+point.addEventListener(
+  "pointerup",
+  function(){
+    dragging=false;
+  }
+);
 
-function updatePathAnswer(){
 
-    const data =
-        getPathValues();
+point.addEventListener(
+  "pointercancel",
+  function(){
+    dragging=false;
+  }
+);
 
+
+/* =====================================================
+   CALCULATE BUTTON
+===================================================== */
+
+$("calculateBtn").addEventListener(
+  "click",
+  function(){
 
     if(
-        !Number.isFinite(data.time) ||
-        data.time <= 0
+      finding==="velocity" ||
+      finding==="displacement"
     ){
 
-        $("answerValue").textContent =
-            "—";
-
-        $("answerUnit").textContent =
-            "Enter valid time";
-
-        $("formula").innerHTML =
-            "Time must be greater than zero.";
-
-        return;
-    }
-
-
-    /* VELOCITY ONLY */
-
-    if(finding === "velocity"){
-
-        const velocity =
-            data.displacement /
-            data.time;
-
-
-        setAnswer(
-            velocity,
-            "m/s",
-            `
-            <b>Velocity = Displacement ÷ Time</b>
-            <br><br>
-
-            ${fmt(data.displacement)}
-            ÷
-            ${fmt(data.time)}
-
-            =
-
-            <b>
-                ${fmt(velocity)} m/s
-            </b>
-            `
-        );
-
-
-        return;
-    }
-
-
-    /* DISPLACEMENT ONLY */
-
-    if(finding === "displacement"){
-
-        setAnswer(
-            data.displacement,
-            "m",
-            `
-            <b>
-                Displacement =
-                straight-line distance
-                from Start to Finish
-            </b>
-
-            <br><br>
-
-            <b>
-                ${fmt(data.displacement)} m
-            </b>
-            `
-        );
-
-
-        return;
-    }
-
-}
-
-
-/* =========================================================
-   NORMAL CALCULATIONS
-========================================================= */
-
-function calculateAnswer(){
-
-    /* SPEED */
-
-    if(finding === "speed"){
-
-        const d =
-            toMetres(
-                Number(
-                    $("distance").value
-                ),
-                $("distanceUnit").value
-            );
-
-
-        const t =
-            toSeconds(
-                Number(
-                    $("time").value
-                ),
-                $("timeUnit").value
-            );
-
-
-        if(
-            !Number.isFinite(d) ||
-            !Number.isFinite(t) ||
-            d < 0 ||
-            t <= 0
-        ){
-
-            $("answerValue").textContent =
-                "—";
-
-            $("answerUnit").textContent =
-                "Invalid input";
-
-            return;
-        }
-
-
-        const speed =
-            d/t;
-
-
-        setAnswer(
-            speed,
-            "m/s",
-            `
-            <b>Speed = Distance ÷ Time</b>
-            <br><br>
-
-            ${fmt(d)}
-            ÷
-            ${fmt(t)}
-
-            =
-
-            <b>
-                ${fmt(speed)} m/s
-            </b>
-            `
-        );
-
-
-        return;
-    }
-
-
-    /* DISTANCE */
-
-    if(finding === "distance"){
-
-        const speed =
-            toMS(
-                Number(
-                    $("speed").value
-                ),
-                $("speedUnit").value
-            );
-
-
-        const t =
-            toSeconds(
-                Number(
-                    $("time").value
-                ),
-                $("timeUnit").value
-            );
-
-
-        if(
-            !Number.isFinite(speed) ||
-            !Number.isFinite(t) ||
-            speed < 0 ||
-            t < 0
-        ){
-
-            $("answerValue").textContent =
-                "—";
-
-            $("answerUnit").textContent =
-                "Invalid input";
-
-            return;
-        }
-
-
-        const distance =
-            speed*t;
-
-
-        setAnswer(
-            distance,
-            "m",
-            `
-            <b>Distance = Speed × Time</b>
-            <br><br>
-
-            ${fmt(speed)}
-            ×
-            ${fmt(t)}
-
-            =
-
-            <b>
-                ${fmt(distance)} m
-            </b>
-            `
-        );
-
-
-        return;
-    }
-
-
-    /* TIME */
-
-    if(finding === "time"){
-
-        const distance =
-            toMetres(
-                Number(
-                    $("distance").value
-                ),
-                $("distanceUnit").value
-            );
-
-
-        const speed =
-            toMS(
-                Number(
-                    $("speed").value
-                ),
-                $("speedUnit").value
-            );
-
-
-        if(
-            !Number.isFinite(distance) ||
-            !Number.isFinite(speed) ||
-            distance < 0 ||
-            speed <= 0
-        ){
-
-            $("answerValue").textContent =
-                "—";
-
-            $("answerUnit").textContent =
-                "Invalid input";
-
-            return;
-        }
-
-
-        const time =
-            distance/speed;
-
-
-        setAnswer(
-            time,
-            "seconds",
-            `
-            <b>Time = Distance ÷ Speed</b>
-            <br><br>
-
-            ${fmt(distance)}
-            ÷
-            ${fmt(speed)}
-
-            =
-
-            <b>
-                ${fmt(time)} s
-            </b>
-            `
-        );
-
-
-        return;
-    }
-
-
-    /* ACCELERATION */
-
-    if(finding === "acceleration"){
-
-        const vi =
-            toMS(
-                Number(
-                    $("initialVelocity").value
-                ),
-                $("initialVelocityUnit").value
-            );
-
-
-        const vf =
-            toMS(
-                Number(
-                    $("finalVelocity").value
-                ),
-                $("finalVelocityUnit").value
-            );
-
-
-        const t =
-            toSeconds(
-                Number(
-                    $("accelTime").value
-                ),
-                $("accelTimeUnit").value
-            );
-
-
-        if(
-            !Number.isFinite(vi) ||
-            !Number.isFinite(vf) ||
-            !Number.isFinite(t) ||
-            t <= 0
-        ){
-
-            $("answerValue").textContent =
-                "—";
-
-            $("answerUnit").textContent =
-                "Invalid input";
-
-            return;
-        }
-
-
-        const acceleration =
-            (vf-vi)/t;
-
-
-        setAnswer(
-            acceleration,
-            "m/s²",
-            `
-            <b>
-                Acceleration =
-                (Vf − Vi) ÷ Time
-            </b>
-
-            <br><br>
-
-            (${fmt(vf)} − ${fmt(vi)})
-            ÷
-            ${fmt(t)}
-
-            =
-
-            <b>
-                ${fmt(acceleration)} m/s²
-            </b>
-            `
-        );
-
-
-        return;
-    }
-
-
-    /* PATH */
-
-    if(
-        finding === "velocity" ||
-        finding === "displacement"
-    ){
-
-        updatePathAnswer();
-
-        return;
-    }
-
-}
-
-
-/* =========================================================
-   POINTER / DRAG
-========================================================= */
-
-const finishPoint =
-    $("finishPoint");
-
-
-finishPoint.addEventListener(
-    "pointerdown",
-    function(event){
-
-        dragging = true;
-
-        finishPoint.setPointerCapture(
-            event.pointerId
-        );
-
-        event.preventDefault();
-
-    }
-);
-
-
-finishPoint.addEventListener(
-    "pointermove",
-    function(event){
-
-        if(!dragging){
-            return;
-        }
-
-
-        const svg =
-            $("motionSVG");
-
-
-        const rect =
-            svg.getBoundingClientRect();
-
-
-        const x =
-            (event.clientX-rect.left) *
-            700 /
-            rect.width;
-
-
-        const y =
-            (event.clientY-rect.top) *
-            530 /
-            rect.height;
-
-
-        /* ================= CIRCLE ================= */
-
-        if(currentPath === "circle"){
-
-            let angle =
-                Math.atan2(
-                    y-CY,
-                    x-CX
-                ) -
-                START_ANGLE;
-
-
-            while(angle < 0){
-                angle += Math.PI*2;
-            }
-
-
-            while(angle >= Math.PI*2){
-                angle -= Math.PI*2;
-            }
-
-
-            circleAngle = angle;
-
-
-            drawCircle();
-
-            updatePathAnswer();
-
-            return;
-        }
-
-
-        /* ================= STRAIGHT ================= */
-
-        if(currentPath === "straight"){
-
-            const sx=100;
-            const sy=370;
-
-            const ex=600;
-            const ey=150;
-
-
-            const dx=ex-sx;
-            const dy=ey-sy;
-
-
-            progress =
-                (
-                    (x-sx)*dx +
-                    (y-sy)*dy
-                )
-                /
-                (
-                    dx*dx +
-                    dy*dy
-                );
-
-
-            progress =
-                Math.max(
-                    .01,
-                    Math.min(
-                        1,
-                        progress
-                    )
-                );
-
-
-            drawStraight();
-
-            updatePathAnswer();
-
-            return;
-        }
-
-
-        /* ================= DETOUR ================= */
-
-        if(currentPath === "detour"){
-
-            const sx=100;
-            const sy=370;
-
-            const mx=350;
-            const my=370;
-
-            const ex=600;
-            const ey=150;
-
-
-            const segments=[
-
-                {
-                    x1:sx,
-                    y1:sy,
-                    x2:mx,
-                    y2:my,
-                    start:0,
-                    end:.5
-                },
-
-                {
-                    x1:mx,
-                    y1:my,
-                    x2:ex,
-                    y2:ey,
-                    start:.5,
-                    end:1
-                }
-
-            ];
-
-
-            let best=null;
-
-
-            segments.forEach(
-                function(seg){
-
-                    const vx =
-                        seg.x2-seg.x1;
-
-                    const vy =
-                        seg.y2-seg.y1;
-
-
-                    const len2 =
-                        vx*vx+
-                        vy*vy;
-
-
-                    let t =
-                        (
-                            (x-seg.x1)*vx+
-                            (y-seg.y1)*vy
-                        )
-                        /
-                        len2;
-
-
-                    t =
-                        Math.max(
-                            0,
-                            Math.min(
-                                1,
-                                t
-                            )
-                        );
-
-
-                    const px =
-                        seg.x1+
-                        t*vx;
-
-                    const py =
-                        seg.y1+
-                        t*vy;
-
-
-                    const distance =
-                        (
-                            x-px
-                        )*
-                        (
-                            x-px
-                        )+
-                        (
-                            y-py
-                        )*
-                        (
-                            y-py
-                        );
-
-
-                    if(
-                        best===null ||
-                        distance<best.distance
-                    ){
-
-                        best={
-                            distance:distance,
-                            t:t,
-                            segment:seg
-                        };
-
-                    }
-
-                }
-            );
-
-
-            progress =
-                best.segment.start+
-                (
-                    best.segment.end-
-                    best.segment.start
-                )*
-                best.t;
-
-
-            drawDetour();
-
-            updatePathAnswer();
-
-            return;
-        }
-
-
-        /* ================= SQUARE ================= */
-
-        if(currentPath === "square"){
-
-            const left=140;
-            const top=100;
-            const size=330;
-
-
-            const px =
-                Math.max(
-                    left,
-                    Math.min(
-                        left+size,
-                        x
-                    )
-                );
-
-
-            const py =
-                Math.max(
-                    top,
-                    Math.min(
-                        top+size,
-                        y
-                    )
-                );
-
-
-            const sides=[
-
-                {
-                    d:Math.abs(py-top),
-                    p:(px-left)/size
-                },
-
-                {
-                    d:
-                        Math.abs(
-                            px-(left+size)
-                        ),
-                    p:
-                        1+
-                        (py-top)/size
-                },
-
-                {
-                    d:
-                        Math.abs(
-                            py-(top+size)
-                        ),
-                    p:
-                        2+
-                        (left+size-px)/size
-                },
-
-                {
-                    d:
-                        Math.abs(px-left),
-                    p:
-                        3+
-                        (top+size-py)/size
-                }
-
-            ];
-
-
-            sides.sort(
-                function(a,b){
-                    return a.d-b.d;
-                }
-            );
-
-
-            progress =
-                sides[0].p/4;
-
-
-            progress =
-                Math.max(
-                    .001,
-                    Math.min(
-                        .999,
-                        progress
-                    )
-                );
-
-
-            drawSquare();
-
-            updatePathAnswer();
-
-            return;
-        }
-
-
-        /* ================= RECTANGLE ================= */
-
-        if(currentPath === "rectangle"){
-
-            const left=100;
-            const top=120;
-
-            const width=500;
-            const height=260;
-
-
-            const px =
-                Math.max(
-                    left,
-                    Math.min(
-                        left+width,
-                        x
-                    )
-                );
-
-
-            const py =
-                Math.max(
-                    top,
-                    Math.min(
-                        top+height,
-                        y
-                    )
-                );
-
-
-            const sides=[
-
-                {
-                    d:Math.abs(py-top),
-                    p:(px-left)/width
-                },
-
-                {
-                    d:
-                        Math.abs(
-                            px-(left+width)
-                        ),
-                    p:
-                        1+
-                        (py-top)/height
-                },
-
-                {
-                    d:
-                        Math.abs(
-                            py-(top+height)
-                        ),
-                    p:
-                        2+
-                        (left+width-px)/width
-                },
-
-                {
-                    d:
-                        Math.abs(px-left),
-                    p:
-                        3+
-                        (top+height-py)/height
-                }
-
-            ];
-
-
-            sides.sort(
-                function(a,b){
-                    return a.d-b.d;
-                }
-            );
-
-
-            progress =
-                sides[0].p/4;
-
-
-            progress =
-                Math.max(
-                    .001,
-                    Math.min(
-                        .999,
-                        progress
-                    )
-                );
-
-
-            drawRectangle();
-
-            updatePathAnswer();
-
-            return;
-        }
-
-    }
-);
-
-
-finishPoint.addEventListener(
-    "pointerup",
-    function(){
-
-        dragging=false;
-
-    }
-);
-
-
-finishPoint.addEventListener(
-    "pointercancel",
-    function(){
-
-        dragging=false;
-
-    }
-);
-
-
-/* =========================================================
-   BACK
-========================================================= */
-
-function goBack(){
-
-    if(
-        finding === "velocity" ||
-        finding === "displacement"
-    ){
-
-        showScreen("paths");
+      updatePathAnswer();
 
     }else{
 
-        showScreen("menu");
+      calculate();
 
     }
+
+  }
+);
+
+
+/* =====================================================
+   CIRCLE GUIDE
+===================================================== */
+
+function hideCircle(){
+
+  $("circleGuide").style.display="none";
+
 }
 
 
-/* =========================================================
-   INITIAL SCREEN
-========================================================= */
+/* =====================================================
+   GRID
+===================================================== */
+
+(function buildGrid(){
+
+  const g=$("grid");
+
+  for(let x=100;x<=600;x+=125){
+
+    const line=document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "line"
+    );
+
+    line.setAttribute("x1",x);
+    line.setAttribute("y1",55);
+    line.setAttribute("x2",x);
+    line.setAttribute("y2",475);
+
+    line.setAttribute("class","grid-line");
+
+    g.appendChild(line);
+
+  }
+
+
+  for(let y=75;y<=450;y+=100){
+
+    const line=document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "line"
+    );
+
+    line.setAttribute("x1",60);
+    line.setAttribute("y1",y);
+    line.setAttribute("x2",640);
+    line.setAttribute("y2",y);
+
+    line.setAttribute("class","grid-line");
+
+    g.appendChild(line);
+
+  }
+
+})();
+
+
+/* =====================================================
+   START
+===================================================== */
 
 showScreen("welcome");
 
