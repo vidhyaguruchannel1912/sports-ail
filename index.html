@@ -3,2519 +3,4553 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Sports Motion Lab | Games & Technology</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 :root{
-  --bg:#060b12;
-  --panel:#0d1621;
-  --panel2:#111e2b;
-  --border:#26394b;
-  --text:#f4f8ff;
-  --muted:#8292a5;
-  --cyan:#35e5ff;
-  --yellow:#ffd447;
-  --orange:#ff8a4c;
-  --green:#57f5a0;
-  --purple:#7e7cff;
+    --bg:#050a10;
+    --panel:#0c151f;
+    --panel2:#101d29;
+    --border:#263b4e;
+    --text:#f4f8ff;
+    --muted:#8b9bad;
+    --cyan:#35e6ff;
+    --yellow:#ffd447;
+    --orange:#ff8b4c;
+    --green:#58f3a1;
+    --purple:#807cff;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-  min-height:100vh;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 15% 10%,rgba(53,229,255,.10),transparent 28%),
-    radial-gradient(circle at 90% 20%,rgba(126,124,255,.10),transparent 30%),
-    var(--bg);
-  font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 10% 0%,rgba(53,230,255,.09),transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(128,124,255,.10),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-button,input,select{font:inherit}
+button,
+input,
+select{
+    font:inherit;
+}
 
-button{cursor:pointer}
+button{
+    cursor:pointer;
+}
 
-.hidden{display:none!important}
+.hidden{
+    display:none !important;
+}
+
+/* ================= NAV ================= */
 
 nav{
-  height:68px;
-  padding:0 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(6,11,18,.94);
-  border-bottom:1px solid rgba(255,255,255,.07);
-  backdrop-filter:blur(15px);
+    height:70px;
+    padding:0 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(5,10,16,.95);
+    border-bottom:1px solid rgba(255,255,255,.07);
+    backdrop-filter:blur(15px);
 }
 
 .logo{
-  font-weight:900;
-  font-size:20px;
+    font-size:21px;
+    font-weight:900;
 }
 
-.logo span{color:var(--cyan)}
-
-.badge{
-  color:var(--cyan);
-  border:1px solid rgba(53,229,255,.25);
-  padding:8px 13px;
-  border-radius:30px;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:1px;
+.logo span{
+    color:var(--cyan);
 }
+
+.top-badge{
+    border:1px solid rgba(53,230,255,.25);
+    color:var(--cyan);
+    padding:9px 14px;
+    border-radius:30px;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+
+/* ================= COMMON ================= */
 
 .container{
-  width:min(1180px,92%);
-  margin:auto;
-  padding:38px 0;
+    width:min(1200px,92%);
+    margin:auto;
+    padding:38px 0;
 }
 
-.center{text-align:center}
+.center{
+    text-align:center;
+}
 
 .eyebrow{
-  color:var(--cyan);
-  font-size:10px;
-  letter-spacing:3px;
-  font-weight:900;
-  margin-bottom:14px;
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:3px;
+    margin-bottom:14px;
 }
 
 .gradient{
-  background:linear-gradient(90deg,#fff,var(--cyan),#8a7cff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        var(--cyan),
+        var(--purple)
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
-
-h1{
-  font-size:clamp(42px,7vw,76px);
-  line-height:1;
-  letter-spacing:-3px;
-  margin-bottom:18px;
-}
-
-h2{font-size:30px}
 
 .subtitle{
-  color:var(--muted);
-  line-height:1.7;
-  font-size:14px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.7;
 }
 
-.back{
-  border:1px solid var(--border);
-  background:#0c1520;
-  color:#c3cfdb;
-  padding:9px 14px;
-  border-radius:10px;
-  margin-bottom:24px;
+.back-btn{
+    background:#0b151f;
+    border:1px solid var(--border);
+    color:#d3dce6;
+    padding:10px 15px;
+    border-radius:10px;
+    margin-bottom:22px;
 }
 
-.back:hover{
-  border-color:var(--cyan);
-  color:#fff;
+.back-btn:hover{
+    border-color:var(--cyan);
+    color:#fff;
 }
 
-/* WELCOME */
+/* ================= WELCOME ================= */
 
 #welcome{
-  min-height:calc(100vh - 68px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    min-height:calc(100vh - 70px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.hero{width:min(680px,100%)}
-
-.trophy{
-  width:85px;
-  height:85px;
-  display:grid;
-  place-items:center;
-  margin:0 auto 25px;
-  border-radius:24px;
-  font-size:42px;
-  background:rgba(53,229,255,.08);
-  border:1px solid rgba(53,229,255,.2);
+.hero{
+    width:min(700px,100%);
 }
 
-.name-card{
-  width:min(430px,100%);
-  margin:30px auto 0;
-  padding:20px;
-  background:rgba(13,22,33,.96);
-  border:1px solid var(--border);
-  border-radius:18px;
+.hero-icon{
+    width:85px;
+    height:85px;
+    margin:0 auto 25px;
+    border-radius:25px;
+    display:grid;
+    place-items:center;
+    font-size:42px;
+    background:rgba(53,230,255,.07);
+    border:1px solid rgba(53,230,255,.2);
+}
+
+.hero h1{
+    font-size:clamp(43px,7vw,78px);
+    line-height:1;
+    letter-spacing:-3px;
+    margin-bottom:18px;
+}
+
+.name-box{
+    width:min(440px,100%);
+    margin:30px auto 0;
+    padding:20px;
+    background:rgba(12,21,31,.97);
+    border:1px solid var(--border);
+    border-radius:18px;
 }
 
 label{
-  display:block;
-  color:#b5c2d0;
-  font-size:10px;
-  font-weight:900;
-  margin-bottom:7px;
+    display:block;
+    margin-bottom:7px;
+    color:#aebbc9;
+    font-size:10px;
+    font-weight:900;
 }
 
-input,select{
-  width:100%;
-  padding:12px;
-  color:#fff;
-  background:#09111a;
-  border:1px solid #293d50;
-  border-radius:10px;
-  outline:none;
+input,
+select{
+    width:100%;
+    padding:13px;
+    color:#fff;
+    background:#08111a;
+    border:1px solid #293e52;
+    border-radius:10px;
+    outline:none;
 }
 
-input:focus,select:focus{
-  border-color:var(--cyan);
-  box-shadow:0 0 0 3px rgba(53,229,255,.06);
+input:focus,
+select:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(53,230,255,.07);
 }
 
-.primary{
-  width:100%;
-  border:0;
-  margin-top:10px;
-  padding:14px;
-  border-radius:11px;
-  font-weight:900;
-  color:#041016;
-  background:linear-gradient(90deg,var(--cyan),var(--purple));
+.primary-btn{
+    width:100%;
+    margin-top:10px;
+    padding:14px;
+    border:0;
+    border-radius:11px;
+    color:#031017;
+    font-weight:900;
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--purple)
+    );
 }
 
-/* MENU */
+/* ================= MENU ================= */
 
 .page-title{
-  text-align:center;
-  margin-bottom:32px;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.page-title h2{
+    font-size:34px;
+    margin-bottom:8px;
 }
 
 .menu-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
 .menu-card{
-  min-height:170px;
-  padding:25px;
-  border-radius:20px;
-  background:linear-gradient(145deg,#111e2b,#0a131c);
-  border:1px solid var(--border);
-  transition:.2s;
+    min-height:175px;
+    padding:25px;
+    border-radius:20px;
+    background:linear-gradient(
+        145deg,
+        #111f2c,
+        #09121b
+    );
+    border:1px solid var(--border);
+    transition:.2s;
 }
 
 .menu-card:hover{
-  transform:translateY(-5px);
-  border-color:var(--cyan);
+    transform:translateY(-5px);
+    border-color:var(--cyan);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
 }
 
 .menu-icon{
-  font-size:34px;
-  margin-bottom:15px;
+    font-size:34px;
+    margin-bottom:15px;
 }
 
-.menu-card h3{margin-bottom:8px}
+.menu-card h3{
+    margin-bottom:8px;
+}
 
 .menu-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
 }
 
-/* PATH MENU */
+/* ================= PATHS ================= */
 
 .path-grid{
-  max-width:950px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:17px;
+    max-width:950px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:17px;
 }
 
 .path-card{
-  padding:25px;
-  text-align:center;
-  border-radius:18px;
-  background:#0e1823;
-  border:1px solid var(--border);
-  transition:.2s;
+    padding:25px;
+    text-align:center;
+    border-radius:18px;
+    background:#0d1823;
+    border:1px solid var(--border);
+    transition:.2s;
 }
 
 .path-card:hover{
-  transform:translateY(-4px);
-  border-color:var(--cyan);
+    transform:translateY(-4px);
+    border-color:var(--cyan);
 }
 
 .path-icon{
-  font-size:35px;
-  margin-bottom:13px;
+    font-size:36px;
+    margin-bottom:12px;
 }
 
 .path-card p{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:7px;
+    margin-top:7px;
+    color:var(--muted);
+    font-size:11px;
 }
 
-/* LAB */
+/* ================= LAB ================= */
 
 .lab{
-  overflow:hidden;
-  border-radius:22px;
-  background:#0b141e;
-  border:1px solid var(--border);
-  box-shadow:0 25px 90px rgba(0,0,0,.3);
+    overflow:hidden;
+    border-radius:23px;
+    background:#0b141e;
+    border:1px solid var(--border);
+    box-shadow:0 25px 90px rgba(0,0,0,.3);
 }
 
 .lab-header{
-  padding:21px 24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  border-bottom:1px solid var(--border);
+    min-height:105px;
+    padding:22px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
+
+.lab-header h2{
+    font-size:31px;
 }
 
 .lab-header p{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
+    margin-top:6px;
+    color:var(--muted);
+    font-size:12px;
 }
 
 .live{
-  white-space:nowrap;
-  color:var(--green);
-  border:1px solid rgba(87,245,160,.2);
-  padding:8px 12px;
-  border-radius:30px;
-  font-size:9px;
-  font-weight:900;
+    color:var(--green);
+    border:1px solid rgba(88,243,161,.22);
+    padding:8px 13px;
+    border-radius:30px;
+    font-size:9px;
+    font-weight:900;
 }
 
-.work{
-  display:grid;
-  grid-template-columns:minmax(0,1.5fr) 370px;
+.lab-content{
+    display:grid;
+    grid-template-columns:minmax(0,1.55fr) 380px;
 }
 
-.visual-area{
-  padding:17px;
-  border-right:1px solid var(--border);
+.visual-panel{
+    padding:18px;
+    border-right:1px solid var(--border);
 }
 
 .visual{
-  height:530px;
-  overflow:hidden;
-  border-radius:17px;
-  background:#080d13;
-  border:1px solid #1d2b39;
+    height:560px;
+    overflow:hidden;
+    border-radius:18px;
+    background:#070d13;
+    border:1px solid #1d2d3d;
 }
 
 svg{
-  display:block;
-  width:100%;
-  height:100%;
-  touch-action:none;
-  user-select:none;
+    display:block;
+    width:100%;
+    height:100%;
+    touch-action:none;
+    user-select:none;
 }
 
 .grid-line{
-  stroke:#273643;
-  stroke-width:1;
-  opacity:.4;
+    stroke:#273744;
+    stroke-width:1;
+    opacity:.38;
 }
 
-.path{
-  fill:none;
-  stroke:var(--yellow);
-  stroke-width:8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+.axis{
+    stroke:#415466;
+    stroke-width:1;
+    opacity:.45;
 }
 
-.circle-guide{
-  fill:none;
-  stroke:#58697a;
-  stroke-width:2;
-  stroke-dasharray:8 8;
+.actual-path{
+    fill:none;
+    stroke:var(--yellow);
+    stroke-width:8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
 
-.displacement{
-  stroke:var(--orange);
-  stroke-width:4;
-  stroke-dasharray:10 8;
+.guide{
+    fill:none;
+    stroke:#586a7c;
+    stroke-width:2;
+    stroke-dasharray:8 9;
+}
+
+.displacement-line{
+    stroke:var(--orange);
+    stroke-width:4;
+    stroke-dasharray:10 8;
 }
 
 .start-point{
-  fill:#fff;
-  stroke:#111;
-  stroke-width:4;
+    fill:white;
+    stroke:#0a0f15;
+    stroke-width:4;
 }
 
 .finish-point{
-  fill:var(--cyan);
-  stroke:#fff;
-  stroke-width:4;
-  cursor:grab;
-  filter:drop-shadow(0 0 12px rgba(53,229,255,.9));
+    fill:var(--cyan);
+    stroke:white;
+    stroke-width:4;
+    cursor:grab;
+    filter:drop-shadow(0 0 13px rgba(53,230,255,.95));
 }
 
-.finish-point:active{cursor:grabbing}
+.finish-point:active{
+    cursor:grabbing;
+}
 
 .svg-label{
-  fill:#fff;
-  font-size:14px;
-  font-weight:900;
-  paint-order:stroke;
-  stroke:#080d13;
-  stroke-width:5px;
+    fill:white;
+    font-size:14px;
+    font-weight:900;
+    paint-order:stroke;
+    stroke:#070d13;
+    stroke-width:5px;
 }
 
 .svg-yellow{
-  fill:var(--yellow);
-  font-size:13px;
-  font-weight:900;
-  paint-order:stroke;
-  stroke:#080d13;
-  stroke-width:5px;
+    fill:var(--yellow);
+    font-size:14px;
+    font-weight:900;
+    paint-order:stroke;
+    stroke:#070d13;
+    stroke-width:5px;
 }
 
 .svg-orange{
-  fill:var(--orange);
-  font-size:13px;
-  font-weight:900;
-  paint-order:stroke;
-  stroke:#080d13;
-  stroke-width:5px;
+    fill:var(--orange);
+    font-size:14px;
+    font-weight:900;
+    paint-order:stroke;
+    stroke:#070d13;
+    stroke-width:5px;
 }
 
 .legend{
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
-  padding:12px 3px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    padding:12px 3px 0;
 }
 
 .legend-item{
-  color:#8290a0;
-  font-size:10px;
-  display:flex;
-  align-items:center;
-  gap:6px;
+    color:#8796a7;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    gap:6px;
 }
 
-.dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
+.legend-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
 }
 
-.yellow{background:var(--yellow)}
-.orange{background:var(--orange)}
-.cyan{background:var(--cyan)}
+.yellow{
+    background:var(--yellow);
+}
 
-.controls{padding:23px}
+.orange{
+    background:var(--orange);
+}
+
+.cyan{
+    background:var(--cyan);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+    padding:24px;
+}
 
 .section-title{
-  color:#718196;
-  font-size:9px;
-  letter-spacing:2px;
-  font-weight:900;
-  margin-bottom:17px;
+    color:#738397;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:2.5px;
+    margin-bottom:18px;
 }
 
-.field{margin-bottom:15px}
+.field{
+    margin-bottom:15px;
+}
 
 .row{
-  display:grid;
-  grid-template-columns:1fr 120px;
-  gap:7px;
+    display:grid;
+    grid-template-columns:1fr 125px;
+    gap:7px;
 }
 
-.calculate{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:11px;
-  color:#171208;
-  font-weight:950;
-  background:linear-gradient(90deg,var(--yellow),#ffb52d);
+.calculate-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:11px;
+    background:linear-gradient(
+        90deg,
+        var(--yellow),
+        #ffb62f
+    );
+    color:#171208;
+    font-weight:950;
 }
 
 .answer-box{
-  margin-top:18px;
-  padding:20px;
-  text-align:center;
-  border-radius:16px;
-  background:#101c28;
-  border:1px solid #294153;
+    margin-top:18px;
+    padding:21px;
+    text-align:center;
+    border-radius:16px;
+    background:#101d29;
+    border:1px solid #294255;
 }
 
 .answer-label{
-  color:#718196;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:2px;
+    color:#738397;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:2px;
 }
 
 .answer-value{
-  color:var(--cyan);
-  font-size:38px;
-  font-weight:950;
-  margin:7px 0 3px;
+    color:var(--cyan);
+    font-size:39px;
+    font-weight:950;
+    margin:7px 0 3px;
+    word-break:break-word;
 }
 
 .answer-unit{
-  color:#aab7c6;
-  font-size:12px;
+    color:#b2bfcd;
+    font-size:12px;
 }
 
-.formula{
-  margin-top:13px;
-  padding:13px;
-  border-radius:11px;
-  background:#09111a;
-  border:1px solid #203140;
-  color:#b9c7d5;
-  font:11px Consolas,monospace;
-  line-height:1.7;
+.formula-box{
+    margin-top:13px;
+    padding:14px;
+    border-radius:11px;
+    background:#08111a;
+    border:1px solid #203241;
+    color:#bac7d4;
+    font-size:11px;
+    line-height:1.75;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:1000px){
-  .work{grid-template-columns:1fr}
-  .visual-area{
-    border-right:0;
-    border-bottom:1px solid var(--border);
-  }
-  .menu-grid{grid-template-columns:repeat(2,1fr)}
-  .path-grid{grid-template-columns:repeat(2,1fr)}
+.hint{
+    margin-top:12px;
+    color:#728294;
+    font-size:10px;
+    line-height:1.5;
 }
 
-@media(max-width:600px){
-  .badge{display:none}
-  .menu-grid,.path-grid{grid-template-columns:1fr}
-  .lab-header{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-  .visual{
-    height:390px;
-  }
-  .row{grid-template-columns:1fr}
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1050px){
+
+    .lab-content{
+        grid-template-columns:1fr;
+    }
+
+    .visual-panel{
+        border-right:0;
+        border-bottom:1px solid var(--border);
+    }
+
+    .menu-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    nav{
+        padding:0 4%;
+    }
+
+    .top-badge{
+        display:none;
+    }
+
+    .menu-grid,
+    .path-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lab-header{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .visual{
+        height:420px;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= NAV ================= -->
+
 <nav>
-  <div class="logo">⚡ Sports <span>Motion Lab</span></div>
-  <div class="badge">AIL • GAMES & TECHNOLOGY</div>
+
+    <div class="logo">
+        ⚡ Sports <span>Motion Lab</span>
+    </div>
+
+    <div class="top-badge">
+        AIL • GAMES & TECHNOLOGY
+    </div>
+
 </nav>
 
 
-<!-- WELCOME -->
+<!-- =========================================================
+     WELCOME
+========================================================= -->
 
 <section id="welcome">
 
-  <div class="hero center">
+    <div class="hero center">
 
-    <div class="trophy">🏆</div>
+        <div class="hero-icon">
+            🏆
+        </div>
 
-    <div class="eyebrow">
-      SPORTS × PHYSICS × MATHEMATICS
+        <div class="eyebrow">
+            SPORTS × PHYSICS × MATHEMATICS
+        </div>
+
+        <h1>
+            Sports
+            <span class="gradient">
+                Motion Lab
+            </span>
+        </h1>
+
+        <p class="subtitle">
+            An interactive Physics & Mathematics laboratory
+            for understanding motion in sports.
+        </p>
+
+        <div class="name-box">
+
+            <label>
+                ENTER YOUR NAME
+            </label>
+
+            <input
+                id="userName"
+                type="text"
+                placeholder="Enter your name"
+                autocomplete="off"
+            >
+
+            <button
+                class="primary-btn"
+                id="enterBtn"
+            >
+                ENTER THE LAB →
+            </button>
+
+        </div>
+
     </div>
-
-    <h1>
-      Sports <span class="gradient">Motion Lab</span>
-    </h1>
-
-    <p class="subtitle">
-      An interactive Physics & Mathematics laboratory
-      for understanding motion in sports.
-    </p>
-
-    <div class="name-card">
-
-      <label>ENTER YOUR NAME</label>
-
-      <input
-        id="userName"
-        type="text"
-        placeholder="Enter your name"
-      >
-
-      <button
-        class="primary"
-        id="enterBtn"
-      >
-        ENTER THE LAB →
-      </button>
-
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- MENU -->
+<!-- =========================================================
+     FIND MENU
+========================================================= -->
 
-<section id="menu" class="container hidden">
+<section
+    id="menu"
+    class="container hidden"
+>
 
-  <div class="page-title">
+    <div class="page-title">
 
-    <div class="eyebrow">MOTION CALCULATOR</div>
+        <div class="eyebrow">
+            MOTION CALCULATOR
+        </div>
 
-    <h2>
-      Hello,
-      <span id="helloName" class="gradient"></span> 👋
-    </h2>
+        <h2>
+            Hello,
+            <span
+                id="helloName"
+                class="gradient"
+            ></span>
+            👋
+        </h2>
 
-    <p class="subtitle">
-      Select exactly what you want to find.
-    </p>
+        <p class="subtitle">
+            What do you want to find?
+        </p>
 
-  </div>
-
-
-  <div class="menu-grid">
-
-    <div class="menu-card" data-find="speed">
-      <div class="menu-icon">🏃</div>
-      <h3>Find Speed</h3>
-      <p>Distance ÷ Time</p>
     </div>
 
-    <div class="menu-card" data-find="velocity">
-      <div class="menu-icon">🚀</div>
-      <h3>Find Velocity</h3>
-      <p>Displacement ÷ Time</p>
-    </div>
 
-    <div class="menu-card" data-find="distance">
-      <div class="menu-icon">📏</div>
-      <h3>Find Distance</h3>
-      <p>Speed × Time</p>
-    </div>
+    <div class="menu-grid">
 
-    <div class="menu-card" data-find="displacement">
-      <div class="menu-icon">📐</div>
-      <h3>Find Displacement</h3>
-      <p>Straight-line distance from Start to Finish</p>
-    </div>
+        <div
+            class="menu-card"
+            data-find="speed"
+        >
+            <div class="menu-icon">
+                🏃
+            </div>
 
-    <div class="menu-card" data-find="time">
-      <div class="menu-icon">⏱️</div>
-      <h3>Find Time</h3>
-      <p>Distance ÷ Speed</p>
-    </div>
+            <h3>
+                Find Speed
+            </h3>
 
-    <div class="menu-card" data-find="acceleration">
-      <div class="menu-icon">⚡</div>
-      <h3>Find Acceleration</h3>
-      <p>(Final Velocity − Initial Velocity) ÷ Time</p>
-    </div>
+            <p>
+                Speed = Distance ÷ Time
+            </p>
+        </div>
 
-  </div>
+
+        <div
+            class="menu-card"
+            data-find="velocity"
+        >
+            <div class="menu-icon">
+                🚀
+            </div>
+
+            <h3>
+                Find Velocity
+            </h3>
+
+            <p>
+                Velocity = Displacement ÷ Time
+            </p>
+        </div>
+
+
+        <div
+            class="menu-card"
+            data-find="distance"
+        >
+            <div class="menu-icon">
+                📏
+            </div>
+
+            <h3>
+                Find Distance
+            </h3>
+
+            <p>
+                Distance = Speed × Time
+            </p>
+        </div>
+
+
+        <div
+            class="menu-card"
+            data-find="displacement"
+        >
+            <div class="menu-icon">
+                📐
+            </div>
+
+            <h3>
+                Find Displacement
+            </h3>
+
+            <p>
+                Straight-line Start → Finish
+            </p>
+        </div>
+
+
+        <div
+            class="menu-card"
+            data-find="time"
+        >
+            <div class="menu-icon">
+                ⏱️
+            </div>
+
+            <h3>
+                Find Time
+            </h3>
+
+            <p>
+                Time = Distance ÷ Speed
+            </p>
+        </div>
+
+
+        <div
+            class="menu-card"
+            data-find="acceleration"
+        >
+            <div class="menu-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Find Acceleration
+            </h3>
+
+            <p>
+                (Final Velocity − Initial Velocity) ÷ Time
+            </p>
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- PATH MENU -->
+<!-- =========================================================
+     PATH SELECT
+========================================================= -->
 
-<section id="paths" class="container hidden">
+<section
+    id="paths"
+    class="container hidden"
+>
 
-  <button class="back" id="pathBack">
-    ← Back
-  </button>
-
-  <div class="page-title">
-
-    <div class="eyebrow">2D MOTION MODEL</div>
-
-    <h2>
-      Choose Your <span class="gradient">Path</span>
-    </h2>
-
-    <p class="subtitle">
-      Select the shape of motion.
-    </p>
-
-  </div>
+    <button
+        class="back-btn"
+        id="pathBack"
+    >
+        ← Back
+    </button>
 
 
-  <div class="path-grid">
+    <div class="page-title">
 
-    <div class="path-card" data-path="straight">
-      <div class="path-icon">➡️</div>
-      <h3>Straight Line</h3>
-      <p>Direct movement</p>
+        <div class="eyebrow">
+            2D MOTION MODEL
+        </div>
+
+        <h2>
+            Choose Your
+            <span class="gradient">
+                Path
+            </span>
+        </h2>
+
+        <p class="subtitle">
+            Select the type of movement.
+        </p>
+
     </div>
 
-    <div class="path-card" data-path="detour">
-      <div class="path-icon">↗️</div>
-      <h3>Detour</h3>
-      <p>Two-part movement</p>
-    </div>
 
-    <div class="path-card" data-path="circle">
-      <div class="path-icon">⭕</div>
-      <h3>Circle</h3>
-      <p>Circular movement</p>
-    </div>
+    <div class="path-grid">
 
-    <div class="path-card" data-path="square">
-      <div class="path-icon">⬜</div>
-      <h3>Square</h3>
-      <p>Four-sided movement</p>
-    </div>
+        <div
+            class="path-card"
+            data-path="straight"
+        >
+            <div class="path-icon">
+                ➡️
+            </div>
 
-    <div class="path-card" data-path="rectangle">
-      <div class="path-icon">▭</div>
-      <h3>Rectangle</h3>
-      <p>Length + Width</p>
-    </div>
+            <h3>
+                Straight Line
+            </h3>
 
-  </div>
+            <p>
+                Direct movement
+            </p>
+        </div>
+
+
+        <div
+            class="path-card"
+            data-path="detour"
+        >
+            <div class="path-icon">
+                ↗️
+            </div>
+
+            <h3>
+                Detour
+            </h3>
+
+            <p>
+                Two-part movement
+            </p>
+        </div>
+
+
+        <div
+            class="path-card"
+            data-path="circle"
+        >
+            <div class="path-icon">
+                ⭕
+            </div>
+
+            <h3>
+                Circle
+            </h3>
+
+            <p>
+                Circular movement
+            </p>
+        </div>
+
+
+        <div
+            class="path-card"
+            data-path="square"
+        >
+            <div class="path-icon">
+                ⬜
+            </div>
+
+            <h3>
+                Square
+            </h3>
+
+            <p>
+                Four-sided movement
+            </p>
+        </div>
+
+
+        <div
+            class="path-card"
+            data-path="rectangle"
+        >
+            <div class="path-icon">
+                ▭
+            </div>
+
+            <h3>
+                Rectangle
+            </h3>
+
+            <p>
+                Length + Width
+            </p>
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- CALCULATOR -->
+<!-- =========================================================
+     CALCULATOR
+========================================================= -->
 
-<section id="calculator" class="container hidden">
+<section
+    id="calculator"
+    class="container hidden"
+>
 
-  <button class="back" id="calcBack">
-    ← Back
-  </button>
+    <button
+        class="back-btn"
+        id="calcBack"
+    >
+        ← Back
+    </button>
 
-  <div class="lab">
 
-    <div class="lab-header">
+    <div class="lab">
 
-      <div>
-        <h2 id="labTitle">Motion Calculator</h2>
-        <p id="labSubtitle"></p>
-      </div>
+        <div class="lab-header">
 
-      <div id="liveBadge" class="live hidden">
-        ● LIVE MODEL
-      </div>
+            <div>
+
+                <h2 id="labTitle">
+                    Motion Calculator
+                </h2>
+
+                <p id="labSubtitle">
+                    Enter your values.
+                </p>
+
+            </div>
+
+            <div
+                id="liveBadge"
+                class="live hidden"
+            >
+                ● LIVE MODEL
+            </div>
+
+        </div>
+
+
+        <div class="lab-content">
+
+
+            <!-- ================= SVG ================= -->
+
+            <div class="visual-panel">
+
+                <div class="visual">
+
+                    <svg
+                        id="motionSVG"
+                        viewBox="0 0 700 560"
+                        preserveAspectRatio="xMidYMid meet"
+                    >
+
+                        <defs>
+
+                            <marker
+                                id="arrowHead"
+                                markerWidth="10"
+                                markerHeight="10"
+                                refX="9"
+                                refY="4"
+                                orient="auto"
+                            >
+
+                                <path
+                                    d="M0,0 L0,8 L10,4 Z"
+                                    fill="#ff8b4c"
+                                />
+
+                            </marker>
+
+                        </defs>
+
+
+                        <g id="grid"></g>
+
+
+                        <circle
+                            id="circleGuide"
+                            class="guide"
+                            cx="350"
+                            cy="280"
+                            r="180"
+                            style="display:none"
+                        />
+
+
+                        <polyline
+                            id="motionPath"
+                            class="actual-path"
+                            points=""
+                        />
+
+
+                        <line
+                            id="displacementLine"
+                            class="displacement-line"
+                            marker-end="url(#arrowHead)"
+                            style="display:none"
+                        />
+
+
+                        <circle
+                            id="startPoint"
+                            class="start-point"
+                            cx="100"
+                            cy="400"
+                            r="10"
+                        />
+
+
+                        <circle
+                            id="finishPoint"
+                            class="finish-point"
+                            cx="600"
+                            cy="150"
+                            r="15"
+                            style="display:none"
+                        />
+
+
+                        <text
+                            id="startLabel"
+                            class="svg-label"
+                        >
+                            START
+                        </text>
+
+
+                        <text
+                            id="finishLabel"
+                            class="svg-label"
+                        >
+                            FINISH
+                        </text>
+
+
+                        <text
+                            id="pathText"
+                            class="svg-yellow"
+                        ></text>
+
+
+                        <text
+                            id="dispText"
+                            class="svg-orange"
+                        ></text>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="legend">
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot yellow"
+                        ></span>
+
+                        Actual Path
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot orange"
+                        ></span>
+
+                        Displacement
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot cyan"
+                        ></span>
+
+                        Drag Point
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CONTROLS ================= -->
+
+            <div class="controls">
+
+                <div class="section-title">
+                    INPUT VALUES
+                </div>
+
+
+                <div id="inputArea"></div>
+
+
+                <button
+                    class="calculate-btn"
+                    id="calculateBtn"
+                >
+                    ⚡ CALCULATE ANSWER
+                </button>
+
+
+                <div class="answer-box">
+
+                    <div class="answer-label">
+                        ANSWER
+                    </div>
+
+                    <div
+                        id="answerValue"
+                        class="answer-value"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="answerUnit"
+                        class="answer-unit"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="formula"
+                    class="formula-box"
+                >
+                    Enter your values and calculate.
+                </div>
+
+
+                <div
+                    id="hint"
+                    class="hint"
+                ></div>
+
+            </div>
+
+        </div>
 
     </div>
-
-
-    <div class="work">
-
-      <!-- VISUAL -->
-
-      <div class="visual-area">
-
-        <div class="visual">
-
-          <svg
-            id="motionSVG"
-            viewBox="0 0 700 530"
-            preserveAspectRatio="xMidYMid meet"
-          >
-
-            <defs>
-              <marker
-                id="arrow"
-                markerWidth="10"
-                markerHeight="10"
-                refX="9"
-                refY="4"
-                orient="auto"
-              >
-                <path
-                  d="M0,0 L0,8 L10,4 Z"
-                  fill="#ff8a4c"
-                />
-              </marker>
-            </defs>
-
-
-            <g id="grid"></g>
-
-            <circle
-              id="circleGuide"
-              class="circle-guide"
-              cx="350"
-              cy="265"
-              r="180"
-              style="display:none"
-            />
-
-            <polyline
-              id="motionPath"
-              class="path"
-              points=""
-            />
-
-            <line
-              id="displacementLine"
-              class="displacement"
-              marker-end="url(#arrow)"
-              style="display:none"
-            />
-
-            <circle
-              id="startPoint"
-              class="start-point"
-              cx="100"
-              cy="370"
-              r="10"
-            />
-
-            <circle
-              id="finishPoint"
-              class="finish-point"
-              cx="590"
-              cy="150"
-              r="14"
-              style="display:none"
-            />
-
-            <text id="startLabel" class="svg-label">START</text>
-            <text id="finishLabel" class="svg-label">FINISH</text>
-            <text id="pathText" class="svg-yellow"></text>
-            <text id="dispText" class="svg-orange"></text>
-            <text id="shapeText" class="svg-yellow"></text>
-
-          </svg>
-
-        </div>
-
-
-        <div class="legend">
-
-          <div class="legend-item">
-            <span class="dot yellow"></span>
-            Actual Path
-          </div>
-
-          <div class="legend-item">
-            <span class="dot orange"></span>
-            Displacement
-          </div>
-
-          <div class="legend-item">
-            <span class="dot cyan"></span>
-            Drag Point
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- CONTROLS -->
-
-      <div class="controls">
-
-        <div class="section-title">
-          INPUT VALUES
-        </div>
-
-        <div id="inputArea"></div>
-
-        <button class="calculate" id="calculateBtn">
-          ⚡ CALCULATE ANSWER
-        </button>
-
-        <div class="answer-box">
-
-          <div class="answer-label">
-            ANSWER
-          </div>
-
-          <div id="answerValue" class="answer-value">
-            —
-          </div>
-
-          <div id="answerUnit" class="answer-unit">
-            —
-          </div>
-
-        </div>
-
-        <div id="formula" class="formula">
-          Enter values and calculate.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
 
 </section>
 
 
 <script>
-"use strict";
 
-/* =====================================================
+/* =========================================================
    STATE
-===================================================== */
+========================================================= */
 
 let finding = "";
 let currentPath = "";
 
 let progress = 0.5;
-let circleAngle = Math.PI / 2;
 
-let dragging = false;
-
-const CX = 350;
-const CY = 265;
-const R = 180;
+let circleAngle = Math.PI;
 
 
-/* =====================================================
+/* =========================================================
    SHORTCUT
-===================================================== */
+========================================================= */
 
 function $(id){
-  return document.getElementById(id);
+    return document.getElementById(id);
 }
 
 
-/* =====================================================
+/* =========================================================
    SCREEN
-===================================================== */
+========================================================= */
 
 function showScreen(id){
 
-  ["welcome","menu","paths","calculator"].forEach(function(x){
-    $(x).classList.add("hidden");
-  });
-
-  $(id).classList.remove("hidden");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
-
-/* =====================================================
-   ENTER
-===================================================== */
-
-$("enterBtn").addEventListener("click",function(){
-
-  const name=$("userName").value.trim();
-
-  if(!name){
-    alert("Please enter your name first.");
-    $("userName").focus();
-    return;
-  }
-
-  $("helloName").textContent=name;
-
-  showScreen("menu");
-});
-
-
-$("userName").addEventListener("keydown",function(e){
-  if(e.key==="Enter"){
-    $("enterBtn").click();
-  }
-});
-
-
-/* =====================================================
-   MENU BUTTONS
-===================================================== */
-
-document.querySelectorAll(".menu-card").forEach(function(card){
-
-  card.addEventListener("click",function(){
-
-    finding=card.dataset.find;
-
-    if(
-      finding==="velocity" ||
-      finding==="displacement"
-    ){
-      showScreen("paths");
-    }else{
-      openNormal();
-    }
-
-  });
-
-});
-
-
-/* =====================================================
-   PATH BUTTONS
-===================================================== */
-
-document.querySelectorAll(".path-card").forEach(function(card){
-
-  card.addEventListener("click",function(){
-
-    currentPath=card.dataset.path;
-
-    openPath();
-
-  });
-
-});
-
-
-$("pathBack").addEventListener("click",function(){
-  showScreen("menu");
-});
-
-
-$("calcBack").addEventListener("click",function(){
-
-  if(
-    finding==="velocity" ||
-    finding==="displacement"
-  ){
-    showScreen("paths");
-  }else{
-    showScreen("menu");
-  }
-
-});
-
-
-/* =====================================================
-   FORMAT
-===================================================== */
-
-function fmt(n){
-
-  if(!Number.isFinite(n)){
-    return "0";
-  }
-
-  return Number(n.toFixed(4)).toLocaleString();
-}
-
-
-/* =====================================================
-   UNITS
-===================================================== */
-
-function metres(value,unit){
-
-  if(unit==="mm") return value/1000;
-  if(unit==="cm") return value/100;
-  if(unit==="km") return value*1000;
-
-  return value;
-}
-
-
-function seconds(value,unit){
-
-  if(unit==="ms") return value/1000;
-  if(unit==="min") return value*60;
-  if(unit==="hour") return value*3600;
-
-  return value;
-}
-
-
-function ms(value,unit){
-
-  if(unit==="kmh") return value/3.6;
-
-  return value;
-}
-
-
-/* =====================================================
-   HTML INPUTS
-===================================================== */
-
-function distanceInput(id,value=10){
-
-  return `
-  <div class="field">
-
-    <label>DISTANCE</label>
-
-    <div class="row">
-
-      <input
-        id="${id}"
-        type="number"
-        step="any"
-        value="${value}"
-      >
-
-      <select id="${id}Unit">
-
-        <option value="mm">mm</option>
-        <option value="cm">cm</option>
-        <option value="m" selected>metre</option>
-        <option value="km">kilometre</option>
-
-      </select>
-
-    </div>
-
-  </div>
-  `;
-}
-
-
-function timeInput(id,value=2){
-
-  return `
-  <div class="field">
-
-    <label>TIME</label>
-
-    <div class="row">
-
-      <input
-        id="${id}"
-        type="number"
-        step="any"
-        value="${value}"
-      >
-
-      <select id="${id}Unit">
-
-        <option value="ms">millisecond</option>
-        <option value="s" selected>second</option>
-        <option value="min">minute</option>
-        <option value="hour">hour</option>
-
-      </select>
-
-    </div>
-
-  </div>
-  `;
-}
-
-
-function speedInput(id,value=5){
-
-  return `
-  <div class="field">
-
-    <label>SPEED</label>
-
-    <div class="row">
-
-      <input
-        id="${id}"
-        type="number"
-        step="any"
-        value="${value}"
-      >
-
-      <select id="${id}Unit">
-
-        <option value="mps" selected>m/s</option>
-        <option value="kmh">km/h</option>
-
-      </select>
-
-    </div>
-
-  </div>
-  `;
-}
-
-
-function velocityInput(id,label,value){
-
-  return `
-  <div class="field">
-
-    <label>${label}</label>
-
-    <div class="row">
-
-      <input
-        id="${id}"
-        type="number"
-        step="any"
-        value="${value}"
-      >
-
-      <select id="${id}Unit">
-
-        <option value="mps" selected>m/s</option>
-        <option value="kmh">km/h</option>
-
-      </select>
-
-    </div>
-
-  </div>
-  `;
-}
-
-
-/* =====================================================
-   ANSWER
-===================================================== */
-
-function answer(value,unit,formula){
-
-  $("answerValue").textContent=fmt(value);
-  $("answerUnit").textContent=unit;
-  $("formula").innerHTML=formula;
-}
-
-
-/* =====================================================
-   NORMAL CALCULATOR
-===================================================== */
-
-function openNormal(){
-
-  $("liveBadge").classList.add("hidden");
-
-  showScreen("calculator");
-
-
-  if(finding==="speed"){
-
-    $("labTitle").textContent="Find Speed";
-    $("labSubtitle").textContent="Speed = Distance ÷ Time";
-
-    $("inputArea").innerHTML=
-      distanceInput("distance")+
-      timeInput("time");
-
-  }
-
-
-  if(finding==="distance"){
-
-    $("labTitle").textContent="Find Distance";
-    $("labSubtitle").textContent="Distance = Speed × Time";
-
-    $("inputArea").innerHTML=
-      speedInput("speed")+
-      timeInput("time");
-
-  }
-
-
-  if(finding==="time"){
-
-    $("labTitle").textContent="Find Time";
-    $("labSubtitle").textContent="Time = Distance ÷ Speed";
-
-    $("inputArea").innerHTML=
-      distanceInput("distance")+
-      speedInput("speed");
-
-  }
-
-
-  if(finding==="acceleration"){
-
-    $("labTitle").textContent="Find Acceleration";
-    $("labSubtitle").textContent="Acceleration = (Vf − Vi) ÷ Time";
-
-    $("inputArea").innerHTML=
-      velocityInput("vi","INITIAL VELOCITY (Vi)",10)+
-      velocityInput("vf","FINAL VELOCITY (Vf)",20)+
-      timeInput("atime",2);
-
-  }
-
-
-  drawNormal();
-
-  attachInputs();
-
-  calculate();
-
-}
-
-
-/* =====================================================
-   NORMAL INPUT EVENTS
-===================================================== */
-
-function attachInputs(){
-
-  document
-  .querySelectorAll("#inputArea input,#inputArea select")
-  .forEach(function(el){
-
-    el.addEventListener("input",calculate);
-
-  });
-
-}
-
-
-/* =====================================================
-   NORMAL DRAW
-===================================================== */
-
-function drawNormal(){
-
-  hideCircle();
-
-  $("motionPath").setAttribute(
-    "points",
-    "100,370 600,150"
-  );
-
-  $("finishPoint").style.display="none";
-
-  $("displacementLine").style.display="none";
-
-  $("pathText").textContent="";
-  $("dispText").textContent="";
-  $("shapeText").textContent="";
-
-}
-
-
-/* =====================================================
-   NORMAL CALCULATE
-===================================================== */
-
-function calculate(){
-
-  if(finding==="speed"){
-
-    const d=metres(
-      Number($("distance").value),
-      $("distanceUnit").value
-    );
-
-    const t=seconds(
-      Number($("time").value),
-      $("timeUnit").value
-    );
-
-    if(t<=0){
-      answer(0,"Invalid","Time must be greater than zero.");
-      return;
-    }
-
-    const result=d/t;
-
-    answer(
-      result,
-      "m/s",
-      `<b>Speed = Distance ÷ Time</b>
-       <br><br>
-       ${fmt(d)} ÷ ${fmt(t)}
-       =
-       <b>${fmt(result)} m/s</b>`
-    );
-
-    return;
-  }
-
-
-  if(finding==="distance"){
-
-    const v=ms(
-      Number($("speed").value),
-      $("speedUnit").value
-    );
-
-    const t=seconds(
-      Number($("time").value),
-      $("timeUnit").value
-    );
-
-    const result=v*t;
-
-    answer(
-      result,
-      "m",
-      `<b>Distance = Speed × Time</b>
-       <br><br>
-       ${fmt(v)} × ${fmt(t)}
-       =
-       <b>${fmt(result)} m</b>`
-    );
-
-    return;
-  }
-
-
-  if(finding==="time"){
-
-    const d=metres(
-      Number($("distance").value),
-      $("distanceUnit").value
-    );
-
-    const v=ms(
-      Number($("speed").value),
-      $("speedUnit").value
-    );
-
-    if(v<=0){
-      answer(0,"Invalid","Speed must be greater than zero.");
-      return;
-    }
-
-    const result=d/v;
-
-    answer(
-      result,
-      "seconds",
-      `<b>Time = Distance ÷ Speed</b>
-       <br><br>
-       ${fmt(d)} ÷ ${fmt(v)}
-       =
-       <b>${fmt(result)} s</b>`
-    );
-
-    return;
-  }
-
-
-  if(finding==="acceleration"){
-
-    const vi=ms(
-      Number($("vi").value),
-      $("viUnit").value
-    );
-
-    const vf=ms(
-      Number($("vf").value),
-      $("vfUnit").value
-    );
-
-    const t=seconds(
-      Number($("atime").value),
-      $("atimeUnit").value
-    );
-
-    if(t<=0){
-      answer(0,"Invalid","Time must be greater than zero.");
-      return;
-    }
-
-    const result=(vf-vi)/t;
-
-    answer(
-      result,
-      "m/s²",
-      `<b>Acceleration = (Vf − Vi) ÷ Time</b>
-       <br><br>
-       (${fmt(vf)} − ${fmt(vi)}) ÷ ${fmt(t)}
-       =
-       <b>${fmt(result)} m/s²</b>`
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   PATH OPEN
-===================================================== */
-
-function openPath(){
-
-  $("liveBadge").classList.remove("hidden");
-
-  showScreen("calculator");
-
-  if(currentPath==="straight") setupStraight();
-  if(currentPath==="detour") setupDetour();
-  if(currentPath==="circle") setupCircle();
-  if(currentPath==="square") setupSquare();
-  if(currentPath==="rectangle") setupRectangle();
-
-}
-
-
-/* =====================================================
-   PATH SETUPS
-===================================================== */
-
-function setupStraight(){
-
-  $("labTitle").textContent="Straight Line";
-  $("labSubtitle").textContent="Drag the blue point to change position.";
-
-  $("inputArea").innerHTML=
-    distanceInput("pathDistance",10)+
-    timeInput("pathTime",2);
-
-  progress=.5;
-
-  drawStraight();
-  attachPathInputs();
-  updatePathAnswer();
-
-}
-
-
-function setupDetour(){
-
-  $("labTitle").textContent="Detour Path";
-  $("labSubtitle").textContent="Drag the blue point along the route.";
-
-  $("inputArea").innerHTML=`
-
-  <div class="field">
-    <label>HORIZONTAL DISTANCE (m)</label>
-    <input id="horizontal" type="number" step="any" value="8">
-  </div>
-
-  <div class="field">
-    <label>VERTICAL DISTANCE (m)</label>
-    <input id="vertical" type="number" step="any" value="6">
-  </div>
-
-  ${timeInput("detourTime",2)}
-  `;
-
-  progress=.5;
-
-  drawDetour();
-  attachPathInputs();
-  updatePathAnswer();
-
-}
-
-
-function setupCircle(){
-
-  $("labTitle").textContent="Circle Path";
-  $("labSubtitle").textContent="Drag the blue point around the circle.";
-
-  $("inputArea").innerHTML=`
-
-  <div class="field">
-
-    <label>RADIUS</label>
-
-    <div class="row">
-
-      <input
-        id="radius"
-        type="number"
-        step="any"
-        value="10"
-      >
-
-      <select id="radiusUnit">
-        <option value="mm">mm</option>
-        <option value="cm">cm</option>
-        <option value="m" selected>metre</option>
-        <option value="km">kilometre</option>
-      </select>
-
-    </div>
-
-  </div>
-
-  ${timeInput("circleTime",2)}
-
-  `;
-
-  circleAngle=Math.PI;
-
-  drawCircle();
-  attachPathInputs();
-  updatePathAnswer();
-
-}
-
-
-function setupSquare(){
-
-  $("labTitle").textContent="Square Path";
-  $("labSubtitle").textContent="Drag the blue point around the square.";
-
-  $("inputArea").innerHTML=`
-
-  <div class="field">
-    <label>SIDE (m)</label>
-    <input id="side" type="number" step="any" value="10">
-  </div>
-
-  ${timeInput("squareTime",2)}
-
-  `;
-
-  progress=.5;
-
-  drawSquare();
-  attachPathInputs();
-  updatePathAnswer();
-
-}
-
-
-function setupRectangle(){
-
-  $("labTitle").textContent="Rectangle Path";
-  $("labSubtitle").textContent="Drag the blue point around the rectangle.";
-
-  $("inputArea").innerHTML=`
-
-  <div class="field">
-    <label>LENGTH (m)</label>
-    <input id="length" type="number" step="any" value="12">
-  </div>
-
-  <div class="field">
-    <label>WIDTH (m)</label>
-    <input id="width" type="number" step="any" value="6">
-  </div>
-
-  ${timeInput("rectangleTime",2)}
-
-  `;
-
-  progress=.5;
-
-  drawRectangle();
-  attachPathInputs();
-  updatePathAnswer();
-
-}
-
-
-/* =====================================================
-   PATH INPUT EVENTS
-===================================================== */
-
-function attachPathInputs(){
-
-  document
-  .querySelectorAll("#inputArea input,#inputArea select")
-  .forEach(function(el){
-
-    el.addEventListener("input",function(){
-
-      updateModel();
+    [
+        "welcome",
+        "menu",
+        "paths",
+        "calculator"
+    ].forEach(function(screen){
+
+        $(screen).classList.add("hidden");
 
     });
 
-  });
+    $(id).classList.remove("hidden");
 
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
 
-function updateModel(){
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
 
-  if(currentPath==="straight") drawStraight();
-  if(currentPath==="detour") drawDetour();
-  if(currentPath==="circle") drawCircle();
-  if(currentPath==="square") drawSquare();
-  if(currentPath==="rectangle") drawRectangle();
+function fmt(value){
 
-  updatePathAnswer();
-
-}
-
-
-/* =====================================================
-   STRAIGHT DRAW
-===================================================== */
-
-function drawStraight(){
-
-  hideCircle();
-
-  const sx=100,sy=370;
-  const ex=600,ey=150;
-
-  const x=sx+(ex-sx)*progress;
-  const y=sy+(ey-sy)*progress;
-
-  $("motionPath").setAttribute(
-    "points",
-    `${sx},${sy} ${x},${y}`
-  );
-
-  placePoint(sx,sy,x,y);
-
-  $("pathText").setAttribute("x",300);
-  $("pathText").setAttribute("y",270);
-  $("pathText").textContent="DISTANCE";
-
-  $("dispText").textContent="";
-
-}
-
-
-/* =====================================================
-   DETOUR DRAW
-===================================================== */
-
-function drawDetour(){
-
-  hideCircle();
-
-  const sx=100,sy=370;
-  const mx=350,my=370;
-  const ex=600,ey=150;
-
-  let x,y;
-
-  if(progress<=.5){
-
-    const p=progress*2;
-
-    x=sx+(mx-sx)*p;
-    y=sy;
-
-  }else{
-
-    const p=(progress-.5)*2;
-
-    x=mx+(ex-mx)*p;
-    y=my+(ey-my)*p;
-
-  }
-
-  $("motionPath").setAttribute(
-    "points",
-    `${sx},${sy} ${mx},${my} ${x},${y}`
-  );
-
-  placePoint(sx,sy,x,y);
-
-  $("pathText").setAttribute("x",220);
-  $("pathText").setAttribute("y",350);
-  $("pathText").textContent="ACTUAL PATH";
-
-  $("dispText").setAttribute("x",315);
-  $("dispText").setAttribute("y",250);
-  $("dispText").textContent="DISPLACEMENT";
-
-}
-
-
-/* =====================================================
-   CIRCLE DRAW
-===================================================== */
-
-function drawCircle(){
-
-  $("circleGuide").style.display="block";
-
-  const startAngle=-Math.PI/2;
-  const endAngle=startAngle+circleAngle;
-
-  const points=[];
-
-  const steps=Math.max(
-    20,
-    Math.ceil(circleAngle*40)
-  );
-
-  for(let i=0;i<=steps;i++){
-
-    const a=startAngle+
-      circleAngle*(i/steps);
-
-    const x=CX+R*Math.cos(a);
-    const y=CY+R*Math.sin(a);
-
-    points.push(`${x},${y}`);
-
-  }
-
-  $("motionPath").setAttribute(
-    "points",
-    points.join(" ")
-  );
-
-  const sx=CX;
-  const sy=CY-R;
-
-  const ex=CX+R*Math.cos(endAngle);
-  const ey=CY+R*Math.sin(endAngle);
-
-  placePoint(sx,sy,ex,ey);
-
-  $("pathText").setAttribute("x",455);
-  $("pathText").setAttribute("y",100);
-  $("pathText").textContent="DISTANCE TRAVELLED";
-
-  $("dispText").setAttribute("x",300);
-  $("dispText").setAttribute("y",250);
-  $("dispText").textContent="DISPLACEMENT";
-
-}
-
-
-/* =====================================================
-   SQUARE DRAW
-===================================================== */
-
-function drawSquare(){
-
-  hideCircle();
-
-  const left=130;
-  const top=100;
-  const size=330;
-
-  const total=4*size;
-  const d=total*progress;
-
-  let x,y;
-
-  if(d<=size){
-
-    x=left+d;
-    y=top;
-
-  }else if(d<=2*size){
-
-    x=left+size;
-    y=top+(d-size);
-
-  }else if(d<=3*size){
-
-    x=left+size-(d-2*size);
-    y=top+size;
-
-  }else{
-
-    x=left;
-    y=top+size-(d-3*size);
-
-  }
-
-  $("motionPath").setAttribute(
-    "points",
-    `
-    ${left},${top}
-    ${left+size},${top}
-    ${left+size},${top+size}
-    ${left},${top+size}
-    ${left},${top}
-    `
-  );
-
-  placePoint(left,top,x,y);
-
-  $("pathText").setAttribute("x",285);
-  $("pathText").setAttribute("y",75);
-  $("pathText").textContent="SQUARE PATH";
-
-}
-
-
-/* =====================================================
-   RECTANGLE DRAW
-===================================================== */
-
-function drawRectangle(){
-
-  hideCircle();
-
-  const left=100;
-  const top=120;
-  const width=500;
-  const height=260;
-
-  const total=2*(width+height);
-  const d=total*progress;
-
-  let x,y;
-
-  if(d<=width){
-
-    x=left+d;
-    y=top;
-
-  }else if(d<=width+height){
-
-    x=left+width;
-    y=top+(d-width);
-
-  }else if(d<=2*width+height){
-
-    x=left+width-(d-width-height);
-    y=top+height;
-
-  }else{
-
-    x=left;
-    y=top+height-(d-2*width-height);
-
-  }
-
-  $("motionPath").setAttribute(
-    "points",
-    `
-    ${left},${top}
-    ${left+width},${top}
-    ${left+width},${top+height}
-    ${left},${top+height}
-    ${left},${top}
-    `
-  );
-
-  placePoint(left,top,x,y);
-
-  $("pathText").setAttribute("x",285);
-  $("pathText").setAttribute("y",95);
-  $("pathText").textContent="RECTANGLE PATH";
-
-}
-
-
-/* =====================================================
-   PLACE POINT
-===================================================== */
-
-function placePoint(sx,sy,ex,ey){
-
-  $("startPoint").setAttribute("cx",sx);
-  $("startPoint").setAttribute("cy",sy);
-
-  $("finishPoint").setAttribute("cx",ex);
-  $("finishPoint").setAttribute("cy",ey);
-
-  $("finishPoint").style.display="block";
-
-  $("displacementLine").setAttribute("x1",sx);
-  $("displacementLine").setAttribute("y1",sy);
-  $("displacementLine").setAttribute("x2",ex);
-  $("displacementLine").setAttribute("y2",ey);
-
-  $("displacementLine").style.display="block";
-
-  $("startLabel").setAttribute("x",sx-25);
-  $("startLabel").setAttribute("y",sy-20);
-
-  $("finishLabel").setAttribute("x",ex-25);
-  $("finishLabel").setAttribute("y",ey-20);
-
-}
-
-
-/* =====================================================
-   PATH DATA
-===================================================== */
-
-function pathData(){
-
-  let distance=0;
-  let displacement=0;
-  let time=0;
-
-
-  if(currentPath==="straight"){
-
-    const d=metres(
-      Number($("pathDistance").value),
-      $("pathDistanceUnit").value
-    );
-
-    distance=d*progress;
-
-    displacement=distance;
-
-    time=seconds(
-      Number($("pathTime").value),
-      $("pathTimeUnit").value
-    );
-
-  }
-
-
-  if(currentPath==="detour"){
-
-    const h=Number($("horizontal").value);
-    const v=Number($("vertical").value);
-
-    const full=h+v;
-
-    distance=full*progress;
-
-    let dx=0;
-    let dy=0;
-
-    if(distance<=h){
-
-      dx=distance;
-
-    }else{
-
-      dx=h;
-      dy=distance-h;
-
+    if(!Number.isFinite(value)){
+        return "—";
     }
 
-    displacement=Math.sqrt(dx*dx+dy*dy);
-
-    time=seconds(
-      Number($("detourTime").value),
-      $("detourTimeUnit").value
-    );
-
-  }
-
-
-  if(currentPath==="circle"){
-
-    const r=metres(
-      Number($("radius").value),
-      $("radiusUnit").value
-    );
-
-    distance=r*circleAngle;
-
-    displacement=
-      2*r*Math.sin(circleAngle/2);
-
-    time=seconds(
-      Number($("circleTime").value),
-      $("circleTimeUnit").value
-    );
-
-  }
-
-
-  if(currentPath==="square"){
-
-    const side=Number($("side").value);
-
-    distance=4*side*progress;
-
-    let d=distance;
-
-    let x=0;
-    let y=0;
-
-    if(d<=side){
-
-      x=d;
-
-    }else if(d<=2*side){
-
-      x=side;
-      y=d-side;
-
-    }else if(d<=3*side){
-
-      x=side-(d-2*side);
-      y=side;
-
-    }else{
-
-      y=side-(d-3*side);
-
-    }
-
-    displacement=Math.sqrt(x*x+y*y);
-
-    time=seconds(
-      Number($("squareTime").value),
-      $("squareTimeUnit").value
-    );
-
-  }
-
-
-  if(currentPath==="rectangle"){
-
-    const l=Number($("length").value);
-    const w=Number($("width").value);
-
-    distance=2*(l+w)*progress;
-
-    let d=distance;
-
-    let x=0;
-    let y=0;
-
-    if(d<=l){
-
-      x=d;
-
-    }else if(d<=l+w){
-
-      x=l;
-      y=d-l;
-
-    }else if(d<=2*l+w){
-
-      x=l-(d-l-w);
-      y=w;
-
-    }else{
-
-      y=w-(d-2*l-w);
-
-    }
-
-    displacement=Math.sqrt(x*x+y*y);
-
-    time=seconds(
-      Number($("rectangleTime").value),
-      $("rectangleTimeUnit").value
-    );
-
-  }
-
-
-  return {
-    distance:distance,
-    displacement:displacement,
-    time:time
-  };
-
+    return Number(
+        value.toFixed(4)
+    ).toLocaleString("en-IN");
 }
 
 
-/* =====================================================
-   PATH ANSWER
-===================================================== */
+/* =========================================================
+   UNIT CONVERSION
+========================================================= */
 
-function updatePathAnswer(){
+function toMetres(value,unit){
 
-  const data=pathData();
+    value = Number(value) || 0;
 
-  if(!Number.isFinite(data.time)||data.time<=0){
+    if(unit === "mm"){
+        return value / 1000;
+    }
 
-    answer(
-      0,
-      "Invalid",
-      "Time must be greater than zero."
-    );
+    if(unit === "cm"){
+        return value / 100;
+    }
 
-    return;
-  }
+    if(unit === "km"){
+        return value * 1000;
+    }
 
-
-  if(finding==="velocity"){
-
-    const v=data.displacement/data.time;
-
-    answer(
-      v,
-      "m/s",
-      `
-      <b>Velocity = Displacement ÷ Time</b>
-      <br><br>
-      ${fmt(data.displacement)}
-      ÷
-      ${fmt(data.time)}
-      =
-      <b>${fmt(v)} m/s</b>
-      `
-    );
-
-    return;
-  }
-
-
-  if(finding==="displacement"){
-
-    answer(
-      data.displacement,
-      "m",
-      `
-      <b>Displacement = Straight-line distance</b>
-      <br><br>
-      Start → Finish
-      <br>
-      <b>${fmt(data.displacement)} m</b>
-      `
-    );
-
-  }
-
+    return value;
 }
 
 
-/* =====================================================
-   CIRCLE / DRAG
-===================================================== */
+function toSeconds(value,unit){
 
-const point=$("finishPoint");
+    value = Number(value) || 0;
+
+    if(unit === "ms"){
+        return value / 1000;
+    }
+
+    if(unit === "min"){
+        return value * 60;
+    }
+
+    if(unit === "hour"){
+        return value * 3600;
+    }
+
+    return value;
+}
 
 
-point.addEventListener(
-  "pointerdown",
-  function(e){
+function toMPS(value,unit){
 
-    dragging=true;
+    value = Number(value) || 0;
 
-    point.setPointerCapture(
-      e.pointerId
-    );
+    if(unit === "kmh"){
+        return value / 3.6;
+    }
 
-    e.preventDefault();
+    return value;
+}
 
-  }
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+$("enterBtn").addEventListener(
+    "click",
+    function(){
+
+        const name =
+            $("userName").value.trim();
+
+        if(!name){
+
+            alert(
+                "Please enter your name first."
+            );
+
+            $("userName").focus();
+
+            return;
+        }
+
+        $("helloName").textContent =
+            name;
+
+        showScreen("menu");
+
+    }
 );
 
 
-point.addEventListener(
-  "pointermove",
-  function(e){
+$("userName").addEventListener(
+    "keydown",
+    function(event){
 
-    if(!dragging)return;
+        if(event.key === "Enter"){
 
-    const svg=$("motionSVG");
-    const rect=svg.getBoundingClientRect();
+            $("enterBtn").click();
 
-    const x=
-      (e.clientX-rect.left)*
-      700/
-      rect.width;
+        }
 
-    const y=
-      (e.clientY-rect.top)*
-      530/
-      rect.height;
-
-
-    /* CIRCLE */
-
-    if(currentPath==="circle"){
-
-      let a=
-        Math.atan2(
-          y-CY,
-          x-CX
-        )+
-        Math.PI/2;
-
-      if(a<0){
-        a+=Math.PI*2;
-      }
-
-      circleAngle=a;
-
-      drawCircle();
-      updatePathAnswer();
-
-      return;
     }
+);
+
+
+/* =========================================================
+   FIND MENU
+========================================================= */
+
+document
+.querySelectorAll(".menu-card")
+.forEach(function(card){
+
+    card.addEventListener(
+        "click",
+        function(){
+
+            finding =
+                card.dataset.find;
+
+            if(
+                finding === "velocity" ||
+                finding === "displacement"
+            ){
+
+                showScreen("paths");
+
+            }
+            else{
+
+                openNormalCalculator();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   PATH MENU
+========================================================= */
+
+document
+.querySelectorAll(".path-card")
+.forEach(function(card){
+
+    card.addEventListener(
+        "click",
+        function(){
+
+            currentPath =
+                card.dataset.path;
+
+            openPathCalculator();
+
+        }
+    );
+
+});
+
+
+$("pathBack").addEventListener(
+    "click",
+    function(){
+
+        showScreen("menu");
+
+    }
+);
+
+
+$("calcBack").addEventListener(
+    "click",
+    function(){
+
+        if(
+            finding === "velocity" ||
+            finding === "displacement"
+        ){
+
+            showScreen("paths");
+
+        }
+        else{
+
+            showScreen("menu");
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INPUT HTML
+========================================================= */
+
+function distanceInput(
+    id,
+    value
+){
+
+    return `
+        <div class="field">
+
+            <label>
+                DISTANCE
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="${id}"
+                    type="number"
+                    step="any"
+                    value="${value}"
+                >
+
+                <select
+                    id="${id}Unit"
+                >
+
+                    <option value="mm">
+                        mm
+                    </option>
+
+                    <option value="cm">
+                        cm
+                    </option>
+
+                    <option
+                        value="m"
+                        selected
+                    >
+                        metre
+                    </option>
+
+                    <option value="km">
+                        kilometre
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+function timeInput(
+    id,
+    value
+){
+
+    return `
+        <div class="field">
+
+            <label>
+                TIME
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="${id}"
+                    type="number"
+                    step="any"
+                    value="${value}"
+                >
+
+                <select
+                    id="${id}Unit"
+                >
+
+                    <option value="ms">
+                        millisecond
+                    </option>
+
+                    <option
+                        value="s"
+                        selected
+                    >
+                        second
+                    </option>
+
+                    <option value="min">
+                        minute
+                    </option>
+
+                    <option value="hour">
+                        hour
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+function speedInput(
+    id,
+    value
+){
+
+    return `
+        <div class="field">
+
+            <label>
+                SPEED
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="${id}"
+                    type="number"
+                    step="any"
+                    value="${value}"
+                >
+
+                <select
+                    id="${id}Unit"
+                >
+
+                    <option
+                        value="mps"
+                        selected
+                    >
+                        m/s
+                    </option>
+
+                    <option value="kmh">
+                        km/h
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+function velocityInput(
+    id,
+    title,
+    value
+){
+
+    return `
+        <div class="field">
+
+            <label>
+                ${title}
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="${id}"
+                    type="number"
+                    step="any"
+                    value="${value}"
+                >
+
+                <select
+                    id="${id}Unit"
+                >
+
+                    <option
+                        value="mps"
+                        selected
+                    >
+                        m/s
+                    </option>
+
+                    <option value="kmh">
+                        km/h
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+function setAnswer(
+    value,
+    unit,
+    formula,
+    hint
+){
+
+    $("answerValue").textContent =
+        fmt(value);
+
+    $("answerUnit").textContent =
+        unit;
+
+    $("formula").innerHTML =
+        formula;
+
+    $("hint").textContent =
+        hint || "";
+
+}
+
+
+/* =========================================================
+   NORMAL CALCULATOR
+========================================================= */
+
+function openNormalCalculator(){
+
+    $("liveBadge")
+        .classList
+        .add("hidden");
+
+
+    showScreen("calculator");
+
+
+    if(finding === "speed"){
+
+        $("labTitle").textContent =
+            "Find Speed";
+
+        $("labSubtitle").textContent =
+            "Speed = Distance ÷ Time";
+
+
+        $("inputArea").innerHTML =
+
+            distanceInput(
+                "distance",
+                10
+            )
+
+            +
+
+            timeInput(
+                "time",
+                2
+            );
+
+    }
+
+
+    if(finding === "distance"){
+
+        $("labTitle").textContent =
+            "Find Distance";
+
+        $("labSubtitle").textContent =
+            "Distance = Speed × Time";
+
+
+        $("inputArea").innerHTML =
+
+            speedInput(
+                "speed",
+                5
+            )
+
+            +
+
+            timeInput(
+                "time",
+                2
+            );
+
+    }
+
+
+    if(finding === "time"){
+
+        $("labTitle").textContent =
+            "Find Time";
+
+        $("labSubtitle").textContent =
+            "Time = Distance ÷ Speed";
+
+
+        $("inputArea").innerHTML =
+
+            distanceInput(
+                "distance",
+                10
+            )
+
+            +
+
+            speedInput(
+                "speed",
+                5
+            );
+
+    }
+
+
+    if(finding === "acceleration"){
+
+        $("labTitle").textContent =
+            "Find Acceleration";
+
+        $("labSubtitle").textContent =
+            "(Vf − Vi) ÷ Time";
+
+
+        $("inputArea").innerHTML =
+
+            velocityInput(
+                "vi",
+                "INITIAL VELOCITY (Vi)",
+                10
+            )
+
+            +
+
+            velocityInput(
+                "vf",
+                "FINAL VELOCITY (Vf)",
+                20
+            )
+
+            +
+
+            timeInput(
+                "accTime",
+                2
+            );
+
+    }
+
+
+    drawNormalSVG();
+
+    attachNormalEvents();
+
+    calculateNormal();
+
+}
+
+
+/* =========================================================
+   NORMAL EVENTS
+========================================================= */
+
+function attachNormalEvents(){
+
+    document
+    .querySelectorAll(
+        "#inputArea input, #inputArea select"
+    )
+    .forEach(function(element){
+
+        element.addEventListener(
+            "input",
+            calculateNormal
+        );
+
+        element.addEventListener(
+            "change",
+            calculateNormal
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   NORMAL SVG
+========================================================= */
+
+function drawNormalSVG(){
+
+    hideCircle();
+
+    $("motionPath")
+        .setAttribute(
+            "points",
+            "100,400 600,150"
+        );
+
+    $("finishPoint")
+        .style
+        .display = "none";
+
+    $("displacementLine")
+        .style
+        .display = "none";
+
+    $("pathText").textContent = "";
+    $("dispText").textContent = "";
+
+}
+
+
+/* =========================================================
+   NORMAL CALCULATIONS
+========================================================= */
+
+function calculateNormal(){
+
+    /* SPEED */
+
+    if(finding === "speed"){
+
+        const d =
+            toMetres(
+                $("distance").value,
+                $("distanceUnit").value
+            );
+
+        const t =
+            toSeconds(
+                $("time").value,
+                $("timeUnit").value
+            );
+
+
+        if(t <= 0){
+
+            setAnswer(
+                0,
+                "Invalid",
+                "Time must be greater than zero.",
+                ""
+            );
+
+            return;
+
+        }
+
+
+        const result =
+            d / t;
+
+
+        setAnswer(
+
+            result,
+
+            "m/s",
+
+            `
+                <b>Speed = Distance ÷ Time</b>
+                <br><br>
+                ${fmt(d)} m ÷ ${fmt(t)} s
+                =
+                <b>${fmt(result)} m/s</b>
+            `,
+
+            "Speed is distance travelled per unit time."
+
+        );
+
+        return;
+    }
+
+
+    /* DISTANCE */
+
+    if(finding === "distance"){
+
+        const v =
+            toMPS(
+                $("speed").value,
+                $("speedUnit").value
+            );
+
+        const t =
+            toSeconds(
+                $("time").value,
+                $("timeUnit").value
+            );
+
+
+        const result =
+            v * t;
+
+
+        setAnswer(
+
+            result,
+
+            "m",
+
+            `
+                <b>Distance = Speed × Time</b>
+                <br><br>
+                ${fmt(v)} m/s × ${fmt(t)} s
+                =
+                <b>${fmt(result)} m</b>
+            `,
+
+            "Distance is the total path travelled."
+
+        );
+
+        return;
+    }
+
+
+    /* TIME */
+
+    if(finding === "time"){
+
+        const d =
+            toMetres(
+                $("distance").value,
+                $("distanceUnit").value
+            );
+
+        const v =
+            toMPS(
+                $("speed").value,
+                $("speedUnit").value
+            );
+
+
+        if(v <= 0){
+
+            setAnswer(
+                0,
+                "Invalid",
+                "Speed must be greater than zero.",
+                ""
+            );
+
+            return;
+
+        }
+
+
+        const result =
+            d / v;
+
+
+        setAnswer(
+
+            result,
+
+            "s",
+
+            `
+                <b>Time = Distance ÷ Speed</b>
+                <br><br>
+                ${fmt(d)} m ÷ ${fmt(v)} m/s
+                =
+                <b>${fmt(result)} s</b>
+            `,
+
+            "The result is converted to seconds."
+
+        );
+
+        return;
+    }
+
+
+    /* ACCELERATION */
+
+    if(finding === "acceleration"){
+
+        const vi =
+            toMPS(
+                $("vi").value,
+                $("viUnit").value
+            );
+
+        const vf =
+            toMPS(
+                $("vf").value,
+                $("vfUnit").value
+            );
+
+        const t =
+            toSeconds(
+                $("accTime").value,
+                $("accTimeUnit").value
+            );
+
+
+        if(t <= 0){
+
+            setAnswer(
+                0,
+                "Invalid",
+                "Time must be greater than zero.",
+                ""
+            );
+
+            return;
+
+        }
+
+
+        const result =
+            (vf - vi) / t;
+
+
+        setAnswer(
+
+            result,
+
+            "m/s²",
+
+            `
+                <b>Acceleration = (Vf − Vi) ÷ Time</b>
+                <br><br>
+                (${fmt(vf)} − ${fmt(vi)}) ÷ ${fmt(t)}
+                =
+                <b>${fmt(result)} m/s²</b>
+            `,
+
+            "Acceleration tells how quickly velocity changes."
+
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PATH CALCULATOR
+========================================================= */
+
+function openPathCalculator(){
+
+    $("liveBadge")
+        .classList
+        .remove("hidden");
+
+
+    showScreen("calculator");
+
+
+    if(currentPath === "straight"){
+        setupStraight();
+    }
+
+    if(currentPath === "detour"){
+        setupDetour();
+    }
+
+    if(currentPath === "circle"){
+        setupCircle();
+    }
+
+    if(currentPath === "square"){
+        setupSquare();
+    }
+
+    if(currentPath === "rectangle"){
+        setupRectangle();
+    }
+
+}
+
+
+/* =========================================================
+   STRAIGHT
+========================================================= */
+
+function setupStraight(){
+
+    $("labTitle").textContent =
+        finding === "velocity"
+        ? "Velocity • Straight Line"
+        : "Displacement • Straight Line";
+
+    $("labSubtitle").textContent =
+        "Drag the blue point along the path.";
+
+
+    $("inputArea").innerHTML =
+
+        distanceInput(
+            "pathDistance",
+            10
+        )
+
+        +
+
+        timeInput(
+            "pathTime",
+            2
+        );
+
+
+    progress = .5;
+
+    drawStraight();
+
+    attachPathEvents();
+
+    updatePathAnswer();
+
+}
+
+
+/* =========================================================
+   DETOUR
+========================================================= */
+
+function setupDetour(){
+
+    $("labTitle").textContent =
+        finding === "velocity"
+        ? "Velocity • Detour"
+        : "Displacement • Detour";
+
+    $("labSubtitle").textContent =
+        "Drag the blue point along the route.";
+
+
+    $("inputArea").innerHTML = `
+
+        <div class="field">
+
+            <label>
+                HORIZONTAL DISTANCE
+            </label>
+
+            <input
+                id="horizontal"
+                type="number"
+                step="any"
+                value="8"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                VERTICAL DISTANCE
+            </label>
+
+            <input
+                id="vertical"
+                type="number"
+                step="any"
+                value="6"
+            >
+
+        </div>
+
+        ${timeInput("detourTime",2)}
+
+    `;
+
+
+    progress = .5;
+
+    drawDetour();
+
+    attachPathEvents();
+
+    updatePathAnswer();
+
+}
+
+
+/* =========================================================
+   CIRCLE
+========================================================= */
+
+function setupCircle(){
+
+    $("labTitle").textContent =
+        finding === "velocity"
+        ? "Velocity • Circle"
+        : "Displacement • Circle";
+
+    $("labSubtitle").textContent =
+        "Drag the blue point around the circle.";
+
+
+    $("inputArea").innerHTML = `
+
+        <div class="field">
+
+            <label>
+                RADIUS
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="radius"
+                    type="number"
+                    step="any"
+                    value="10"
+                >
+
+                <select id="radiusUnit">
+
+                    <option value="mm">
+                        mm
+                    </option>
+
+                    <option value="cm">
+                        cm
+                    </option>
+
+                    <option
+                        value="m"
+                        selected
+                    >
+                        metre
+                    </option>
+
+                    <option value="km">
+                        kilometre
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        ${timeInput("circleTime",2)}
+
+    `;
+
+
+    circleAngle = Math.PI;
+
+    drawCircle();
+
+    attachPathEvents();
+
+    updatePathAnswer();
+
+}
+
+
+/* =========================================================
+   SQUARE
+========================================================= */
+
+function setupSquare(){
+
+    $("labTitle").textContent =
+        finding === "velocity"
+        ? "Velocity • Square"
+        : "Displacement • Square";
+
+    $("labSubtitle").textContent =
+        "Change the side or drag the blue point.";
+
+
+    $("inputArea").innerHTML = `
+
+        <div class="field">
+
+            <label>
+                SIDE
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="side"
+                    type="number"
+                    step="any"
+                    value="20"
+                >
+
+                <select id="sideUnit">
+
+                    <option value="mm">
+                        mm
+                    </option>
+
+                    <option value="cm">
+                        cm
+                    </option>
+
+                    <option
+                        value="m"
+                        selected
+                    >
+                        metre
+                    </option>
+
+                    <option value="km">
+                        kilometre
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        ${timeInput("squareTime",2)}
+
+    `;
+
+
+    progress = .5;
+
+    drawSquare();
+
+    attachPathEvents();
+
+    updatePathAnswer();
+
+}
+
+
+/* =========================================================
+   RECTANGLE
+========================================================= */
+
+function setupRectangle(){
+
+    $("labTitle").textContent =
+        finding === "velocity"
+        ? "Velocity • Rectangle"
+        : "Displacement • Rectangle";
+
+    $("labSubtitle").textContent =
+        "Change dimensions or drag the blue point.";
+
+
+    $("inputArea").innerHTML = `
+
+        <div class="field">
+
+            <label>
+                LENGTH
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="length"
+                    type="number"
+                    step="any"
+                    value="20"
+                >
+
+                <select id="lengthUnit">
+
+                    <option value="mm">
+                        mm
+                    </option>
+
+                    <option value="cm">
+                        cm
+                    </option>
+
+                    <option
+                        value="m"
+                        selected
+                    >
+                        metre
+                    </option>
+
+                    <option value="km">
+                        kilometre
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                WIDTH
+            </label>
+
+            <div class="row">
+
+                <input
+                    id="width"
+                    type="number"
+                    step="any"
+                    value="10"
+                >
+
+                <select id="widthUnit">
+
+                    <option value="mm">
+                        mm
+                    </option>
+
+                    <option value="cm">
+                        cm
+                    </option>
+
+                    <option
+                        value="m"
+                        selected
+                    >
+                        metre
+                    </option>
+
+                    <option value="km">
+                        kilometre
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        ${timeInput("rectangleTime",2)}
+
+    `;
+
+
+    progress = .5;
+
+    drawRectangle();
+
+    attachPathEvents();
+
+    updatePathAnswer();
+
+}
+
+
+/* =========================================================
+   PATH EVENTS
+========================================================= */
+
+function attachPathEvents(){
+
+    document
+    .querySelectorAll(
+        "#inputArea input, #inputArea select"
+    )
+    .forEach(function(element){
+
+        element.addEventListener(
+            "input",
+            updateModel
+        );
+
+        element.addEventListener(
+            "change",
+            updateModel
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   LIVE MODEL UPDATE
+========================================================= */
+
+function updateModel(){
+
+    if(currentPath === "straight"){
+        drawStraight();
+    }
+
+    if(currentPath === "detour"){
+        drawDetour();
+    }
+
+    if(currentPath === "circle"){
+        drawCircle();
+    }
+
+    if(currentPath === "square"){
+        drawSquare();
+    }
+
+    if(currentPath === "rectangle"){
+        drawRectangle();
+    }
+
+    updatePathAnswer();
+
+}
+
+
+/* =========================================================
+   STRAIGHT SVG
+========================================================= */
+
+function drawStraight(){
+
+    hideCircle();
+
+
+    const sx = 100;
+    const sy = 400;
+
+    const ex = 600;
+    const ey = 150;
+
+
+    const x =
+        sx +
+        (ex - sx) * progress;
+
+    const y =
+        sy +
+        (ey - sy) * progress;
+
+
+    $("motionPath")
+        .setAttribute(
+            "points",
+            `${sx},${sy} ${x},${y}`
+        );
+
+
+    placePoint(
+        sx,
+        sy,
+        x,
+        y
+    );
+
+
+    $("pathText").textContent =
+        "DISTANCE TRAVELLED";
+
+    $("pathText")
+        .setAttribute("x",320);
+
+    $("pathText")
+        .setAttribute("y",350);
+
+}
+
+
+/* =========================================================
+   DETOUR SVG
+========================================================= */
+
+function drawDetour(){
+
+    hideCircle();
+
+
+    const sx = 100;
+    const sy = 400;
+
+    const mx = 350;
+    const my = 400;
+
+    const ex = 600;
+    const ey = 150;
+
+
+    let x;
+    let y;
+
+
+    if(progress <= .5){
+
+        const p =
+            progress * 2;
+
+        x =
+            sx +
+            (mx - sx) * p;
+
+        y = sy;
+
+    }
+    else{
+
+        const p =
+            (progress - .5) * 2;
+
+        x =
+            mx +
+            (ex - mx) * p;
+
+        y =
+            my +
+            (ey - my) * p;
+
+    }
+
+
+    $("motionPath")
+        .setAttribute(
+            "points",
+            `
+            ${sx},${sy}
+            ${mx},${my}
+            ${x},${y}
+            `
+        );
+
+
+    placePoint(
+        sx,
+        sy,
+        x,
+        y
+    );
+
+
+    $("pathText").textContent =
+        "ACTUAL PATH";
+
+    $("pathText")
+        .setAttribute("x",210);
+
+    $("pathText")
+        .setAttribute("y",380);
+
+
+    $("dispText").textContent =
+        "DISPLACEMENT";
+
+    $("dispText")
+        .setAttribute("x",320);
+
+    $("dispText")
+        .setAttribute("y",280);
+
+}
+
+
+/* =========================================================
+   CIRCLE SVG
+========================================================= */
+
+function drawCircle(){
+
+    $("circleGuide")
+        .style
+        .display = "block";
+
+
+    const centerX = 350;
+    const centerY = 280;
+
+    /*
+       Visual radius changes according
+       to entered radius.
+    */
+
+    const radiusValue =
+        Math.max(
+            0.01,
+            Number($("radius")?.value) || 10
+        );
+
+
+    const visualRadius =
+        Math.min(
+            210,
+            Math.max(
+                80,
+                80 +
+                Math.sqrt(radiusValue) * 20
+            )
+        );
+
+
+    $("circleGuide")
+        .setAttribute(
+            "cx",
+            centerX
+        );
+
+    $("circleGuide")
+        .setAttribute(
+            "cy",
+            centerY
+        );
+
+    $("circleGuide")
+        .setAttribute(
+            "r",
+            visualRadius
+        );
+
+
+    const startAngle =
+        -Math.PI / 2;
+
+    const endAngle =
+        startAngle +
+        circleAngle;
+
+
+    const points = [];
+
+    const steps =
+        Math.max(
+            20,
+            Math.ceil(
+                circleAngle * 45
+            )
+        );
+
+
+    for(
+        let i=0;
+        i<=steps;
+        i++
+    ){
+
+        const angle =
+            startAngle +
+            circleAngle *
+            (i / steps);
+
+
+        const x =
+            centerX +
+            visualRadius *
+            Math.cos(angle);
+
+        const y =
+            centerY +
+            visualRadius *
+            Math.sin(angle);
+
+
+        points.push(
+            `${x},${y}`
+        );
+
+    }
+
+
+    $("motionPath")
+        .setAttribute(
+            "points",
+            points.join(" ")
+        );
+
+
+    const sx =
+        centerX;
+
+    const sy =
+        centerY -
+        visualRadius;
+
+
+    const ex =
+        centerX +
+        visualRadius *
+        Math.cos(endAngle);
+
+    const ey =
+        centerY +
+        visualRadius *
+        Math.sin(endAngle);
+
+
+    placePoint(
+        sx,
+        sy,
+        ex,
+        ey
+    );
+
+
+    $("pathText").textContent =
+        "DISTANCE TRAVELLED";
+
+    $("pathText")
+        .setAttribute(
+            "x",
+            425
+        );
+
+    $("pathText")
+        .setAttribute(
+            "y",
+            sy - 18
+        );
+
+
+    $("dispText").textContent =
+        "DISPLACEMENT";
+
+    $("dispText")
+        .setAttribute(
+            "x",
+            centerX
+        );
+
+    $("dispText")
+        .setAttribute(
+            "y",
+            centerY - 8
+        );
+
+}
+
+
+/* =========================================================
+   SQUARE SVG
+========================================================= */
+
+function drawSquare(){
+
+    hideCircle();
+
+
+    const sideValue =
+        Math.max(
+            0.01,
+            Number($("side")?.value) || 20
+        );
+
+
+    /*
+       The SVG size changes LIVE
+       when the physical side changes.
+    */
+
+    const visualSize =
+        Math.min(
+            390,
+            Math.max(
+                130,
+                130 +
+                Math.sqrt(sideValue) * 45
+            )
+        );
+
+
+    const left =
+        350 -
+        visualSize / 2;
+
+    const top =
+        280 -
+        visualSize / 2;
+
+
+    const perimeter =
+        visualSize * 4;
+
+
+    const travelled =
+        perimeter *
+        progress;
+
+
+    let x;
+    let y;
+
+
+    if(travelled <= visualSize){
+
+        x =
+            left +
+            travelled;
+
+        y = top;
+
+    }
+    else if(
+        travelled <=
+        visualSize * 2
+    ){
+
+        x =
+            left +
+            visualSize;
+
+        y =
+            top +
+            (travelled -
+             visualSize);
+
+    }
+    else if(
+        travelled <=
+        visualSize * 3
+    ){
+
+        x =
+            left +
+            visualSize -
+            (travelled -
+             visualSize * 2);
+
+        y =
+            top +
+            visualSize;
+
+    }
+    else{
+
+        x = left;
+
+        y =
+            top +
+            visualSize -
+            (travelled -
+             visualSize * 3);
+
+    }
+
+
+    $("motionPath")
+        .setAttribute(
+            "points",
+            `
+            ${left},${top}
+            ${left+visualSize},${top}
+            ${left+visualSize},${top+visualSize}
+            ${left},${top+visualSize}
+            ${left},${top}
+            `
+        );
+
+
+    placePoint(
+        left,
+        top,
+        x,
+        y
+    );
+
+
+    $("pathText").textContent =
+        "SQUARE PATH";
+
+    $("pathText")
+        .setAttribute(
+            "x",
+            350
+        );
+
+    $("pathText")
+        .setAttribute(
+            "y",
+            top - 20
+        );
+
+    $("pathText")
+        .setAttribute(
+            "text-anchor",
+            "middle"
+        );
+
+
+    $("dispText").textContent =
+        "DISPLACEMENT";
+
+    $("dispText")
+        .setAttribute(
+            "x",
+            (left+x)/2
+        );
+
+    $("dispText")
+        .setAttribute(
+            "y",
+            (top+y)/2 - 12
+        );
+
+    $("dispText")
+        .setAttribute(
+            "text-anchor",
+            "middle"
+        );
+
+}
+
+
+/* =========================================================
+   RECTANGLE SVG
+========================================================= */
+
+function drawRectangle(){
+
+    hideCircle();
+
+
+    const lengthValue =
+        Math.max(
+            .01,
+            Number($("length")?.value) || 20
+        );
+
+
+    const widthValue =
+        Math.max(
+            .01,
+            Number($("width")?.value) || 10
+        );
+
+
+    /*
+       Rectangle changes visually
+       according to length + width.
+    */
+
+    const aspect =
+        lengthValue /
+        widthValue;
+
+
+    let visualWidth;
+    let visualHeight;
+
+
+    if(aspect >= 1){
+
+        visualWidth = 430;
+
+        visualHeight =
+            visualWidth /
+            aspect;
+
+    }
+    else{
+
+        visualHeight = 330;
+
+        visualWidth =
+            visualHeight *
+            aspect;
+
+    }
+
+
+    visualWidth =
+        Math.max(
+            130,
+            Math.min(
+                500,
+                visualWidth
+            )
+        );
+
+
+    visualHeight =
+        Math.max(
+            100,
+            Math.min(
+                360,
+                visualHeight
+            )
+        );
+
+
+    const left =
+        350 -
+        visualWidth / 2;
+
+    const top =
+        280 -
+        visualHeight / 2;
+
+
+    const perimeter =
+        2 *
+        (
+            visualWidth +
+            visualHeight
+        );
+
+
+    const travelled =
+        perimeter *
+        progress;
+
+
+    let x;
+    let y;
+
+
+    if(
+        travelled <=
+        visualWidth
+    ){
+
+        x =
+            left +
+            travelled;
+
+        y = top;
+
+    }
+    else if(
+        travelled <=
+        visualWidth +
+        visualHeight
+    ){
+
+        x =
+            left +
+            visualWidth;
+
+        y =
+            top +
+            travelled -
+            visualWidth;
+
+    }
+    else if(
+        travelled <=
+        2*visualWidth +
+        visualHeight
+    ){
+
+        x =
+            left +
+            visualWidth -
+            (
+                travelled -
+                visualWidth -
+                visualHeight
+            );
+
+        y =
+            top +
+            visualHeight;
+
+    }
+    else{
+
+        x = left;
+
+        y =
+            top +
+            visualHeight -
+            (
+                travelled -
+                2*visualWidth -
+                visualHeight
+            );
+
+    }
+
+
+    $("motionPath")
+        .setAttribute(
+            "points",
+            `
+            ${left},${top}
+            ${left+visualWidth},${top}
+            ${left+visualWidth},${top+visualHeight}
+            ${left},${top+visualHeight}
+            ${left},${top}
+            `
+        );
+
+
+    placePoint(
+        left,
+        top,
+        x,
+        y
+    );
+
+
+    $("pathText").textContent =
+        "RECTANGLE PATH";
+
+    $("pathText")
+        .setAttribute(
+            "x",
+            350
+        );
+
+    $("pathText")
+        .setAttribute(
+            "y",
+            top - 20
+        );
+
+    $("pathText")
+        .setAttribute(
+        "text-anchor",
+        "middle"
+    );
+
+
+    $("dispText").textContent =
+        "DISPLACEMENT";
+
+    $("dispText")
+        .setAttribute(
+            "x",
+            (left+x)/2
+        );
+
+    $("dispText")
+        .setAttribute(
+            "y",
+            (top+y)/2 - 12
+        );
+
+    $("dispText")
+        .setAttribute(
+            "text-anchor",
+            "middle"
+        );
+
+}
+
+
+/* =========================================================
+   POINT POSITION
+========================================================= */
+
+function placePoint(
+    sx,
+    sy,
+    ex,
+    ey
+){
+
+    $("startPoint")
+        .setAttribute(
+            "cx",
+            sx
+        );
+
+    $("startPoint")
+        .setAttribute(
+            "cy",
+            sy
+        );
+
+
+    $("finishPoint")
+        .setAttribute(
+            "cx",
+            ex
+        );
+
+    $("finishPoint")
+        .setAttribute(
+            "cy",
+            ey
+        );
+
+
+    $("finishPoint")
+        .style
+        .display = "block";
+
+
+    $("displacementLine")
+        .setAttribute(
+            "x1",
+            sx
+        );
+
+    $("displacementLine")
+        .setAttribute(
+            "y1",
+            sy
+        );
+
+    $("displacementLine")
+        .setAttribute(
+            "x2",
+            ex
+        );
+
+    $("displacementLine")
+        .setAttribute(
+            "y2",
+            ey
+        );
+
+
+    $("displacementLine")
+        .style
+        .display = "block";
+
+
+    $("startLabel")
+        .setAttribute(
+            "x",
+            sx - 25
+        );
+
+    $("startLabel")
+        .setAttribute(
+            "y",
+            sy - 20
+        );
+
+
+    $("finishLabel")
+        .setAttribute(
+            "x",
+            ex - 25
+        );
+
+    $("finishLabel")
+        .setAttribute(
+            "y",
+            ey - 20
+        );
+
+}
+
+
+/* =========================================================
+   PATH MATHEMATICS
+========================================================= */
+
+function getPathData(){
+
+    let distance = 0;
+    let displacement = 0;
+    let time = 0;
 
 
     /* STRAIGHT */
 
-    if(currentPath==="straight"){
+    if(currentPath === "straight"){
 
-      const sx=100;
-      const sy=370;
+        const total =
+            toMetres(
+                $("pathDistance").value,
+                $("pathDistanceUnit").value
+            );
 
-      const ex=600;
-      const ey=150;
 
-      const dx=ex-sx;
-      const dy=ey-sy;
+        distance =
+            total *
+            progress;
 
-      progress=
-        (
-          (x-sx)*dx+
-          (y-sy)*dy
-        )/
-        (dx*dx+dy*dy);
 
-      progress=
-        Math.max(
-          .001,
-          Math.min(1,progress)
-        );
+        displacement =
+            distance;
 
-      drawStraight();
-      updatePathAnswer();
 
-      return;
+        time =
+            toSeconds(
+                $("pathTime").value,
+                $("pathTimeUnit").value
+            );
+
     }
 
 
     /* DETOUR */
 
-    if(currentPath==="detour"){
+    if(currentPath === "detour"){
 
-      const sx=100;
-      const sy=370;
-      const mx=350;
-      const my=370;
-      const ex=600;
-      const ey=150;
+        const horizontal =
+            Number(
+                $("horizontal").value
+            ) || 0;
 
-      const firstDx=mx-sx;
-      const firstDy=my-sy;
 
-      const secondDx=ex-mx;
-      const secondDy=ey-my;
+        const vertical =
+            Number(
+                $("vertical").value
+            ) || 0;
 
-      const firstLen2=
-        firstDx*firstDx+
-        firstDy*firstDy;
 
-      const secondLen2=
-        secondDx*secondDx+
-        secondDy*secondDy;
+        const totalPath =
+            horizontal +
+            vertical;
 
-      let t1=
-        ((x-sx)*firstDx+
-         (y-sy)*firstDy)/
-        firstLen2;
 
-      t1=Math.max(0,Math.min(1,t1));
+        distance =
+            totalPath *
+            progress;
 
-      const px1=sx+t1*firstDx;
-      const py1=sy+t1*firstDy;
 
-      let t2=
-        ((x-mx)*secondDx+
-         (y-my)*secondDy)/
-        secondLen2;
+        let dx = 0;
+        let dy = 0;
 
-      t2=Math.max(0,Math.min(1,t2));
 
-      const px2=mx+t2*secondDx;
-      const py2=my+t2*secondDy;
+        if(
+            distance <=
+            horizontal
+        ){
 
-      const dist1=
-        (x-px1)**2+
-        (y-py1)**2;
+            dx = distance;
 
-      const dist2=
-        (x-px2)**2+
-        (y-py2)**2;
+        }
+        else{
 
-      if(dist1<dist2){
-        progress=.5*t1;
-      }else{
-        progress=.5+.5*t2;
-      }
+            dx = horizontal;
 
-      drawDetour();
-      updatePathAnswer();
+            dy =
+                distance -
+                horizontal;
 
-      return;
+        }
+
+
+        displacement =
+            Math.sqrt(
+                dx*dx +
+                dy*dy
+            );
+
+
+        time =
+            toSeconds(
+                $("detourTime").value,
+                $("detourTimeUnit").value
+            );
+
+    }
+
+
+    /* CIRCLE */
+
+    if(currentPath === "circle"){
+
+        const radius =
+            toMetres(
+                $("radius").value,
+                $("radiusUnit").value
+            );
+
+
+        distance =
+            radius *
+            circleAngle;
+
+
+        displacement =
+            2 *
+            radius *
+            Math.sin(
+                circleAngle / 2
+            );
+
+
+        time =
+            toSeconds(
+                $("circleTime").value,
+                $("circleTimeUnit").value
+            );
+
     }
 
 
     /* SQUARE */
 
-    if(currentPath==="square"){
+    if(currentPath === "square"){
 
-      const left=130;
-      const top=100;
-      const size=330;
+        const side =
+            toMetres(
+                $("side").value,
+                $("sideUnit").value
+            );
 
-      const candidates=[
-        {
-          d:Math.abs(y-top),
-          p:(x-left)/size
-        },
-        {
-          d:Math.abs(x-(left+size)),
-          p:1+(y-top)/size
-        },
-        {
-          d:Math.abs(y-(top+size)),
-          p:2+(left+size-x)/size
-        },
-        {
-          d:Math.abs(x-left),
-          p:3+(top+size-y)/size
+
+        distance =
+            4 *
+            side *
+            progress;
+
+
+        let d =
+            distance;
+
+
+        let x = 0;
+        let y = 0;
+
+
+        if(d <= side){
+
+            x = d;
+
         }
-      ];
+        else if(d <= 2*side){
 
-      candidates.sort(
-        (a,b)=>a.d-b.d
-      );
+            x = side;
+            y = d-side;
 
-      progress=
-        Math.max(
-          .001,
-          Math.min(
-            .999,
-            candidates[0].p/4
-          )
-        );
+        }
+        else if(d <= 3*side){
 
-      drawSquare();
-      updatePathAnswer();
+            x =
+                side -
+                (d - 2*side);
 
-      return;
+            y = side;
+
+        }
+        else{
+
+            x = 0;
+
+            y =
+                side -
+                (d - 3*side);
+
+        }
+
+
+        displacement =
+            Math.sqrt(
+                x*x +
+                y*y
+            );
+
+
+        time =
+            toSeconds(
+                $("squareTime").value,
+                $("squareTimeUnit").value
+            );
+
     }
 
 
     /* RECTANGLE */
 
-    if(currentPath==="rectangle"){
+    if(currentPath === "rectangle"){
 
-      const left=100;
-      const top=120;
-      const width=500;
-      const height=260;
+        const length =
+            toMetres(
+                $("length").value,
+                $("lengthUnit").value
+            );
 
-      const candidates=[
-        {
-          d:Math.abs(y-top),
-          p:(x-left)/width
-        },
-        {
-          d:Math.abs(x-(left+width)),
-          p:1+(y-top)/height
-        },
-        {
-          d:Math.abs(y-(top+height)),
-          p:2+(left+width-x)/width
-        },
-        {
-          d:Math.abs(x-left),
-          p:3+(top+height-y)/height
+
+        const width =
+            toMetres(
+                $("width").value,
+                $("widthUnit").value
+            );
+
+
+        distance =
+            2 *
+            (
+                length +
+                width
+            ) *
+            progress;
+
+
+        let d =
+            distance;
+
+
+        let x = 0;
+        let y = 0;
+
+
+        if(d <= length){
+
+            x = d;
+
         }
-      ];
+        else if(
+            d <=
+            length + width
+        ){
 
-      candidates.sort(
-        (a,b)=>a.d-b.d
-      );
+            x = length;
 
-      progress=
-        Math.max(
-          .001,
-          Math.min(
-            .999,
-            candidates[0].p/4
-          )
-        );
+            y =
+                d -
+                length;
 
-      drawRectangle();
-      updatePathAnswer();
+        }
+        else if(
+            d <=
+            2*length +
+            width
+        ){
 
-    }
+            x =
+                length -
+                (
+                    d -
+                    length -
+                    width
+                );
 
-  }
-);
+            y = width;
+
+        }
+        else{
+
+            x = 0;
+
+            y =
+                width -
+                (
+                    d -
+                    2*length -
+                    width
+                );
+
+        }
 
 
-point.addEventListener(
-  "pointerup",
-  function(){
-    dragging=false;
-  }
-);
+        displacement =
+            Math.sqrt(
+                x*x +
+                y*y
+            );
 
 
-point.addEventListener(
-  "pointercancel",
-  function(){
-    dragging=false;
-  }
-);
-
-
-/* =====================================================
-   CALCULATE BUTTON
-===================================================== */
-
-$("calculateBtn").addEventListener(
-  "click",
-  function(){
-
-    if(
-      finding==="velocity" ||
-      finding==="displacement"
-    ){
-
-      updatePathAnswer();
-
-    }else{
-
-      calculate();
+        time =
+            toSeconds(
+                $("rectangleTime").value,
+                $("rectangleTimeUnit").value
+            );
 
     }
 
-  }
-);
 
-
-/* =====================================================
-   CIRCLE GUIDE
-===================================================== */
-
-function hideCircle(){
-
-  $("circleGuide").style.display="none";
+    return {
+        distance:distance,
+        displacement:displacement,
+        time:time
+    };
 
 }
 
 
-/* =====================================================
-   GRID
-===================================================== */
+/* =========================================================
+   PATH ANSWER
+========================================================= */
 
-(function buildGrid(){
+function updatePathAnswer(){
 
-  const g=$("grid");
-
-  for(let x=100;x<=600;x+=125){
-
-    const line=document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "line"
-    );
-
-    line.setAttribute("x1",x);
-    line.setAttribute("y1",55);
-    line.setAttribute("x2",x);
-    line.setAttribute("y2",475);
-
-    line.setAttribute("class","grid-line");
-
-    g.appendChild(line);
-
-  }
+    const data =
+        getPathData();
 
 
-  for(let y=75;y<=450;y+=100){
+    if(
+        !Number.isFinite(data.time) ||
+        data.time <= 0
+    ){
 
-    const line=document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "line"
-    );
+        setAnswer(
+            0,
+            "Invalid",
+            "Time must be greater than zero.",
+            ""
+        );
 
-    line.setAttribute("x1",60);
-    line.setAttribute("y1",y);
-    line.setAttribute("x2",640);
-    line.setAttribute("y2",y);
+        return;
 
-    line.setAttribute("class","grid-line");
+    }
 
-    g.appendChild(line);
 
-  }
+    /* VELOCITY */
+
+    if(finding === "velocity"){
+
+        const velocity =
+            data.displacement /
+            data.time;
+
+
+        setAnswer(
+
+            velocity,
+
+            "m/s",
+
+            `
+                <b>Velocity = Displacement ÷ Time</b>
+                <br><br>
+                ${fmt(data.displacement)} m
+                ÷
+                ${fmt(data.time)} s
+                =
+                <b>${fmt(velocity)} m/s</b>
+            `,
+
+            "Move the blue point to change displacement. Change time to change velocity."
+
+        );
+
+        return;
+    }
+
+
+    /* DISPLACEMENT */
+
+    if(finding === "displacement"){
+
+        setAnswer(
+
+            data.displacement,
+
+            "m",
+
+            `
+                <b>Displacement = Straight-line distance</b>
+                <br><br>
+                Start → Finish
+                <br>
+                <b>${fmt(data.displacement)} m</b>
+            `,
+
+            "Changing time does not change displacement; changing the final position does."
+
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DRAG SYSTEM
+========================================================= */
+
+let dragging = false;
+
+
+$("finishPoint").addEventListener(
+    "pointerdown",
+    function(event){
+
+        dragging = true;
+
+        $("finishPoint")
+            .setPointerCapture(
+                event.pointerId
+            );
+
+        event.preventDefault();
+
+    }
+);
+
+
+$("finishPoint").addEventListener(
+    "pointermove",
+    function(event){
+
+        if(!dragging){
+            return;
+        }
+
+
+        const svg =
+            $("motionSVG");
+
+
+        const rect =
+            svg.getBoundingClientRect();
+
+
+        const x =
+            (
+                event.clientX -
+                rect.left
+            ) *
+            700 /
+            rect.width;
+
+
+        const y =
+            (
+                event.clientY -
+                rect.top
+            ) *
+            560 /
+            rect.height;
+
+
+        /* ================= CIRCLE ================= */
+
+        if(currentPath === "circle"){
+
+            const cx = 350;
+            const cy = 280;
+
+
+            let angle =
+                Math.atan2(
+                    y-cy,
+                    x-cx
+                );
+
+
+            angle +=
+                Math.PI/2;
+
+
+            if(angle < 0){
+                angle +=
+                    Math.PI*2;
+            }
+
+
+            circleAngle =
+                Math.max(
+                    0.01,
+                    angle
+                );
+
+
+            drawCircle();
+
+            updatePathAnswer();
+
+            return;
+        }
+
+
+        /* ================= STRAIGHT ================= */
+
+        if(currentPath === "straight"){
+
+            const sx = 100;
+            const sy = 400;
+
+            const ex = 600;
+            const ey = 150;
+
+
+            const dx =
+                ex-sx;
+
+            const dy =
+                ey-sy;
+
+
+            progress =
+                (
+                    (x-sx)*dx +
+                    (y-sy)*dy
+                )
+                /
+                (
+                    dx*dx +
+                    dy*dy
+                );
+
+
+            progress =
+                Math.max(
+                    0.001,
+                    Math.min(
+                        1,
+                        progress
+                    )
+                );
+
+
+            drawStraight();
+
+            updatePathAnswer();
+
+            return;
+        }
+
+
+        /* ================= DETOUR ================= */
+
+        if(currentPath === "detour"){
+
+            const sx = 100;
+            const sy = 400;
+
+            const mx = 350;
+            const my = 400;
+
+            const ex = 600;
+            const ey = 150;
+
+
+            const firstDX =
+                mx-sx;
+
+            const firstDY =
+                my-sy;
+
+
+            const secondDX =
+                ex-mx;
+
+            const secondDY =
+                ey-my;
+
+
+            const firstLength =
+                firstDX*firstDX +
+                firstDY*firstDY;
+
+
+            const secondLength =
+                secondDX*secondDX +
+                secondDY*secondDY;
+
+
+            let p1 =
+                (
+                    (x-sx)*firstDX +
+                    (y-sy)*firstDY
+                )
+                /
+                firstLength;
+
+
+            let p2 =
+                (
+                    (x-mx)*secondDX +
+                    (y-my)*secondDY
+                )
+                /
+                secondLength;
+
+
+            p1 =
+                Math.max(
+                    0,
+                    Math.min(
+                        1,
+                        p1
+                    )
+                );
+
+
+            p2 =
+                Math.max(
+                    0,
+                    Math.min(
+                        1,
+                        p2
+                    )
+                );
+
+
+            const px1 =
+                sx +
+                p1*firstDX;
+
+            const py1 =
+                sy +
+                p1*firstDY;
+
+
+            const px2 =
+                mx +
+                p2*secondDX;
+
+            const py2 =
+                my +
+                p2*secondDY;
+
+
+            const dist1 =
+                (x-px1)**2 +
+                (y-py1)**2;
+
+
+            const dist2 =
+                (x-px2)**2 +
+                (y-py2)**2;
+
+
+            if(dist1 < dist2){
+
+                progress =
+                    .5*p1;
+
+            }
+            else{
+
+                progress =
+                    .5 +
+                    .5*p2;
+
+            }
+
+
+            progress =
+                Math.max(
+                    0.001,
+                    Math.min(
+                        1,
+                        progress
+                    )
+                );
+
+
+            drawDetour();
+
+            updatePathAnswer();
+
+            return;
+        }
+
+
+        /* ================= SQUARE ================= */
+
+        if(currentPath === "square"){
+
+            const sideValue =
+                Number(
+                    $("side").value
+                ) || 20;
+
+
+            const size =
+                Math.min(
+                    390,
+                    Math.max(
+                        130,
+                        130 +
+                        Math.sqrt(
+                            sideValue
+                        )*45
+                    )
+                );
+
+
+            const left =
+                350 -
+                size/2;
+
+            const top =
+                280 -
+                size/2;
+
+
+            const candidates = [
+
+                {
+                    dist:Math.abs(y-top),
+                    p:(x-left)/size
+                },
+
+                {
+                    dist:
+                        Math.abs(
+                            x -
+                            (left+size)
+                        ),
+
+                    p:
+                        1 +
+                        (y-top)/size
+                },
+
+                {
+                    dist:
+                        Math.abs(
+                            y -
+                            (top+size)
+                        ),
+
+                    p:
+                        2 +
+                        (left+size-x)/size
+                },
+
+                {
+                    dist:
+                        Math.abs(x-left),
+
+                    p:
+                        3 +
+                        (top+size-y)/size
+                }
+
+            ];
+
+
+            candidates.sort(
+                function(a,b){
+                    return a.dist-b.dist;
+                }
+            );
+
+
+            progress =
+                candidates[0].p / 4;
+
+
+            progress =
+                Math.max(
+                    0.001,
+                    Math.min(
+                        .999,
+                        progress
+                    )
+                );
+
+
+            drawSquare();
+
+            updatePathAnswer();
+
+            return;
+        }
+
+
+        /* ================= RECTANGLE ================= */
+
+        if(currentPath === "rectangle"){
+
+            const length =
+                Number(
+                    $("length").value
+                ) || 20;
+
+
+            const width =
+                Number(
+                    $("width").value
+                ) || 10;
+
+
+            const aspect =
+                length /
+                width;
+
+
+            let visualWidth;
+            let visualHeight;
+
+
+            if(aspect >= 1){
+
+                visualWidth = 430;
+
+                visualHeight =
+                    visualWidth /
+                    aspect;
+
+            }
+            else{
+
+                visualHeight = 330;
+
+                visualWidth =
+                    visualHeight *
+                    aspect;
+
+            }
+
+
+            visualWidth =
+                Math.max(
+                    130,
+                    Math.min(
+                        500,
+                        visualWidth
+                    )
+                );
+
+
+            visualHeight =
+                Math.max(
+                    100,
+                    Math.min(
+                        360,
+                        visualHeight
+                    )
+                );
+
+
+            const left =
+                350 -
+                visualWidth/2;
+
+
+            const top =
+                280 -
+                visualHeight/2;
+
+
+            const candidates = [
+
+                {
+                    dist:
+                        Math.abs(y-top),
+
+                    p:
+                        (x-left) /
+                        visualWidth
+                },
+
+                {
+                    dist:
+                        Math.abs(
+                            x -
+                            (left+visualWidth)
+                        ),
+
+                    p:
+                        1 +
+                        (y-top) /
+                        visualHeight
+                },
+
+                {
+                    dist:
+                        Math.abs(
+                            y -
+                            (top+visualHeight)
+                        ),
+
+                    p:
+                        2 +
+                        (
+                            left+
+                            visualWidth-
+                            x
+                        ) /
+                        visualWidth
+                },
+
+                {
+                    dist:
+                        Math.abs(
+                            x-left
+                        ),
+
+                    p:
+                        3 +
+                        (
+                            top+
+                            visualHeight-
+                            y
+                        ) /
+                        visualHeight
+                }
+
+            ];
+
+
+            candidates.sort(
+                function(a,b){
+                    return a.dist-b.dist;
+                }
+            );
+
+
+            progress =
+                candidates[0].p / 4;
+
+
+            progress =
+                Math.max(
+                    0.001,
+                    Math.min(
+                        .999,
+                        progress
+                    )
+                );
+
+
+            drawRectangle();
+
+            updatePathAnswer();
+
+        }
+
+    }
+);
+
+
+$("finishPoint").addEventListener(
+    "pointerup",
+    function(){
+        dragging = false;
+    }
+);
+
+
+$("finishPoint").addEventListener(
+    "pointercancel",
+    function(){
+        dragging = false;
+    }
+);
+
+
+/* =========================================================
+   CALCULATE BUTTON
+========================================================= */
+
+$("calculateBtn").addEventListener(
+    "click",
+    function(){
+
+        if(
+            finding === "velocity" ||
+            finding === "displacement"
+        ){
+
+            updatePathAnswer();
+
+        }
+        else{
+
+            calculateNormal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   HIDE CIRCLE
+========================================================= */
+
+function hideCircle(){
+
+    $("circleGuide")
+        .style
+        .display = "none";
+
+}
+
+
+/* =========================================================
+   SVG GRID
+========================================================= */
+
+(function(){
+
+    const grid =
+        $("grid");
+
+
+    for(
+        let x=70;
+        x<=630;
+        x+=100
+    ){
+
+        const line =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "line"
+            );
+
+
+        line.setAttribute(
+            "x1",
+            x
+        );
+
+        line.setAttribute(
+            "y1",
+            40
+        );
+
+        line.setAttribute(
+            "x2",
+            x
+        );
+
+        line.setAttribute(
+            "y2",
+            520
+        );
+
+        line.setAttribute(
+            "class",
+            "grid-line"
+        );
+
+
+        grid.appendChild(line);
+
+    }
+
+
+    for(
+        let y=80;
+        y<=500;
+        y+=100
+    ){
+
+        const line =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "line"
+            );
+
+
+        line.setAttribute(
+            "x1",
+            50
+        );
+
+        line.setAttribute(
+            "y1",
+            y
+        );
+
+        line.setAttribute(
+            "x2",
+            650
+        );
+
+        line.setAttribute(
+            "y2",
+            y
+        );
+
+        line.setAttribute(
+            "class",
+            "grid-line"
+        );
+
+
+        grid.appendChild(line);
+
+    }
 
 })();
 
 
-/* =====================================================
-   START
-===================================================== */
+/* =========================================================
+   START WEBSITE
+========================================================= */
 
 showScreen("welcome");
 
